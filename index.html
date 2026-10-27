@@ -48,7 +48,7 @@
     "@type": ["LocalBusiness", "ProfessionalService"],
     "@id": "https://www.nasuvia.ch/#organization",
     "name": "Nasuvia",
-    "legalName": "Nasuvia",
+    "legalName": "Nasufi Company",
     "alternateName": "Nasuvia Glasfasertechnik",
     "slogan": "Glasfaser? Wir ziehen durch.",
     "description": "Nasuvia ist Ihr Spezialist für Glasfasertechnik aus Winterthur – schweizweit tätig. Spleissen, Kabelzug vom BEP bis zur OTO-Dose, Montage, Störungsdienst und Anpassungen bestehender Installationen für Firmen, Privatkunden und Gemeinden.",
@@ -60,8 +60,6 @@
     "contactPoint": [
       { "@type": "ContactPoint", "telephone": "+41798218408", "contactType": "customer service", "availableLanguage": ["de"], "areaServed": "CH" }
     ],
-    "founder": { "@type": "Person", "name": "Enes Nasufi" },
-    "identifier": { "@type": "PropertyValue", "propertyID": "CH-UID", "value": "CHE-345.606.175" },
     "address": { "@type": "PostalAddress", "streetAddress": "Tössfeldstrasse 37", "postalCode": "8406", "addressLocality": "Winterthur", "addressRegion": "ZH", "addressCountry": "CH" },
     "geo": { "@type": "GeoCoordinates", "latitude": 47.49144, "longitude": 8.71567 },
     "hasMap": "https://www.google.com/maps/search/?api=1&query=47.49144,8.71567",
@@ -94,36 +92,6 @@
         { "@type": "Offer", "itemOffered": { "@type": "Service", "url": "https://www.nasuvia.ch/anpassungen/", "name": "Anpassungen bestehender Installationen", "serviceType": "Glasfaser-Anpassung", "description": "Anpassungen an bestehenden Glasfaser-Installationen, z. B. OTO-Dosen-Versetzung, Erweiterungen und Modernisierung.", "areaServed": { "@type": "Country", "name": "Schweiz" }, "provider": { "@id": "https://www.nasuvia.ch/#organization" } } }
       ]
     }
-  }
-  </script>
-
-  <!-- Structured Data: FAQ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Was kostet es, eine OTO-Dose zu montieren oder zu versetzen?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Das hängt von der Strecke, der bestehenden Infrastruktur und dem Aufwand vor Ort ab. Nach einer kurzen Besichtigung – oft reichen schon ein paar Fotos – erhalten Sie von uns eine transparente Offerte ohne Kleingedrucktes." }
-      },
-      {
-        "@type": "Question",
-        "name": "Wie schnell ist der Glasfaser-Störungsdienst vor Ort?",
-        "acceptedAnswer": { "@type": "Answer", "text": "So schnell wie möglich: Melden Sie die Störung telefonisch unter +41 79 821 84 08. Wir orten den Fehler präzise per OTDR-Messung und beheben ihn in der Regel direkt beim ersten Termin." }
-      },
-      {
-        "@type": "Question",
-        "name": "Arbeitet Nasuvia in der ganzen Schweiz?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Ja. Unser Sitz ist in Winterthur (ZH), im Einsatz sind wir schweizweit – für Firmen, Privatkunden und Gemeinden. Vom Einzelanschluss bis zum FTTH-Rollout." }
-      },
-      {
-        "@type": "Question",
-        "name": "Was ist der Unterschied zwischen BEP und OTO-Dose?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Der BEP (Building Entry Point) ist der Hauseinführungspunkt – meist im Keller –, an dem die Glasfaser ins Gebäude kommt. Die OTO-Dose (Optical Telecommunication Outlet) ist die Anschlussdose in der Wohnung, an die der Router angeschlossen wird. Nasuvia baut die komplette Strecke dazwischen – inklusive Spleissen und Messung." }
-      }
-    ]
   }
   </script>
 
@@ -173,17 +141,12 @@
       <button class="spine-node" data-target="#leistungen" aria-label="Leistungen"><i></i><span class="mono">LEISTUNGEN</span></button>
       <button class="spine-node" data-target="#spleissen" aria-label="Spleissen"><i></i><span class="mono">SPLEISSEN</span></button>
       <button class="spine-node" data-target="#kabel3d" aria-label="Das Kabel"><i></i><span class="mono">KABEL</span></button>
-      <button class="spine-node" data-target="#ablauf" aria-label="Ablauf"><i></i><span class="mono">ABLAUF</span></button>
-      <button class="spine-node" data-target="#firmen" aria-label="Für Firmen"><i></i><span class="mono">FIRMEN</span></button>
       <button class="spine-node" data-target="#warum" aria-label="Warum Nasuvia"><i></i><span class="mono">WARUM</span></button>
       <button class="spine-node" data-target="#bewertungen" aria-label="Bewertungen"><i></i><span class="mono">BEWERTUNGEN</span></button>
-      <button class="spine-node" data-target="#faq" aria-label="FAQ"><i></i><span class="mono">FAQ</span></button>
-      <button class="spine-node" data-target="#kontakt" aria-label="Kontakt"><i></i><span class="mono">KONTAKT</span></button>
     </div>
     <span class="spine-cap mono">OTO</span>
   </nav>
 
-  <!-- Navigation -->
   <header class="nav" id="nav">
     <div class="nav-inner">
       <a href="#hero" class="nav-logo" aria-label="Nasuvia – zur Startseite">
@@ -200,10 +163,10 @@
             <a href="/anpassungen/">Anpassungen</a>
           </div>
         </div>
-        <a href="#ablauf" class="nav-link">Ablauf</a>
-        <a href="#firmen" class="nav-link">Für Firmen</a>
-        <a href="#warum" class="nav-link">Warum Nasuvia</a>
-        <a href="#kontakt" class="nav-link">Kontakt</a>
+        <a href="/ablauf/" class="nav-link">Ablauf</a>
+        <a href="/firmen/" class="nav-link">Für Firmen</a>
+        <a href="/faq/" class="nav-link">FAQ</a>
+        <a href="/kontakt/" class="nav-link">Kontakt</a>
       </nav>
       <div class="nav-actions">
         <a href="tel:+41798218408" class="btn btn-nav mono"><span class="btn-nav-dot"></span>+41 79 821 84 08</a>
@@ -214,18 +177,14 @@
     </div>
   </header>
 
-  <!-- Mobile menu -->
   <div class="menu-overlay" id="menu-overlay" aria-hidden="true" data-lenis-prevent>
     <div class="menu-panel">
       <nav class="menu-links" aria-label="Mobile Navigation">
         <a href="#leistungen" class="menu-link"><span class="mono menu-idx">01</span>Leistungen</a>
-        <a href="#spleissen" class="menu-link"><span class="mono menu-idx">02</span>Spleissen</a>
-        <a href="#ablauf" class="menu-link"><span class="mono menu-idx">03</span>Ablauf</a>
-        <a href="#firmen" class="menu-link"><span class="mono menu-idx">04</span>Für Firmen</a>
-        <a href="#warum" class="menu-link"><span class="mono menu-idx">05</span>Warum Nasuvia</a>
-        <a href="#bewertungen" class="menu-link"><span class="mono menu-idx">06</span>Bewertungen</a>
-        <a href="#faq" class="menu-link"><span class="mono menu-idx">07</span>FAQ</a>
-        <a href="#kontakt" class="menu-link"><span class="mono menu-idx">08</span>Kontakt</a>
+        <a href="/ablauf/" class="menu-link"><span class="mono menu-idx">02</span>Ablauf</a>
+        <a href="/firmen/" class="menu-link"><span class="mono menu-idx">03</span>Für Firmen</a>
+        <a href="/faq/" class="menu-link"><span class="mono menu-idx">04</span>FAQ</a>
+        <a href="/kontakt/" class="menu-link"><span class="mono menu-idx">05</span>Kontakt</a>
       </nav>
       <div class="menu-contact">
         <a href="tel:+41798218408" class="btn btn-primary"><span class="btn-label"><span>Jetzt anrufen</span><span aria-hidden="true">Jetzt anrufen</span></span></a>
@@ -250,7 +209,7 @@
         </h1>
         <p class="hero-sub">Glasfaser-Installation schweizweit ab Winterthur: Spleissen, Kabelzug, Montage und Störungsdienst — sauber, präzis, messtechnisch belegt.</p>
         <div class="hero-ctas">
-          <a href="#kontakt" class="btn btn-primary"><span class="btn-label"><span>Offerte anfragen</span><span aria-hidden="true">Offerte anfragen</span></span></a>
+          <a href="/kontakt/" class="btn btn-primary"><span class="btn-label"><span>Offerte anfragen</span><span aria-hidden="true">Offerte anfragen</span></span></a>
           <a href="#leistungen" class="btn btn-ghost"><span class="btn-label"><span>Leistungen entdecken</span><span aria-hidden="true">Leistungen entdecken</span></span></a>
         </div>
         <div class="hero-trust">
@@ -313,7 +272,7 @@
       <div class="services-pin">
         <div class="container">
           <div class="sec-head">
-            <p class="sec-index mono"><span>(01) — LEISTUNGEN</span><span>01/09</span></p>
+            <p class="sec-index mono"><span>(01) — LEISTUNGEN</span><span>01/05</span></p>
             <h2 class="sec-title split-words">Fünf Leistungen. Ein Anspruch: Präzision.</h2>
             <p class="sec-text">Die gesamte Glasfaser-Installation aus einer Hand — in Altbau, Neubau und Industrie.</p>
           </div>
@@ -412,7 +371,7 @@
     <section class="splice" id="spleissen">
       <div class="container">
         <div class="sec-head">
-          <p class="sec-index mono"><span>(02) — SO FUNKTIONIERT SPLEISSEN</span><span>02/09</span></p>
+          <p class="sec-index mono"><span>(02) — SO FUNKTIONIERT SPLEISSEN</span><span>02/05</span></p>
           <h2 class="sec-title split-words">Fusion-Spleissen: Präzision auf den Mikrometer.</h2>
           <p class="sec-text">Zwei Glasfasern, ein Lichtbogen, eine durchgehende Lichtstrecke — verlustarm, reflexionsfrei, messtechnisch belegt.</p>
         </div>
@@ -482,7 +441,7 @@
     <section class="cable3d" id="kabel3d">
       <div class="container">
         <div class="sec-head">
-          <p class="sec-index mono"><span>(03) — DAS KABEL</span><span>03/09</span></p>
+          <p class="sec-index mono"><span>(03) — DAS KABEL</span><span>03/05</span></p>
         </div>
         <div class="cable3d-grid">
           <div class="cable3d-text">
@@ -501,139 +460,11 @@
       </div>
     </section>
 
-    <!-- ============ ABLAUF / PROZESS ============ -->
-    <section class="process" id="ablauf">
-      <div class="process-pin">
-        <div class="container">
-          <div class="sec-head">
-            <p class="sec-index mono"><span>(04) — ABLAUF</span><span>04/09</span></p>
-            <h2 class="sec-title split-words">So läuft Ihre Glasfaser-Installation ab.</h2>
-          </div>
-          <div class="process-grid">
-            <div class="process-steps">
-              <p class="process-counter mono">STATION <span id="process-counter">01</span>/04</p>
-
-              <div class="process-step" data-step="0">
-                <span class="step-num mono">01</span>
-                <div>
-                  <h3>Anfrage</h3>
-                  <p>Sie melden sich per Telefon oder E-Mail — wir antworten rasch und klar.</p>
-                </div>
-              </div>
-              <div class="process-step" data-step="1">
-                <span class="step-num mono">02</span>
-                <div>
-                  <h3>Besichtigung &amp; Planung</h3>
-                  <p>Wir prüfen die Situation vor Ort und planen die beste Route. Sie erhalten eine transparente Offerte.</p>
-                </div>
-              </div>
-              <div class="process-step" data-step="2">
-                <span class="step-num mono">03</span>
-                <div>
-                  <h3>Ausführung</h3>
-                  <p>Unser Team zieht durch — präzis, speditiv und sauber, mit Respekt vor Ihrem Objekt.</p>
-                </div>
-              </div>
-              <div class="process-step" data-step="3">
-                <span class="step-num mono">04</span>
-                <div>
-                  <h3>Messung &amp; Abnahme</h3>
-                  <p>Jede Faser wird gemessen und protokolliert — erst wenn die Werte stimmen, ist der Auftrag abgeschlossen.</p>
-                  <span class="ok-badge mono" id="ok-badge"><i></i>MESSWERTE OK</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="process-visual">
-              <svg id="building-svg" viewBox="0 0 520 660" aria-hidden="true">
-                <!-- Gebäude: klare Linien, keine gestrichelten Störer -->
-                <g class="bld-lines">
-                  <polyline points="130,80 305,26 480,80" />
-                  <rect x="150" y="80" width="310" height="440" />
-                  <line x1="150" y1="190" x2="460" y2="190" />
-                  <line x1="150" y1="300" x2="460" y2="300" />
-                  <line x1="150" y1="410" x2="460" y2="410" />
-                  <line x1="60" y1="520" x2="500" y2="520" />
-                  <rect class="bld-soft" x="150" y="520" width="310" height="88" />
-                  <!-- Steigzone -->
-                  <line class="bld-soft" x1="210" y1="95" x2="210" y2="560" />
-                  <line class="bld-soft" x1="240" y1="95" x2="240" y2="560" />
-                  <!-- Fenster, sauber pro Geschoss ausgerichtet -->
-                  <rect class="bld-soft" x="300" y="112" width="44" height="44" /><rect class="bld-soft" x="378" y="112" width="44" height="44" />
-                  <rect class="bld-soft" x="300" y="222" width="44" height="44" /><rect class="bld-soft" x="378" y="222" width="44" height="44" />
-                  <rect class="bld-soft" x="300" y="332" width="44" height="44" /><rect class="bld-soft" x="378" y="332" width="44" height="44" />
-                  <rect class="bld-soft" x="300" y="442" width="44" height="44" /><rect class="bld-soft" x="378" y="442" width="44" height="44" />
-                </g>
-                <g class="bld-labels mono">
-                  <text x="468" y="152">3. OG</text>
-                  <text x="468" y="262">2. OG</text>
-                  <text x="468" y="372">1. OG</text>
-                  <text x="468" y="482">EG</text>
-                  <text x="468" y="572">UG</text>
-                  <text x="24" y="606">TRASSEE</text>
-                </g>
-                <!-- Kabel: Basis + gebakter Glow + beleuchteter Fortschritt -->
-                <path id="cable-base" d="M 20 620 L 152 620 Q 166 620 166 606 L 166 576 L 166 550 Q 166 540 176 540 L 215 540 Q 225 540 225 530 L 225 136 Q 225 126 235 126 L 395 126 Q 405 126 405 136 L 405 142" fill="none"/>
-                <path id="cable-glow" d="M 20 620 L 152 620 Q 166 620 166 606 L 166 576 L 166 550 Q 166 540 176 540 L 215 540 Q 225 540 225 530 L 225 136 Q 225 126 235 126 L 395 126 Q 405 126 405 136 L 405 142" fill="none"/>
-                <path id="cable-lit" d="M 20 620 L 152 620 Q 166 620 166 606 L 166 576 L 166 550 Q 166 540 176 540 L 215 540 Q 225 540 225 530 L 225 136 Q 225 126 235 126 L 395 126 Q 405 126 405 136 L 405 142" fill="none"/>
-                <circle id="cable-pulse" r="5"/>
-                <circle id="cable-pulse-glow" r="14"/>
-                <!-- BEP: Hauseinführung im UG -->
-                <g class="node-group" id="node-bep">
-                  <rect x="158" y="560" width="16" height="16"/>
-                  <text class="mono" x="184" y="573">BEP</text>
-                </g>
-                <!-- OTO: Anschlussdose in der Wohnung -->
-                <g class="node-group" id="node-oto">
-                  <rect x="397" y="142" width="16" height="16"/>
-                  <text class="mono" x="421" y="155">OTO</text>
-                </g>
-                <!-- OTDR-Messprotokoll -->
-                <g id="otdr-chart">
-                  <rect x="268" y="542" width="180" height="76" rx="6"/>
-                  <text class="mono" x="280" y="562">OTDR — MESSPROTOKOLL</text>
-                  <polyline id="otdr-line" points="280,584 306,586 324,592 346,593 366,600 386,601 406,606 424,607 438,611" fill="none"/>
-                </g>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ FÜR FIRMEN ============ -->
-    <section class="b2b" id="firmen">
-      <div class="b2b-aurora" aria-hidden="true"></div>
-      <div class="container">
-        <div class="sec-head">
-          <p class="sec-index mono"><span>(05) — FÜR FIRMEN</span><span>05/09</span></p>
-        </div>
-        <div class="b2b-grid">
-          <div class="b2b-text">
-            <p class="eyebrow mono">FÜR FIRMEN, VERWALTUNGEN &amp; GEMEINDEN</p>
-            <h2 class="sec-title split-words">Ein Partner, der liefert. Und durchzieht.</h2>
-            <p class="sec-text">Generalunternehmer, Provider, Verwaltungen und Gemeinden erhalten einen Partner, der selbstständig arbeitet und Termine hält — erfahren im FTTH-Ausbau, schweizweit einsatzbereit.</p>
-            <ul class="b2b-list">
-              <li><span class="check-sq"></span>FTTH-Ausbau und Netzmodernisierung aus einer Hand</li>
-              <li><span class="check-sq"></span>Verlässliche Termine — auch bei grossen Volumen</li>
-              <li><span class="check-sq"></span>Vollständige Messprotokolle und Dokumentation</li>
-              <li><span class="check-sq"></span>Ein direkter Ansprechpartner, kurze Entscheidungswege</li>
-            </ul>
-            <a href="#kontakt" class="btn btn-primary"><span class="btn-label"><span>Projekt besprechen</span><span aria-hidden="true">Projekt besprechen</span></span></a>
-          </div>
-          <div class="b2b-visual glass">
-            <svg id="swiss-map" viewBox="0 0 520 340" aria-hidden="true"></svg>
-            <p class="map-label mono"><span class="dot-cyan"></span>8406 WINTERTHUR — 47.4914° N, 8.7157° E · EINSATZ SCHWEIZWEIT</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ============ WARUM NASUVIA ============ -->
     <section class="values" id="warum">
       <div class="container">
         <div class="sec-head">
-          <p class="sec-index mono"><span>(06) — WARUM NASUVIA</span><span>06/09</span></p>
+          <p class="sec-index mono"><span>(04) — WARUM NASUVIA</span><span>04/05</span></p>
           <h2 class="sec-title split-words">Erfahrung, Präzision und sauberes Finish.</h2>
         </div>
         <div class="values-list">
@@ -673,7 +504,7 @@
     <section class="reviews" id="bewertungen">
       <div class="container">
         <div class="sec-head">
-          <p class="sec-index mono"><span>(07) — BEWERTUNGEN</span><span>07/09</span></p>
+          <p class="sec-index mono"><span>(05) — BEWERTUNGEN</span><span>05/05</span></p>
           <h2 class="sec-title split-words">Das sagen unsere Kunden.</h2>
         </div>
 
@@ -746,72 +577,27 @@
       </div>
     </section>
 
-    <!-- ============ FAQ ============ -->
-    <section class="faq" id="faq">
+    <section class="cta-band-wrap">
       <div class="container">
-        <div class="sec-head">
-          <p class="sec-index mono"><span>(08) — FAQ</span><span>08/09</span></p>
-          <h2 class="sec-title split-words">Häufige Fragen zur Glasfaser-Installation.</h2>
-        </div>
-        <div class="faq-list">
-          <details class="faq-item">
-            <summary><h3>Was kostet es, eine OTO-Dose zu montieren oder zu versetzen?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
-            <div class="faq-body"><p>Das hängt von der Strecke, der bestehenden Infrastruktur und dem Aufwand vor Ort ab. Nach einer kurzen Besichtigung — oft reichen schon ein paar Fotos — erhalten Sie von uns eine transparente Offerte ohne Kleingedrucktes.</p></div>
-          </details>
-          <details class="faq-item">
-            <summary><h3>Wie schnell ist der Glasfaser-Störungsdienst vor Ort?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
-            <div class="faq-body"><p>So schnell wie möglich: Melden Sie die Störung telefonisch unter <a href="tel:+41798218408">+41 79 821 84 08</a>. Wir orten den Fehler präzise per OTDR-Messung und beheben ihn in der Regel direkt beim ersten Termin.</p></div>
-          </details>
-          <details class="faq-item">
-            <summary><h3>Arbeitet Nasuvia in der ganzen Schweiz?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
-            <div class="faq-body"><p>Ja. Unser Sitz ist in Winterthur (ZH), im Einsatz sind wir schweizweit — für Firmen, Privatkunden und Gemeinden. Vom Einzelanschluss bis zum FTTH-Rollout.</p></div>
-          </details>
-          <details class="faq-item">
-            <summary><h3>Was ist der Unterschied zwischen BEP und OTO-Dose?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
-            <div class="faq-body"><p>Der BEP (Building Entry Point) ist der Hauseinführungspunkt — meist im Keller —, an dem die Glasfaser ins Gebäude kommt. Die OTO-Dose (Optical Telecommunication Outlet) ist die Anschlussdose in Ihrer Wohnung, an die der Router angeschlossen wird. Wir bauen die komplette Strecke dazwischen — inklusive Spleissen und Messung.</p></div>
-          </details>
+        <div class="cta-band">
+          <h2>Glasfaser? Wir ziehen durch.</h2>
+          <p>Rufen Sie an unter +41 79 821 84 08 oder schreiben Sie an info@nasuvia.ch – Sie erhalten rasch eine klare Antwort.</p>
+          <div class="cta-band-actions">
+            <a href="tel:+41798218408" class="btn btn-light"><span class="btn-label"><span>+41 79 821 84 08</span><span aria-hidden="true">+41 79 821 84 08</span></span></a>
+            <a href="mailto:info@nasuvia.ch" class="btn btn-outline-light"><span class="btn-label"><span>info@nasuvia.ch</span><span aria-hidden="true">info@nasuvia.ch</span></span></a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ KONTAKT ============ -->
-    <section class="contact" id="kontakt">
-      <div class="contact-aurora" aria-hidden="true"></div>
+    <section class="related">
       <div class="container">
-        <div class="sec-head">
-          <p class="sec-index mono"><span>(09) — KONTAKT</span><span>09/09</span></p>
-          <h2 class="sec-title split-words">Sag, wo es durch muss.</h2>
-          <p class="sec-text">Ein Anruf oder eine E-Mail genügt — Sie erhalten rasch eine klare Antwort.</p>
-        </div>
-        <div class="contact-direct">
-          <a href="tel:+41798218408" class="contact-cta glass">
-            <svg class="contact-cta-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M14 8 C12 8 10 10 10 12 C10 26 22 38 36 38 C38 38 40 36 40 34 L40 30 C40 29 39.4 28.2 38.5 27.9 L31.5 25.6 C30.7 25.3 29.8 25.6 29.3 26.3 L27.5 28.7 C24 27 21 24 19.3 20.5 L21.7 18.7 C22.4 18.2 22.7 17.3 22.4 16.5 L20.1 9.5 C19.8 8.6 19 8 18 8 Z" fill="none"/></svg>
-            <span class="mono contact-cta-label">DIREKT ANRUFEN</span>
-            <span class="contact-cta-value">+41 79 821 84 08</span>
-            <span class="contact-cta-hint"><i class="dot-green"></i>Mo–Fr 07:00–18:00 · Störungsdienst nach Absprache</span>
-          </a>
-          <a href="mailto:info@nasuvia.ch" class="contact-cta glass">
-            <svg class="contact-cta-icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="12" width="32" height="24" rx="3" fill="none"/><path d="M9 14 L24 26 L39 14" fill="none"/></svg>
-            <span class="mono contact-cta-label">E-MAIL SCHREIBEN</span>
-            <span class="contact-cta-value">info@nasuvia.ch</span>
-            <span class="contact-cta-hint">Wir melden uns rasch mit einer klaren Antwort.</span>
-          </a>
-        </div>
-
-        <div class="contact-meta">
-          <div class="contact-block glass">
-            <p class="mono contact-block-label">STANDORT</p>
-            <address class="contact-address">
-              Nasuvia<br />
-              Tössfeldstrasse 37, 8406 Winterthur<br />
-              Schweiz — schweizweit im Einsatz
-            </address>
-          </div>
-          <div class="contact-block glass contact-social">
-            <p class="mono contact-block-label">SOCIAL</p>
-            <a href="https://www.instagram.com/nasuvia.ch/" target="_blank" rel="noopener" class="mono social-link">INSTAGRAM ↗ @NASUVIA.CH</a>
-            <a href="https://www.facebook.com/profile.php?id=61578142365968" target="_blank" rel="noopener" class="mono social-link">FACEBOOK ↗ NASUVIA</a>
-          </div>
+        <p class="sec-index mono"><span>MEHR ENTDECKEN</span><span>→</span></p>
+        <div class="related-grid">
+          <a class="related-card glass" href="/ablauf/"><span class="mono related-label">ABLAUF</span><strong>So läuft Ihre Installation ab</strong><span class="related-arrow" aria-hidden="true">→</span></a>
+          <a class="related-card glass" href="/firmen/"><span class="mono related-label">FÜR FIRMEN</span><strong>Partner für Firmen &amp; Gemeinden</strong><span class="related-arrow" aria-hidden="true">→</span></a>
+          <a class="related-card glass" href="/faq/"><span class="mono related-label">FAQ</span><strong>Häufige Fragen</strong><span class="related-arrow" aria-hidden="true">→</span></a>
+          <a class="related-card glass" href="/kontakt/"><span class="mono related-label">KONTAKT</span><strong>Offerte anfragen</strong><span class="related-arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -838,16 +624,16 @@
           <p><a href="/spleissen/">Spleissen</a><br /><a href="/kabelzug/">Kabelzug</a><br /><a href="/stoerungsdienst/">Störungsdienst</a><br /><a href="/montage-installation/">Montage &amp; Installation</a><br /><a href="/anpassungen/">Anpassungen</a></p>
         </div>
         <div>
-          <p class="mono footer-label">ADRESSE</p>
-          <p>Tössfeldstrasse 37<br />8406 Winterthur<br />Schweiz</p>
+          <p class="mono footer-label">NASUVIA</p>
+          <p><a href="/">Startseite</a><br /><a href="/ablauf/">Ablauf</a><br /><a href="/firmen/">Für Firmen</a><br /><a href="/faq/">FAQ</a><br /><a href="/kontakt/">Kontakt</a></p>
         </div>
         <div>
           <p class="mono footer-label">KONTAKT</p>
-          <p><a href="tel:+41798218408">+41 79 821 84 08</a><br /><a href="mailto:info@nasuvia.ch">info@nasuvia.ch</a></p>
+          <p>Tössfeldstrasse 37<br />8406 Winterthur<br /><a href="tel:+41798218408">+41 79 821 84 08</a><br /><a href="mailto:info@nasuvia.ch">info@nasuvia.ch</a></p>
         </div>
         <div>
           <p class="mono footer-label">RECHTLICHES</p>
-          <p>Nasuvia<br />CHE-345.606.175<br />Handelsregisteramt Zürich<br />Inhaber: Enes Nasufi</p>
+          <p><a href="/impressum/">Impressum</a><br /><a href="https://zh.chregister.ch/cr-portal/auszug/auszug.xhtml?uid=CHE-345.606.175" target="_blank" rel="noopener">Handelsregister ↗</a></p>
         </div>
         <div>
           <p class="mono footer-label">SOCIAL</p>
@@ -855,7 +641,7 @@
         </div>
       </div>
       <p class="footer-tagline">Nasuvia — Glasfasertechnik aus Winterthur, schweizweit im Einsatz. Glasfaser? Wir ziehen durch.</p>
-      <p class="footer-copy mono">© 2026 NASUVIA · CHE-345.606.175 · ALLE RECHTE VORBEHALTEN</p>
+      <p class="footer-copy mono">© 2026 NASUVIA · ALLE RECHTE VORBEHALTEN</p>
     </div>
     <div class="footer-word" aria-hidden="true">NASUVIA</div>
   </footer>
