@@ -10,12 +10,12 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="Nasuvia Admin" />
-  <link rel="stylesheet" href="/site.css?v=6" />
+  <link rel="stylesheet" href="/site.css?v=8" />
   <script src="/admin/supabase.js"></script>
   <style>
     body{min-height:100vh}
     [hidden]{display:none!important}
-    .a-kopf{position:sticky;top:0;z-index:20;background:rgba(247,249,253,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--linie)}
+    .a-kopf{position:sticky;top:0;z-index:20;background:var(--papier)}
     .a-kopf .wrap{display:flex;align-items:center;gap:14px;height:64px}
     .a-kopf .marke-admin{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;background:var(--flaeche);color:var(--blau);border-radius:100px;padding:4px 10px}
     .a-kopf nav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
@@ -27,7 +27,18 @@
     .login .feld{margin-bottom:12px}
     .login .btn{width:100%;justify-content:center;margin-top:6px}
     .login .meldung{min-height:1.3em}
-    .zahlen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:26px 0 22px}
+    .apps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:24px}
+    .app{display:flex;align-items:center;gap:14px;padding:16px 18px;text-decoration:none;color:inherit;transition:transform .3s cubic-bezier(.3,1.4,.5,1),box-shadow .3s}
+    .app:hover{transform:translateY(-3px);box-shadow:var(--schatten-hoch)}
+    .app:active{transform:scale(.98)}
+    .app .icon{width:46px;height:46px;border-radius:14px;flex:none;background:linear-gradient(135deg,rgba(59,85,230,.14),rgba(143,166,255,.18))}
+    .app .icon svg{width:24px;height:24px}
+    .app-text{flex:1;min-width:0}
+    .app-text b{display:block;color:var(--tinte);font-size:1.08rem;line-height:1.2}
+    .app-text small{display:block;font-size:.86rem;line-height:1.35;margin-top:2px}
+    .app-pfeil{color:var(--elektrik);font-size:1.1rem;transition:transform .25s}
+    .app:hover .app-pfeil{transform:translate(2px,-2px)}
+    .zahlen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:16px 0 22px}
     .zahl{padding:20px}
     .zahl b{display:block;font:700 2.2rem/1 var(--display);color:var(--tinte);letter-spacing:-.03em}
     .zahl span{font-size:.92rem}
@@ -74,11 +85,14 @@
       .zeile{grid-template-columns:40px minmax(0,1fr);}
       .zeile .rechts{grid-column:2;text-align:left;display:flex;gap:10px;align-items:center}
       .zeile .rechts small{margin:0}
-      .a-kopf .wrap{flex-wrap:wrap;height:auto;padding-top:10px;padding-bottom:8px;row-gap:4px}
-      .a-kopf nav{margin-left:0;width:100%;flex-wrap:nowrap;overflow-x:auto;gap:4px}
-      .a-kopf nav a,.a-kopf nav button{background:#fff;box-shadow:inset 0 0 0 1.5px var(--linie);font-size:.9rem;white-space:nowrap}
+      .a-kopf nav button{font-size:.9rem;padding:8px 4px 8px 12px}
+      .apps{gap:10px;margin-top:16px}
+      .app{flex-direction:column;align-items:flex-start;gap:12px;padding:16px;position:relative}
+      .app-pfeil{position:absolute;top:14px;right:14px}
+      .zahlen{margin-top:10px}
       .filter{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;margin-left:calc(-1 * var(--rand));margin-right:calc(-1 * var(--rand));padding-left:var(--rand);padding-right:var(--rand)}
       .chip{white-space:nowrap}
+      .filter{scrollbar-width:none}.filter::-webkit-scrollbar{display:none}
       .detail dl{grid-template-columns:minmax(0,1fr)}.detail dd{margin-bottom:6px}
     }
   </style>
@@ -102,13 +116,23 @@
         <a href="/" class="nav-logo" aria-label="Zur Website"><span class="logo-punkt" aria-hidden="true"></span><img src="/logo-wort.png" alt="Nasuvia" width="94" height="18" /></a>
         <span class="marke-admin">Admin</span>
         <nav>
-          <a href="https://nasufienes-bit.github.io/nasuvia-buchhaltung/" target="_blank" rel="noopener">Buchhaltung ↗</a>
-          <a href="https://nasufienes-bit.github.io/nasuvia-buchhaltung/rechnungen/" target="_blank" rel="noopener">Rechnungen ↗</a>
           <button type="button" id="abmelden">Abmelden</button>
         </nav>
       </div>
     </header>
     <main class="wrap" style="padding-bottom:60px">
+      <div class="apps">
+        <a class="karte app" href="https://nasufienes-bit.github.io/nasuvia-buchhaltung/" target="_blank" rel="noopener">
+          <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h13"/><path d="M9 8h6M9 12h4"/></svg></span>
+          <span class="app-text"><b>Buchhaltung</b><small>Einnahmen, Ausgaben, MWST</small></span>
+          <span class="app-pfeil" aria-hidden="true">↗</span>
+        </a>
+        <a class="karte app" href="https://nasufienes-bit.github.io/nasuvia-buchhaltung/rechnungen/" target="_blank" rel="noopener">
+          <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg></span>
+          <span class="app-text"><b>Rechnungen</b><small>Schreiben und versenden</small></span>
+          <span class="app-pfeil" aria-hidden="true">↗</span>
+        </a>
+      </div>
       <div class="zahlen">
         <div class="karte zahl neu"><b id="zNeu">0</b><span>Neu</span></div>
         <div class="karte zahl"><b id="zArbeit">0</b><span>In Arbeit</span></div>
