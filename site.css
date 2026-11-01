@@ -19,8 +19,8 @@ h1,h2,h3,h4{font-family:var(--display);color:var(--tinte);margin:0;line-height:1
 p{margin:0}
 .wrap{max-width:var(--breite);margin:0 auto;padding:0 var(--rand)}
 .mono{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase}
-.label{display:inline-flex;align-items:center;gap:8px;color:var(--elektrik);font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
-.label::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 0 4px rgba(59,85,230,.15)}
+.label{display:flex;align-items:baseline;gap:9px;color:var(--elektrik);font-family:var(--mono);font-size:.7rem;font-weight:500;line-height:1.5;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.label::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 0 3px rgba(59,85,230,.15);transform:translateY(-1px)}
 .leise{color:var(--text)}
 
 /* Navigation */
@@ -77,8 +77,8 @@ p{margin:0}
 .abschnitt{padding:clamp(64px,10vw,120px) 0}
 .abschnitt.eng{padding-top:0}
 .kopf{max-width:680px;margin-bottom:clamp(32px,5vw,52px)}
-.kopf h2{font-size:clamp(2rem,4.4vw,3.1rem);font-weight:650}
-.kopf p{margin-top:16px;font-size:1.12rem}
+.kopf h2{font-size:clamp(1.65rem,3.4vw,2.5rem);font-weight:650;line-height:1.16;letter-spacing:-.022em;text-wrap:balance}
+.kopf p:not(.label){margin-top:14px;font-size:1.08rem;line-height:1.6;text-wrap:pretty}
 .kopf.mitte{margin-left:auto;margin-right:auto;text-align:center}
 
 /* Hero */
@@ -104,7 +104,7 @@ p{margin:0}
 .raster-4{grid-template-columns:repeat(4,minmax(0,1fr))}
 .link-karte{display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .35s cubic-bezier(.3,1.4,.5,1),box-shadow .35s}
 .link-karte:hover{transform:translateY(-5px);box-shadow:var(--schatten-hoch)}
-.link-karte h3{font-size:1.5rem;font-weight:650;margin:18px 0 8px}
+.link-karte h3{font-size:1.32rem;font-weight:650;line-height:1.2;margin:18px 0 8px}
 .link-karte p{flex:1}
 .link-karte .weiter{margin-top:22px;color:var(--elektrik);font-weight:600;display:inline-flex;gap:8px}
 .link-karte .weiter span{transition:transform .25s}
@@ -139,8 +139,8 @@ p{margin:0}
 .weg-schritt.an{opacity:1}
 .weg-schritt:first-child{min-height:40vh}
 .weg-schritt:last-child{min-height:44vh}
-.weg-schritt .nr{font-family:var(--mono);color:var(--elektrik);font-size:.8rem;letter-spacing:.12em;margin-bottom:10px}
-.weg-schritt h3{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:650;margin-bottom:12px}
+.weg-schritt .nr{font-family:var(--mono);color:var(--elektrik);font-size:.7rem;letter-spacing:.14em;margin-bottom:8px}
+.weg-schritt h3{font-size:clamp(1.45rem,2.6vw,2rem);font-weight:650;line-height:1.16;letter-spacing:-.02em;margin-bottom:10px}
 .weg-schritt p{font-size:1.1rem;max-width:460px}
 
 /* Szenen-Elemente */
@@ -250,7 +250,7 @@ p{margin:0}
 
 /* Kontaktband */
 .band{background:var(--blau);color:#DDE3FF;border-radius:30px;padding:clamp(32px,6vw,64px);display:grid;grid-template-columns:1.3fr auto;gap:28px;align-items:center;position:relative;overflow:hidden}
-.band h2{color:#fff;font-size:clamp(1.9rem,4vw,2.8rem);font-weight:650}
+.band h2{color:#fff;font-size:clamp(1.6rem,3.4vw,2.4rem);font-weight:650;line-height:1.16;text-wrap:balance}
 .band p{margin-top:12px;font-size:1.1rem;max-width:520px}
 .band .btn-zweit{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35)}
 .band .btn-haupt{background:#fff;color:var(--blau);box-shadow:none}
@@ -258,7 +258,7 @@ p{margin:0}
 /* FAQ */
 .faq{max-width:780px;margin:0 auto}
 .faq details{border-bottom:1px solid var(--linie)}
-.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:20px 2px;font-weight:600;color:var(--tinte);font-size:1.12rem}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:18px 2px;font-weight:600;color:var(--tinte);font-size:1.05rem;line-height:1.35}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";font:400 1.6rem/1 var(--display);color:var(--elektrik);transition:transform .3s}
 .faq details[open] summary::after{transform:rotate(45deg)}
@@ -291,7 +291,7 @@ p{margin:0}
   .weg-schritte{gap:18px}
   .weg-schritt,.weg-schritt:first-child,.weg-schritt:last-child{min-height:0;opacity:1;background:#fff;border-radius:22px;box-shadow:var(--schatten);padding:14px 14px 22px}
   .weg-schritt .nr,.weg-schritt h3,.weg-schritt p{padding:0 8px}
-  .weg-schritt h3{font-size:1.5rem}
+  .weg-schritt h3{font-size:1.38rem}
   .weg-schritt p{font-size:1.02rem}
 }
 @media (max-width:640px){
