@@ -268,7 +268,7 @@
       var r = await sb.auth.signInWithPassword({ email: $('lMail').value.trim(), password: $('lPw').value });
       if (r.error) $('lFehler').textContent = /Invalid login/i.test(r.error.message) ? 'E-Mail oder Passwort stimmt nicht.' : r.error.message;
     });
-    $('abmelden').addEventListener('click', function(){ sb.auth.signOut(); });
+    $('abmelden').addEventListener('click', function(){ sb.auth.signOut({ scope: 'local' }); });
 
     sb.auth.onAuthStateChange(function(ereignis, sitzung){
       if (sitzung) { zeigen('admin'); laden(); } else { zeigen('login'); alle = []; }
