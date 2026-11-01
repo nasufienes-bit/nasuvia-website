@@ -727,10 +727,17 @@
         var knopf = $('hnSenden');
         knopf.classList.add('hn-senden-laeuft');
         var nutzlast = Object.assign({ _subject: 'Offerte WLAN und Heimnetz: ' + (d.Name || ''), _template: 'table', _replyto: d['E-Mail'] || '' }, d);
-        fetch(ZIEL, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(nutzlast) })
+        var jetzt = new Date(), zz = function(n){ return ('0' + n).slice(-2); };
+        var nr = 'NSV-' + String(jetzt.getFullYear()).slice(2) + zz(jetzt.getMonth() + 1) + zz(jetzt.getDate()) + '-' + (100 + Math.floor(Math.random() * 900));
+        nutzlast.Nummer = nr; nutzlast._subject = 'Offerte WLAN und Heimnetz ' + nr + ': ' + (d.Name || '');
+        var perMail = fetch(ZIEL, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(nutzlast) })
           .then(function(r){ return r.json(); })
-          .then(function(a){ ende(String(a && a.success) === 'true' ? 'hnFertig' : 'hnFehler'); })
-          .catch(function(){ ende('hnFehler'); })
+          .then(function(a){ return String(a && a.success) === 'true'; })
+          .catch(function(){ return false; });
+        // Angekommen ist die Anfrage, wenn sie per E-Mail oder im Admin-Bereich gelandet ist
+        var imAdmin = window.nasuviaAnfrageSichern ? window.nasuviaAnfrageSichern('Offerte Heimnetz', nr, d) : Promise.resolve(false);
+        Promise.all([perMail, imAdmin])
+          .then(function(e){ ende(e[0] || e[1] ? 'hnFertig' : 'hnFehler'); })
           .then(function(){ knopf.classList.remove('hn-senden-laeuft'); });
       });
 

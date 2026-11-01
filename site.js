@@ -56,6 +56,14 @@
 
   // Formulare: Pflichtfelder prüfen, abhängige Felder zeigen, per E-Mail an Nasuvia senden
   var ZIEL = 'https://formsubmit.co/ajax/info@nasuvia.ch';
+  // Zusätzlich in den Admin-Bereich: Besucher dürfen dort nur eintragen, nicht lesen
+  var SB = 'https://dyepnomhidubsfwyorke.supabase.co/rest/v1/anfragen';
+  var SB_KEY = 'sb_publishable_zEmC1R5vq234zR6ST7PTmA_uY7Z1-ph';
+  window.nasuviaAnfrageSichern = function(art, nr, d){
+    return fetch(SB, { method: 'POST', headers: { apikey: SB_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+      body: JSON.stringify({ art: art, nummer: nr, name: d.Name || '', email: d['E-Mail'] || '', telefon: d.Telefon || '', daten: d }) })
+      .then(function(r){ return r.ok; }).catch(function(){ return false; });
+  };
   var ticket = function(){
     var d = new Date(), z = function(n){ return ('0' + n).slice(-2); };
     return 'NSV-' + String(d.getFullYear()).slice(2) + z(d.getMonth() + 1) + z(d.getDate()) + '-' + (100 + Math.floor(Math.random() * 900));
@@ -127,10 +135,13 @@
       var knopf = $('[type=submit]', form);
       knopf.classList.add('senden-laeuft');
       var last = Object.assign({ _subject: art + ' ' + nr + (d.Name ? ': ' + d.Name : ''), _template: 'table', _replyto: d['E-Mail'] || '', Nummer: nr }, d);
-      fetch(ZIEL, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(last) })
+      var perMail = fetch(ZIEL, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(last) })
         .then(function(r){ return r.json(); })
-        .then(function(a){ ende(String(a && a.success) === 'true', nr); })
-        .catch(function(){ ende(false, nr); })
+        .then(function(a){ return String(a && a.success) === 'true'; })
+        .catch(function(){ return false; });
+      // Angekommen ist die Anfrage, wenn sie per E-Mail oder im Admin-Bereich gelandet ist
+      Promise.all([perMail, window.nasuviaAnfrageSichern(d.Anliegen ? art + ': ' + d.Anliegen : art, nr, d)])
+        .then(function(e){ ende(e[0] || e[1], nr); })
         .then(function(){ knopf.classList.remove('senden-laeuft'); });
     });
     abhaengig();
