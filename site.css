@@ -324,3 +324,8 @@ p{margin:0}
   .weg-mini{display:block;position:relative;aspect-ratio:400/300;border-radius:16px;overflow:hidden;margin-bottom:16px;background:#F6F8FC}
   .weg-mini .szene{position:absolute;inset:0;opacity:1;transform:none}
 }
+
+/* iPhone: ohne Punktraster und Leuchten oben, damit Uhrzeit-Leiste und Seite nahtlos ineinander übergehen */
+@media (max-width:980px){
+  .hero::before,.hero::after{display:none}
+}
