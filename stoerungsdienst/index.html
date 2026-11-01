@@ -4,245 +4,166 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>document.documentElement.classList.add('js');</script>
-
-  <title>Glasfaser Störungsdienst &amp; Reparatur schweizweit | Nasuvia</title>
-  <meta name="description" content="Glasfaser-Störung? Nasuvia ortet Fehler per OTDR und repariert in der ganzen Schweiz. Sauber, gemessen und protokolliert. Jetzt anrufen: +41 79 821 84 08." />
-  <meta name="robots" content="index, follow, max-image-preview:large" />
-  <meta name="author" content="Nasuvia" />
+  <title>Störungsdienst Glasfaser: Kabel beschädigt, Spleiss schlecht | Nasuvia</title>
+  <meta name="description" content="Glasfaserkabel beschädigt oder Spleiss schlecht? Nasuvia findet den Fehler, ersetzt das Kabel oder spleisst neu und misst nach. Störung online melden." />
   <link rel="canonical" href="https://www.nasuvia.ch/stoerungsdienst/" />
-
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.nasuvia.ch/stoerungsdienst/" />
   <meta property="og:site_name" content="Nasuvia" />
-  <meta property="og:title" content="Glasfaser Störungsdienst &amp; Reparatur schweizweit | Nasuvia" />
-  <meta property="og:description" content="Glasfaser-Störung? Nasuvia ortet Fehler per OTDR und repariert in der ganzen Schweiz. Sauber, gemessen und protokolliert. Jetzt anrufen: +41 79 821 84 08." />
+  <meta property="og:title" content="Störungsdienst Glasfaser: Kabel beschädigt, Spleiss schlecht | Nasuvia" />
+  <meta property="og:description" content="Glasfaserkabel beschädigt oder Spleiss schlecht? Nasuvia findet den Fehler, ersetzt das Kabel oder spleisst neu und misst nach. Störung online melden." />
   <meta property="og:image" content="https://www.nasuvia.ch/og-image.jpg" />
   <meta property="og:locale" content="de_CH" />
   <meta name="twitter:card" content="summary_large_image" />
-
   <meta name="theme-color" content="#F7F9FD" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Störungsdienst & Reparatur","url":"https://www.nasuvia.ch/stoerungsdienst/","description":"Glasfaser-Störung? Nasuvia ortet Fehler per OTDR und repariert in der ganzen Schweiz. Sauber, gemessen und protokolliert. Jetzt anrufen: +41 79 821 84 08.","areaServed":{"@type":"Country","name":"Schweiz"},"provider":{"@id":"https://www.nasuvia.ch/#organization"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.nasuvia.ch/"},{"@type":"ListItem","position":2,"name":"Leistungen","item":"https://www.nasuvia.ch/#leistungen"},{"@type":"ListItem","position":3,"name":"Störungsdienst & Reparatur","item":"https://www.nasuvia.ch/stoerungsdienst/"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Wie finde ich heraus, wo die Glasfaser unterbrochen ist?","acceptedAnswer":{"@type":"Answer","text":"Mit einer OTDR-Messung lässt sich der Fehlerort metergenau bestimmen. Wir messen die Strecke und wissen, wo repariert werden muss."}},{"@type":"Question","name":"Was kostet eine Glasfaser-Reparatur?","acceptedAnswer":{"@type":"Answer","text":"Das hängt von Schadensbild und Zugänglichkeit ab. Nach der Fehlersuche bekommen Sie eine klare Einschätzung. Rufen Sie uns für eine erste Auskunft einfach an."}},{"@type":"Question","name":"Wie schnell ist der Störungsdienst vor Ort?","acceptedAnswer":{"@type":"Answer","text":"So schnell wie möglich: Je nach Standort und Dringlichkeit stimmen wir den Einsatz direkt am Telefon mit Ihnen ab."}}]}</script>
-  <script type="module" crossorigin src="/assets/splice-Dpb2TkfY.js"></script>
-  <script type="module" crossorigin src="/assets/service-C3Pc2VHT.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/splice-CBheivUm.css">
-  <style id="menu-sub-style">
-    .menu-sub{display:flex;flex-direction:column;padding:.2rem 0 .7rem 3.4rem;border-bottom:1px solid var(--hairline)}
-    .menu-sub a{font-family:var(--font-display);font-weight:500;font-size:1.05rem;color:var(--tinte);padding:.55rem 0;display:flex;align-items:center}
-    .menu-sub a:after{content:"→";margin-left:auto;color:var(--elektrik);font-size:.95rem}
-    .menu-sub a[aria-current]{color:var(--elektrik)}
+  <link rel="preload" href="/assets/league-spartan-latin-wght-normal-0z8Zi79b.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/site.css" />
+  <style>
+    .bruch{padding:20px}
+    .bruch svg{width:100%}
+    .b-links{animation:bLinks 5s cubic-bezier(.6,0,.3,1) infinite}
+    .b-rechts{animation:bRechts 5s cubic-bezier(.6,0,.3,1) infinite}
+    @keyframes bLinks{0%,30%{transform:translate(-14px,6px) rotate(-6deg)}55%,100%{transform:none}}
+    @keyframes bRechts{0%,30%{transform:translate(14px,-6px) rotate(6deg)}55%,100%{transform:none}}
+    .b-alarm{transform-box:fill-box;transform-origin:center;animation:bAlarm 5s infinite}
+    @keyframes bAlarm{0%,40%{opacity:1;transform:scale(1)}10%,30%{transform:scale(1.15)}48%,100%{opacity:0;transform:scale(.4)}}
+    .b-ok{transform-box:fill-box;transform-origin:center;animation:bOk 5s infinite}
+    @keyframes bOk{0%,55%{opacity:0;transform:scale(.4)}65%,92%{opacity:1;transform:none}100%{opacity:0}}
+    .b-funke{transform-box:fill-box;transform-origin:center;animation:bFunke 5s infinite}
+    @keyframes bFunke{0%,50%{opacity:0;transform:scale(.3)}56%{opacity:1;transform:scale(1.2)}66%,100%{opacity:0;transform:scale(1.6)}}
+    .b-licht{animation:bLicht 5s infinite}
+    @keyframes bLicht{0%,58%{stroke-dashoffset:300}80%,100%{stroke-dashoffset:0}}
   </style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Wie schnell seid ihr da?", "acceptedAnswer": {"@type": "Answer", "text": "So schnell wie möglich. Wie rasch, hängt vom Ort und der Dringlichkeit ab. Wir sagen es Ihnen direkt am Telefon."}}, {"@type": "Question", "name": "Was kostet eine Reparatur?", "acceptedAnswer": {"@type": "Answer", "text": "Das hängt vom Schaden ab. Nach der Fehlersuche bekommen Sie eine klare Einschätzung, bevor wir weitermachen."}}, {"@type": "Question", "name": "Repariert ihr auch Arbeiten von anderen?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Egal wer das Kabel verlegt oder gespleisst hat, wir finden den Fehler und beheben ihn."}}]}</script>
 </head>
-<body class="service-page">
-
-  <div class="progress-bar" aria-hidden="true"></div>
-  <div class="cursor-dot" aria-hidden="true"></div>
-  <div class="cursor-ring" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
-
-  <header class="nav" id="nav">
-    <div class="nav-inner">
-      <a href="/" class="nav-logo" aria-label="Nasuvia Startseite">
-        <img src="/logo.png" alt="Nasuvia" class="nav-logo-img" width="161" height="26" />
-      </a>
-      <nav class="nav-links" aria-label="Hauptnavigation">
-        <div class="nav-item-services">
-          <a href="/#leistungen" class="nav-link active">Leistungen<svg viewBox="0 0 10 6" class="nav-caret" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none"/></svg></a>
-          <div class="nav-dropdown">
-            <a href="/spleissen/">Spleissen</a>
-            <a href="/verwaltungen/">Für Verwaltungen</a>
-            <a href="/heimnetz/">WLAN und Heimnetz</a>
-            <a href="/stoerungsdienst/">Störungsdienst &amp; Reparatur</a>
-            <a href="/montage-installation/">Montage &amp; Installation</a>
-            <a href="/anpassungen/">Anpassungen</a>
-          </div>
-        </div>
-        <a href="/ablauf/" class="nav-link">Ablauf</a>
-        <a href="/firmen/" class="nav-link">Für Firmen</a>
-        <a href="/faq/" class="nav-link">FAQ</a>
-        <a href="/kontakt/" class="nav-link">Kontakt</a>
-      </nav>
-      <div class="nav-actions">
-        <a href="tel:+41798218408" class="btn btn-nav mono"><span class="btn-nav-dot"></span>+41 79 821 84 08</a>
-        <button class="nav-burger" id="nav-burger" aria-label="Menü öffnen" aria-expanded="false">
-          <span></span><span></span>
-        </button>
-      </div>
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <a href="/" class="nav-logo" aria-label="Nasuvia Startseite"><img src="/logo.png" alt="Nasuvia" width="161" height="26" /></a>
+      <nav class="nav-links" aria-label="Hauptnavigation"><a href="/provider/">Provider</a><a href="/verwaltungen/">Verwaltungen</a><a href="/firmen/">Firmen</a><a href="/stoerungsdienst/" aria-current="page">Störung</a></nav>
+      <a href="/kontakt/" class="btn btn-haupt btn-klein">Anfrage starten</a>
+      <button class="nav-burger" type="button" aria-label="Menü" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
     </div>
   </header>
-
-  <div class="menu-overlay" id="menu-overlay" aria-hidden="true" data-lenis-prevent>
-    <div class="menu-panel">
-      <nav class="menu-links" aria-label="Mobile Navigation">
-        <a href="/#leistungen" class="menu-link"><span class="mono menu-idx">01</span>Leistungen</a>
-        <div class="menu-sub">
-          <a href="/spleissen/">Spleissen</a>
-          <a href="/verwaltungen/">Für Verwaltungen</a>
-          <a href="/heimnetz/">WLAN und Heimnetz</a>
-          <a href="/stoerungsdienst/" aria-current="page">Störungsdienst &amp; Reparatur</a>
-          <a href="/montage-installation/">Montage &amp; Installation</a>
-          <a href="/anpassungen/">Anpassungen</a>
+  <nav class="menu" id="menu" aria-label="Menü">
+    <a href="/provider/">Für Provider</a>
+    <a href="/verwaltungen/">Für Verwaltungen</a>
+    <a href="/firmen/">Für Firmen und Elektriker</a>
+    <a href="/stoerungsdienst/">Störungsdienst</a>
+    <a href="/firmen/#bestellen" class="klein">OTO-Dosen bestellen</a>
+    <a href="/heimnetz/" class="klein">WLAN zu Hause</a>
+    <a href="/" class="klein">Startseite</a>
+    <a href="/kontakt/" class="btn btn-haupt">Anfrage starten</a>
+    <a href="tel:+41798218408" class="btn btn-zweit"><span class="tel-punkt"></span>+41 79 821 84 08</a>
+  </nav>
+  <main>
+    <section class="hero hero-schmal">
+      <div class="wrap">
+        <div>
+          <nav class="pfad zeig" aria-label="Pfad"><a href="/">Start</a><span>/</span><span>Störungsdienst</span></nav>
+          <p class="label zeig" style="color:var(--rot)">Störungsdienst</p>
+          <h1 class="zeig v1">Kabel kaputt? Wir kommen.</h1>
+          <p class="lead zeig v2">Ein Kabel wurde beschädigt oder ein Spleiss ist schlecht? Wir finden den Fehler, ersetzen das Kabel oder spleissen neu und messen alles nach.</p>
+          <div class="knoepfe zeig v3"><a href="#melden" class="btn btn-haupt">Störung melden <span class="pfeil" aria-hidden="true">→</span></a><a href="tel:+41798218408" class="btn btn-zweit"><span class="tel-punkt"></span>Dringend? +41 79 821 84 08</a></div>
         </div>
-        <a href="/ablauf/" class="menu-link"><span class="mono menu-idx">02</span>Ablauf</a>
-        <a href="/firmen/" class="menu-link"><span class="mono menu-idx">03</span>Für Firmen</a>
-        <a href="/faq/" class="menu-link"><span class="mono menu-idx">04</span>FAQ</a>
-        <a href="/kontakt/" class="menu-link"><span class="mono menu-idx">05</span>Kontakt</a>
-        <a href="/" class="menu-link"><span class="mono menu-idx">06</span>Startseite</a>
-      </nav>
-      <div class="menu-contact">
-        <a href="tel:+41798218408" class="btn btn-primary"><span class="btn-label"><span>Jetzt anrufen</span><span aria-hidden="true">Jetzt anrufen</span></span></a>
-        <a href="mailto:info@nasuvia.ch" class="menu-mail mono">INFO@NASUVIA.CH</a>
-      </div>
-    </div>
-  </div>
-
-  <main id="main">
-
-    <section class="page-hero">
-      <div class="hero-gridlines" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-      <canvas id="fiber-canvas" aria-hidden="true"></canvas>
-      <div class="container page-hero-content">
-        <nav class="breadcrumb mono" aria-label="Brotkrumen">
-          <a href="/">HOME</a><span aria-hidden="true">/</span><a href="/#leistungen">LEISTUNGEN</a><span aria-hidden="true">/</span><span aria-current="page">STÖRUNGSDIENST &AMP; REPARATUR</span>
-        </nav>
-        <p class="eyebrow mono page-eyebrow">LEISTUNG: STÖRUNGSDIENST</p>
-        <h1 class="page-title split-words">Glasfaser-Störungsdienst &amp; Reparatur: schnelle Hilfe schweizweit</h1>
-        <p class="page-lead">Faserbruch, Dämpfung, Totalausfall: Wir orten die Störung per OTDR und beheben sie vor Ort. Ein Anruf genügt.</p>
-        <div class="hero-ctas">
-          <a href="tel:+41798218408" class="btn btn-primary"><span class="btn-label"><span>Jetzt anrufen</span><span aria-hidden="true">Jetzt anrufen</span></span></a>
-          <a href="mailto:info@nasuvia.ch" class="btn btn-ghost"><span class="btn-label"><span>Offerte anfragen</span><span aria-hidden="true">Offerte anfragen</span></span></a>
-        </div>
+        <div class="karte bruch zeig v2"><svg viewBox="0 0 400 220" aria-hidden="true"><rect width="400" height="220" rx="18" fill="#F6F8FC"/>
+  <g class="b-links"><path d="M20 120H192" stroke="#1C2A7B" stroke-width="10" stroke-linecap="round"/><path d="M20 120H192" stroke="#3B55E6" stroke-width="3" stroke-linecap="round"/></g>
+  <g class="b-rechts"><path d="M208 120H380" stroke="#1C2A7B" stroke-width="10" stroke-linecap="round"/><path d="M208 120H380" stroke="#3B55E6" stroke-width="3" stroke-linecap="round"/></g>
+  <path class="b-licht" d="M20 120H380" stroke="#8FA6FF" stroke-width="3" stroke-linecap="round" stroke-dasharray="300" stroke-dashoffset="300" fill="none"/>
+  <g class="b-funke"><circle cx="200" cy="120" r="16" fill="rgba(245,181,61,.35)"/><path d="M200 100v-10M200 140v10M180 120h-10M220 120h10" stroke="#F5B53D" stroke-width="3" stroke-linecap="round"/></g>
+  <g class="b-alarm"><circle cx="200" cy="62" r="20" fill="#E5484D"/><path d="M200 52v12M200 70v1" stroke="#fff" stroke-width="4" stroke-linecap="round"/></g>
+  <g class="b-ok"><circle cx="200" cy="62" r="20" fill="#0E9F6E"/><path d="M191 62l6 6 12-12" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text x="200" y="190" text-anchor="middle" style="font:500 11px 'JetBrains Mono',monospace;fill:#47506B;letter-spacing:.08em">FINDEN, ERSETZEN, NACHMESSEN</text></svg></div>
       </div>
     </section>
-
-    <section class="features">
-      <div class="container">
-        <div class="features-grid">
-          <article class="feature-card glass">
-            <span class="mono feature-num">01</span>
-            <h2>OTDR-Fehlerortung</h2>
-            <p>Mit dem OTDR lokalisieren wir Faserbrüche und Dämpfungsstellen auf den Meter genau. Ohne Rätselraten.</p>
-          </article>
-          <article class="feature-card glass">
-            <span class="mono feature-num">02</span>
-            <h2>Reparatur vor Ort</h2>
-            <p>Beschädigte Fasern spleissen wir direkt vor Ort neu, typisch mit ≤0.05 dB Dämpfung.</p>
-          </article>
-          <article class="feature-card glass">
-            <span class="mono feature-num">03</span>
-            <h2>Messung &amp; Protokoll</h2>
-            <p>Nach jeder Reparatur messen wir die Strecke durch und dokumentieren das Ergebnis im Messprotokoll.</p>
-          </article>
-          <article class="feature-card glass">
-            <span class="mono feature-num">04</span>
-            <h2>Schweizweit im Einsatz</h2>
-            <p>Von Winterthur aus sind wir für Firmen, Private und Gemeinden in der ganzen Schweiz unterwegs.</p>
-          </article>
-        </div>
+    <section class="abschnitt eng">
+      <div class="wrap">
+        <div class="raster raster-3"><div class="karte klein-karte zeig"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l5-6 4 3 4-7 5 5"/><path d="M3 21h18"/></svg></span><div><h3>Fehler finden</h3><p>Mit einer Messung finden wir die Stelle, statt lange zu suchen.</p></div></div><div class="karte klein-karte zeig v1"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h7M15 12h7"/><rect x="9" y="9.5" width="6" height="5" rx="1.5"/></svg></span><div><h3>Ersetzen oder neu spleissen</h3><p>Beschädigtes Kabel ersetzen wir. Schlechte Spleisse machen wir neu.</p></div></div><div class="karte klein-karte zeig v2"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8L3 12Z"/><circle cx="7.5" cy="8" r="1.5"/></svg></span><div><h3>Nachmessen</h3><p>Am Schluss messen wir nach und beschriften wieder sauber.</p></div></div></div>
       </div>
     </section>
-
-    <section class="detail">
-      <div class="container">
-        <div class="detail-grid">
-          <div>
-            <h2 class="sec-title split-words">Glasfaser-Reparatur: erst orten, dann spleissen</h2>
-            <p class="sec-text">Eine Glasfaser-Störung hat immer eine Ursache, zum Beispiel eine geknickte Faser oder ein defekter Stecker. Mit einer OTDR-Messung finden wir die Stelle auf den Meter genau, statt lange zu suchen. Danach reparieren wir, messen nach und übergeben ein sauberes Protokoll.</p>
+    <section class="abschnitt eng" id="melden">
+      <div class="wrap">
+        <div class="kopf zeig"><p class="label">Online melden</p><h2>Störung melden.</h2><p>Sie bekommen sofort eine Nummer, mit der Sie sich jederzeit auf Ihre Meldung beziehen können.</p></div>
+        <form class="karte form zeig" data-form="Störungsmeldung" novalidate>
+          <div data-form-inhalt>
+            <fieldset class="frage" data-pflicht>
+              <legend>Was ist passiert?</legend>
+              <div class="wahl gross"><label><input type="radio" name="Was ist passiert?" value="Kabel beschädigt"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h6M15 12h6"/><path d="m10 8 2 4-2 4M14 8l-2 4 2 4"/></svg>Kabel beschädigt<em>Zum Beispiel bei Bauarbeiten</em></span></label><label><input type="radio" name="Was ist passiert?" value="Kein Signal an der OTO"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="3"/><circle cx="12" cy="10" r="2.5"/><path d="M9.5 16h5"/></svg>Kein Signal an der OTO<em>Das Internet geht nicht mehr</em></span></label><label><input type="radio" name="Was ist passiert?" value="Spleiss schlecht"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h7M15 12h7"/><rect x="9" y="9.5" width="6" height="5" rx="1.5"/></svg>Spleiss schlecht<em>Die Messwerte stimmen nicht</em></span></label><label><input type="radio" name="Was ist passiert?" value="Weiss nicht"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l5-6 4 3 4-7 5 5"/><path d="M3 21h18"/></svg>Weiss nicht<em>Wir finden es heraus</em></span></label></div>
+            </fieldset>
+            <fieldset class="frage" data-pflicht>
+              <legend>Wie dringend?</legend>
+              <div class="wahl"><label><input type="radio" name="Wie dringend?" value="Heute noch"><span>Heute noch</span></label><label><input type="radio" name="Wie dringend?" value="In den nächsten Tagen"><span>In den nächsten Tagen</span></label><label><input type="radio" name="Wie dringend?" value="Nicht dringend"><span>Nicht dringend</span></label></div>
+            </fieldset>
+            <fieldset class="frage" data-pflicht>
+              <legend>Sie sind</legend>
+              <div class="wahl"><label><input type="radio" name="Sie sind" value="Provider"><span>Provider</span></label><label><input type="radio" name="Sie sind" value="Verwaltung"><span>Verwaltung</span></label><label><input type="radio" name="Sie sind" value="Firma oder Elektriker"><span>Firma oder Elektriker</span></label><label><input type="radio" name="Sie sind" value="Privat"><span>Privat</span></label></div>
+            </fieldset>
+            <div class="felder">
+              <label class="feld" data-pflicht><span>Adresse der Störung</span><input type="text" name="Adresse" autocomplete="street-address" maxlength="160"></label>
+              <label class="feld"><span>Firma <small>(falls vorhanden)</small></span><input type="text" name="Firma" autocomplete="organization" maxlength="120"></label>
+            </div>
+            <div class="felder">
+              <label class="feld" data-pflicht><span>Vorname und Name</span><input type="text" name="Name" autocomplete="name" maxlength="120"></label>
+              <label class="feld" data-pflicht><span>Telefon</span><input type="tel" name="Telefon" autocomplete="tel" maxlength="40"></label>
+              <label class="feld" data-pflicht data-email><span>E-Mail</span><input type="email" name="E-Mail" autocomplete="email" maxlength="120"></label>
+            </div>
+            <label class="honig" aria-hidden="true">Nicht ausfüllen<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label>
+            <label class="feld"><span>Was wissen Sie schon? <small>(freiwillig)</small></span><textarea name="Beschreibung" maxlength="2000" placeholder="Zum Beispiel: Seit gestern kein Signal, im Keller wurde gebohrt."></textarea></label>
+            <p class="meldung" role="alert"></p>
+            <div class="form-fuss"><p>Bei einem dringenden Fall rufen Sie uns bitte zusätzlich an.</p><button type="submit" class="btn btn-haupt">Störung melden <span class="pfeil" aria-hidden="true">→</span></button></div>
           </div>
-          <div class="specs glass">
-            <p class="mono specs-label">TECHNISCHE ECKDATEN</p>
-            <p class="mono spec-line scramble-on-enter"><i class="chip-dot"></i>FEHLERSUCHE MIT OTDR, AUF DEN METER GENAU</p>
-            <p class="mono spec-line scramble-on-enter"><i class="chip-dot"></i>SPLEISSDÄMPFUNG TYP. ≤0.05 DB</p>
-            <p class="mono spec-line scramble-on-enter"><i class="chip-dot"></i>EINSATZGEBIET SCHWEIZWEIT</p>
-            <p class="mono spec-line scramble-on-enter"><i class="chip-dot"></i>MESSPROTOKOLL INKLUSIVE</p>
+          <div class="fertig" data-fertig hidden>
+            <svg viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="38"/><path d="M26 43l11 11 21-23"/></svg>
+            <h3>Vielen Dank!</h3>
+            <p>Ihre Anfrage ist bei uns angekommen. Wir melden uns so schnell wie möglich.</p>
+            <span class="ticket">Ihre Nummer: <b data-ticket></b></span>
+            <p>Bei Fragen: <a href="tel:+41798218408">+41 79 821 84 08</a></p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="faq">
-      <div class="container">
-        <div class="sec-head">
-          <p class="sec-index mono"><span>HÄUFIGE FRAGEN</span><span>FAQ</span></p>
-          <h2 class="sec-title split-words">Gut zu wissen.</h2>
-        </div>
-        <div class="faq-list">
-          <details class="faq-item">
-            <summary><h3>Wie finde ich heraus, wo die Glasfaser unterbrochen ist?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
-            <div class="faq-body"><p>Mit einer OTDR-Messung lässt sich der Fehlerort metergenau bestimmen. Wir messen die Strecke und wissen, wo repariert werden muss.</p></div>
-          </details>
-          <details class="faq-item">
-            <summary><h3>Was kostet eine Glasfaser-Reparatur?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
-            <div class="faq-body"><p>Das hängt von Schadensbild und Zugänglichkeit ab. Nach der Fehlersuche bekommen Sie eine klare Einschätzung. Rufen Sie uns für eine erste Auskunft einfach an.</p></div>
-          </details>
-          <details class="faq-item">
-            <summary><h3>Wie schnell ist der Störungsdienst vor Ort?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
-            <div class="faq-body"><p>So schnell wie möglich: Je nach Standort und Dringlichkeit stimmen wir den Einsatz direkt am Telefon mit Ihnen ab.</p></div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-band-wrap">
-      <div class="container">
-        <div class="cta-band">
-          <h2>Störung? Wir ziehen durch.</h2>
-          <p>Rufen Sie an unter +41 79 821 84 08 oder schreiben Sie an info@nasuvia.ch. Wir klären den Einsatz direkt mit Ihnen.</p>
-          <div class="cta-band-actions">
-            <a href="tel:+41798218408" class="btn btn-light"><span class="btn-label"><span>+41 79 821 84 08</span><span aria-hidden="true">+41 79 821 84 08</span></span></a>
-            <a href="mailto:info@nasuvia.ch" class="btn btn-outline-light"><span class="btn-label"><span>info@nasuvia.ch</span><span aria-hidden="true">info@nasuvia.ch</span></span></a>
+          <div class="fertig" data-fehler hidden>
+            <h3>Das hat leider nicht geklappt.</h3>
+            <p>Ihre Anfrage konnte nicht gesendet werden. Schicken Sie sie einfach per E-Mail, Ihre Angaben sind schon drin. Oder rufen Sie uns an.</p>
+            <div class="knoepfe" style="justify-content:center"><a class="btn btn-haupt" data-mail href="mailto:info@nasuvia.ch">Per E-Mail senden</a><a class="btn btn-zweit" href="tel:+41798218408">+41 79 821 84 08</a></div>
           </div>
-        </div>
+        </form>
       </div>
     </section>
 
-    <section class="related">
-      <div class="container">
-        <p class="sec-index mono"><span>WEITERE LEISTUNGEN</span><span>→</span></p>
-        <div class="related-grid">
-          <a class="related-card glass" href="/spleissen/"><span class="mono related-label">LEISTUNG</span><strong>Spleissen</strong><span class="related-arrow" aria-hidden="true">→</span></a>
-          <a class="related-card glass" href="/verwaltungen/"><span class="mono related-label">PARTNER</span><strong>Für Verwaltungen und Gemeinden</strong><span class="related-arrow" aria-hidden="true">→</span></a>
-          <a class="related-card glass" href="/montage-installation/"><span class="mono related-label">LEISTUNG</span><strong>Montage &amp; Installation</strong><span class="related-arrow" aria-hidden="true">→</span></a>
-        </div>
+    <section class="abschnitt eng">
+      <div class="wrap">
+        <div class="kopf mitte zeig"><p class="label">Gut zu wissen</p><h2>Häufige Fragen</h2></div>
+        <div class="faq zeig"><details><summary>Wie schnell seid ihr da?</summary><p>So schnell wie möglich. Wie rasch, hängt vom Ort und der Dringlichkeit ab. Wir sagen es Ihnen direkt am Telefon.</p></details><details><summary>Was kostet eine Reparatur?</summary><p>Das hängt vom Schaden ab. Nach der Fehlersuche bekommen Sie eine klare Einschätzung, bevor wir weitermachen.</p></details><details><summary>Repariert ihr auch Arbeiten von anderen?</summary><p>Ja. Egal wer das Kabel verlegt oder gespleisst hat, wir finden den Fehler und beheben ihn.</p></details></div>
       </div>
     </section>
-
   </main>
-
-  <footer class="footer">
-    <div class="footer-topline" aria-hidden="true"><span class="footer-pulse"></span></div>
-    <div class="container">
-      <img src="/logo.png" alt="Nasuvia" class="footer-logo" width="186" height="30" loading="lazy" />
-      <div class="footer-grid">
+  <footer class="fuss">
+    <div class="wrap">
+      <div class="fuss-raster">
         <div>
-          <p class="mono footer-label">LEISTUNGEN</p>
-          <p><a href="/spleissen/">Spleissen</a><br /><a href="/verwaltungen/">Für Verwaltungen</a><br /><a href="/heimnetz/">WLAN und Heimnetz</a><br /><a href="/stoerungsdienst/">Störungsdienst</a><br /><a href="/montage-installation/">Montage &amp; Installation</a><br /><a href="/anpassungen/">Anpassungen</a></p>
+          <img src="/logo.png" alt="Nasuvia" width="161" height="26" loading="lazy" />
+          <p>Glasfaser vom BEP bis zur OTO-Dose.<br />Aus Winterthur, in der ganzen Schweiz.</p>
         </div>
         <div>
-          <p class="mono footer-label">NASUVIA</p>
-          <p><a href="/">Startseite</a><br /><a href="/ablauf/">Ablauf</a><br /><a href="/firmen/">Für Firmen</a><br /><a href="/faq/">FAQ</a><br /><a href="/kontakt/">Kontakt</a></p>
+          <h4>Für wen</h4>
+          <a href="/provider/">Provider</a><a href="/verwaltungen/">Verwaltungen</a><a href="/firmen/">Firmen und Elektriker</a><a href="/heimnetz/">WLAN zu Hause</a>
         </div>
         <div>
-          <p class="mono footer-label">KONTAKT</p>
-          <p>Tössfeldstrasse 37<br />8406 Winterthur<br /><a href="tel:+41798218408">+41 79 821 84 08</a><br /><a href="mailto:info@nasuvia.ch">info@nasuvia.ch</a></p>
+          <h4>Service</h4>
+          <a href="/stoerungsdienst/">Störungsdienst</a><a href="/firmen/#bestellen">OTO-Dosen bestellen</a><a href="/kontakt/">Anfrage starten</a>
         </div>
         <div>
-          <p class="mono footer-label">RECHTLICHES</p>
-          <p><a href="/impressum/">Impressum</a><br /><a href="https://zh.chregister.ch/cr-portal/auszug/auszug.xhtml?uid=CHE-345.606.175" target="_blank" rel="noopener">Handelsregister ↗</a></p>
-        </div>
-        <div>
-          <p class="mono footer-label">SOCIAL</p>
-          <p><a href="https://www.instagram.com/nasuvia.ch/" target="_blank" rel="noopener">Instagram ↗</a><br /><a href="https://www.facebook.com/profile.php?id=61578142365968" target="_blank" rel="noopener">Facebook ↗</a></p>
+          <h4>Kontakt</h4>
+          <a href="tel:+41798218408">+41 79 821 84 08</a><a href="mailto:info@nasuvia.ch">info@nasuvia.ch</a><span style="display:block;padding:3px 0">Tössfeldstrasse 37, 8406 Winterthur</span>
+          <a href="https://www.instagram.com/nasuvia.ch/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.facebook.com/profile.php?id=61578142365968" target="_blank" rel="noopener">Facebook ↗</a>
         </div>
       </div>
-      <p class="footer-copy mono">© 2026 NASUVIA. ALLE RECHTE VORBEHALTEN</p>
+      <div class="fuss-unten">
+        <span>© 2026 Nasuvia</span>
+        <span style="display:flex;gap:18px"><a href="/impressum/" style="display:inline">Impressum</a><a href="https://zh.chregister.ch/cr-portal/auszug/auszug.xhtml?uid=CHE-345.606.175" target="_blank" rel="noopener" style="display:inline">Handelsregister ↗</a></span>
+      </div>
     </div>
-    <div class="footer-word" aria-hidden="true">NASUVIA</div>
   </footer>
-
+  <script src="/site.js" defer></script>
 </body>
 </html>
