@@ -27,7 +27,13 @@ p{margin:0}
 .nav{position:sticky;top:0;z-index:50;height:var(--nav);background:rgba(247,249,253,.82);backdrop-filter:saturate(1.4) blur(16px);-webkit-backdrop-filter:saturate(1.4) blur(16px);border-bottom:1px solid transparent;transition:border-color .3s}
 .nav.unten{border-bottom-color:var(--linie)}
 .nav .wrap{height:100%;display:flex;align-items:center;gap:28px}
-.nav-logo img{height:24px;width:auto}
+.nav-logo{display:inline-flex;align-items:center;gap:5px;text-decoration:none;padding:6px 10px 6px 6px;margin-left:-6px;border-radius:100px;transition:background .25s}
+.nav-logo:hover{background:rgba(59,85,230,.07)}
+.nav-logo img{height:18px;width:auto}
+.logo-punkt{position:relative;width:15px;height:15px;border-radius:50%;background:var(--blau);flex:none;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.logo-punkt::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:1.5px solid var(--elektrik);opacity:0;animation:logoRing 3.2s ease-out infinite}
+.nav-logo:hover .logo-punkt{transform:scale(1.15)}
+@keyframes logoRing{0%{transform:scale(.7);opacity:.7}70%,100%{transform:scale(1.7);opacity:0}}
 .nav-links{display:flex;gap:4px;margin-left:auto}
 .nav-links a{text-decoration:none;color:var(--tinte);font-size:.98rem;padding:8px 14px;border-radius:100px;transition:background .2s,color .2s}
 .nav-links a:hover{background:var(--flaeche)}
