@@ -28,7 +28,22 @@
   // Weg der Faser: der Schritt in der Bildschirmmitte bestimmt die Szene
   var schritte = $$('.weg-schritt');
   if (schritte.length) {
-    var szenen = $$('.szene'), striche = $$('.weg-zaehler i');
+    var szenen = $$('.weg-buehne .szene'), striche = $$('.weg-zaehler i');
+    // Auf dem Handy bekommt jeder Schritt eine Kopie seines Bildes; sie läuft, sobald der Schritt im Blick ist
+    schritte.forEach(function(s, i){
+      if (!szenen[i]) return;
+      var mini = document.createElement('div');
+      mini.className = 'weg-mini';
+      mini.setAttribute('aria-hidden', 'true');
+      var k = szenen[i].cloneNode(true);
+      k.classList.remove('an');
+      mini.appendChild(k);
+      s.insertBefore(mini, s.firstChild);
+    });
+    var mo = new IntersectionObserver(function(es){
+      es.forEach(function(e){ e.target.classList.toggle('an', e.isIntersecting); });
+    }, { threshold: .35 });
+    $$('.weg-mini').forEach(function(m){ mo.observe(m); });
     var setze = function(i){
       schritte.forEach(function(s, n){ s.classList.toggle('an', n === i); });
       szenen.forEach(function(s, n){ s.classList.toggle('an', n === i); });
