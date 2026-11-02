@@ -14,6 +14,7 @@
   <script src="/admin/supabase.js"></script>
   <style>
     body{min-height:100vh}
+    .btn{padding:12px 20px;font-size:15px}
     [hidden]{display:none!important}
     .a-kopf{position:sticky;top:0;z-index:20;background:var(--papier)}
     .a-kopf .wrap{display:flex;align-items:center;gap:14px;height:64px}
@@ -27,6 +28,9 @@
     .login .feld{margin-bottom:12px}
     .login .btn{width:100%;justify-content:center;margin-top:6px}
     .login .meldung{min-height:1.3em}
+    .seiten-kopf{margin:28px 0 4px}
+    .seiten-kopf h1{font-size:32px;line-height:1.1;letter-spacing:-.01em}
+    .seiten-kopf p{font-size:.95rem;margin:4px 0 0}
     .apps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:24px}
     .app{display:flex;align-items:center;gap:14px;padding:16px 18px;text-decoration:none;color:inherit;transition:transform .3s cubic-bezier(.3,1.4,.5,1),box-shadow .3s}
     .app:hover{transform:translateY(-3px);box-shadow:var(--schatten-hoch)}
@@ -121,7 +125,7 @@
   </div>
 
   <div id="adminSeite" hidden>
-    <header class="a-kopf">
+    <header class="a-kopf nv-weg">
       <div class="wrap">
         <a href="/" class="nav-logo" aria-label="Zur Website"><span class="logo-punkt" aria-hidden="true"></span><img src="/logo-wort.png" alt="Nasuvia" width="94" height="18" /></a>
         <span class="marke-admin">Admin</span>
@@ -132,6 +136,7 @@
       </div>
     </header>
     <main class="wrap" style="padding-bottom:60px">
+      <div class="seiten-kopf"><h1>Anfragen</h1><p>Von der Website, mit Status und Notizen</p></div>
       <div class="apps">
         <a class="karte app" href="https://nasufienes-bit.github.io/nasuvia-buchhaltung/" target="_blank" rel="noopener">
           <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h13"/><path d="M9 8h6M9 12h4"/></svg></span>
@@ -190,7 +195,7 @@
     <div class="fuss"><button type="button" class="loeschen" id="vgZu" style="color:var(--text)">Abbrechen</button><button class="btn btn-haupt" type="submit">Link senden</button></div>
   </form></dialog>
 
-  <script src="/admin/navi.js" data-hier="admin" data-einfuegen=".a-kopf .wrap"></script>
+  <script src="/admin/navi.js" data-hier="admin" data-titel="Admin" data-rechts=".a-kopf nav" data-kopf-in="#adminSeite"></script>
   <script>
   // Admin: Anfragen von der Website ansehen und bearbeiten. Zugriff nur mit Anmeldung;
   // die Datenbank gibt die Anfragen nur an angemeldete Benutzer heraus.
