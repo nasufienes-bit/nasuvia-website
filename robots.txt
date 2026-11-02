@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /buchhaltung/
 
 Sitemap: https://www.nasuvia.ch/sitemap.xml
