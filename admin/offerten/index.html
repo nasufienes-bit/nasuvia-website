@@ -1,0 +1,975 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Offerten | Nasuvia</title>
+  <meta name="theme-color" content="#F7F9FD" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Offerten" />
+  <link rel="stylesheet" href="/site.css?v=8" />
+  <script src="/admin/supabase.js"></script>
+  <script src="/admin/lib/html2canvas.min.js" defer></script>
+  <script src="/admin/lib/jspdf.umd.min.js" defer></script>
+  <style>
+    [hidden]{display:none!important}
+    body{min-height:100vh}
+    button{font-family:inherit}
+    .a-kopf{position:sticky;top:0;z-index:30;background:rgba(247,249,253,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+    .a-kopf.schatten{border-color:var(--linie)}
+    .a-kopf .wrap{display:flex;align-items:center;gap:12px;height:64px}
+    .marke-admin{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;background:var(--flaeche);color:var(--blau);border-radius:100px;padding:4px 10px}
+    .a-kopf nav{margin-left:auto;display:flex;gap:4px}
+    .a-kopf nav a,.a-kopf nav button{font:500 .95rem var(--display);color:var(--tinte);text-decoration:none;background:none;border:0;cursor:pointer;padding:8px 12px;border-radius:100px;white-space:nowrap}
+    .a-kopf nav a:hover,.a-kopf nav button:hover{background:var(--flaeche)}
+
+    /* ---------- Übersicht ---------- */
+    .ue-kopf{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin:26px 0 18px;flex-wrap:wrap}
+    .ue-kopf h1{font-size:clamp(2rem,5vw,2.8rem)}
+    .zahlen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:22px}
+    .zahl{padding:18px 20px}
+    .zahl b{display:block;font:700 1.9rem/1.05 var(--display);color:var(--tinte);letter-spacing:-.03em}
+    .zahl span{font-size:.9rem}
+    .zahl.blau b{color:var(--elektrik)}.zahl.gruen b{color:var(--gruen)}
+    .ue-raster{display:grid;grid-template-columns:240px minmax(0,1fr);gap:22px;align-items:start}
+    .ordner{position:sticky;top:84px;display:flex;flex-direction:column;gap:4px}
+    .ordner .titel{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text);margin:4px 10px 6px}
+    .ord{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;text-align:left;padding:10px 12px;border-radius:12px;cursor:pointer;color:var(--tinte);font:500 .98rem var(--display);transition:background .2s}
+    .ord:hover{background:rgba(59,85,230,.06)}
+    .ord.an{background:#fff;box-shadow:var(--schatten);color:var(--blau);font-weight:600}
+    .ord svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.75}
+    .ord .n{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--text)}
+    .ord .mehr{margin-left:4px;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;color:var(--text);opacity:0;transition:opacity .2s,background .2s}
+    .ord:hover .mehr,.ord.an .mehr{opacity:1}.ord .mehr:hover{background:var(--flaeche)}
+    .ord.neu{color:var(--elektrik)}
+    .suche{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+    .suche input{flex:1;font:inherit;font-size:1rem;padding:12px 16px 12px 42px;border:1.5px solid var(--linie);border-radius:100px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2347506B' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") no-repeat 15px 50%/18px}
+    .suche input:focus{outline:none;border-color:var(--elektrik);box-shadow:0 0 0 4px rgba(59,85,230,.12)}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+    .chip{font:500 .9rem var(--display);border:1.5px solid var(--linie);background:#fff;color:var(--tinte);border-radius:100px;padding:7px 13px;cursor:pointer;white-space:nowrap}
+    .chip.an{border-color:var(--elektrik);background:rgba(59,85,230,.08);color:var(--blau);font-weight:600}
+    .liste{display:flex;flex-direction:column;gap:10px}
+    .zeile{display:grid;grid-template-columns:46px minmax(0,1fr) auto;gap:14px;align-items:center;background:#fff;border-radius:18px;box-shadow:var(--schatten);padding:14px 18px 14px 14px;cursor:pointer;border:0;text-align:left;font:inherit;color:inherit;width:100%;transition:transform .25s cubic-bezier(.3,1.4,.5,1),box-shadow .25s;animation:rein .4s cubic-bezier(.2,.9,.3,1) both}
+    .zeile:hover{transform:translateY(-2px);box-shadow:var(--schatten-hoch)}
+    @keyframes rein{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    .zeile .doc{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(59,85,230,.14),rgba(143,166,255,.2));color:var(--blau)}
+    .zeile .doc svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .zeile.angenommen .doc{background:rgba(14,159,110,.12);color:var(--gruen)}
+    .zeile.abgelehnt .doc{background:rgba(229,72,77,.1);color:var(--rot)}
+    .zeile b{display:block;color:var(--tinte);font-size:1.04rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .zeile small{display:block;font-size:.88rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .zeile .meta span+span{margin-left:12px}
+    .zeile .rechts{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+    .zeile .betrag{font:700 1.08rem var(--display);color:var(--tinte);letter-spacing:-.01em;white-space:nowrap}
+    .st{display:inline-block;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;border-radius:100px;padding:4px 9px;white-space:nowrap}
+    .st.entwurf{background:var(--flaeche);color:var(--text)}
+    .st.gesendet{background:rgba(59,85,230,.12);color:var(--blau)}
+    .st.angenommen{background:rgba(14,159,110,.12);color:#0A7150}
+    .st.abgelehnt{background:rgba(229,72,77,.1);color:#B4282E}
+    .leer{text-align:center;padding:44px 22px;background:#fff;border-radius:22px;box-shadow:var(--schatten)}
+    .leer svg{width:150px;height:auto;margin:0 auto 12px;display:block}
+    .leer b{display:block;color:var(--tinte);font-size:1.15rem;margin-bottom:4px}
+    .faser{stroke-dasharray:6 7;animation:fliessen 1.2s linear infinite}
+    @keyframes fliessen{to{stroke-dashoffset:-26}}
+
+    /* ---------- Editor ---------- */
+    .ed-leiste{position:sticky;top:64px;z-index:25;background:rgba(247,249,253,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:12px 0;border-bottom:1px solid var(--linie)}
+    .ed-leiste .wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .zurueck{border:0;background:none;color:var(--tinte);font:500 .98rem var(--display);cursor:pointer;padding:8px 10px 8px 4px;border-radius:100px}
+    .zurueck:hover{color:var(--elektrik)}
+    .ed-leiste .nr{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;color:var(--blau);background:var(--flaeche);border-radius:100px;padding:5px 11px}
+    .stand{font-size:.85rem;color:var(--text);display:flex;align-items:center;gap:6px}
+    .stand i{width:8px;height:8px;border-radius:50%;background:var(--gruen);transition:background .3s}
+    .stand.laeuft i{background:var(--gelb);animation:puls 1s infinite}.stand.fehler i{background:var(--rot)}
+    @keyframes puls{50%{opacity:.35}}
+    .ed-leiste .rechts{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+    .ed-leiste .btn{padding:10px 18px;font-size:.95rem}
+    .ed-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:28px;align-items:start;padding-top:22px;padding-bottom:120px}
+    .block{background:#fff;border-radius:var(--radius);box-shadow:var(--schatten);padding:24px;margin-bottom:18px}
+    .block>h2{font-size:1.2rem;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+    .block>h2 .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;color:var(--elektrik);background:rgba(59,85,230,.08);border-radius:100px;padding:3px 9px}
+    .f{display:block;margin-bottom:14px;min-width:0}
+    .f>span{display:block;font-size:.86rem;font-weight:600;color:var(--tinte);margin-bottom:6px}
+    .f input,.f textarea,.f select{width:100%;font:inherit;font-size:1rem;color:var(--tinte);padding:12px 14px;border:1.5px solid var(--linie);border-radius:12px;background:#fff;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .f select{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233B55E6' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center/18px;padding-right:38px}
+    .f input:focus,.f textarea:focus,.f select:focus{outline:none;border-color:var(--elektrik);box-shadow:0 0 0 4px rgba(59,85,230,.12)}
+    .f textarea{min-height:84px;resize:vertical;line-height:1.45}
+    .reihe2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}
+    .reihe3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 14px}
+    .segment{display:inline-flex;background:var(--flaeche);border-radius:100px;padding:4px;gap:2px;position:relative;flex-wrap:wrap}
+    .segment button{border:0;background:none;border-radius:100px;padding:8px 14px;font:500 .9rem var(--display);cursor:pointer;color:var(--text);transition:background .25s,color .25s,box-shadow .25s}
+    .segment button.an{background:#fff;color:var(--blau);font-weight:600;box-shadow:0 2px 10px rgba(12,18,38,.1)}
+    .kundenwahl{display:flex;gap:10px;align-items:end;margin-bottom:14px}
+    .kundenwahl .f{flex:1;margin:0}
+
+    .pos-liste{display:flex;flex-direction:column;gap:12px}
+    .pos{border:1.5px solid var(--linie);border-radius:18px;padding:16px;background:#fff;position:relative;animation:posRein .45s cubic-bezier(.2,.9,.3,1) both;transition:border-color .2s,box-shadow .2s}
+    .pos:focus-within{border-color:rgba(59,85,230,.45);box-shadow:0 0 0 4px rgba(59,85,230,.07)}
+    .pos.weg{animation:posWeg .3s ease forwards}
+    @keyframes posRein{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+    @keyframes posWeg{to{opacity:0;transform:translateX(30px) scale(.96)}}
+    .pos-kopf{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+    .pos-nr{width:30px;height:30px;border-radius:10px;background:var(--blau);color:#fff;display:grid;place-items:center;font:600 .8rem var(--mono);flex:none}
+    .pos-kopf .segment button{padding:6px 11px;font-size:.84rem}
+    .pos-werkzeug{margin-left:auto;display:flex;gap:2px}
+    .ikon{width:34px;height:34px;border:0;border-radius:10px;background:none;display:grid;place-items:center;cursor:pointer;color:var(--text);transition:background .2s,color .2s}
+    .ikon:hover{background:var(--flaeche);color:var(--tinte)}
+    .ikon.rot:hover{background:rgba(229,72,77,.1);color:var(--rot)}
+    .ikon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+    .ikon:disabled{opacity:.3;cursor:default;background:none}
+    .pos .f{margin-bottom:10px}
+    .pos .f textarea{min-height:56px;font-size:.95rem}
+    .pos-rechnung{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1.1fr);gap:10px;align-items:end}
+    .pos-rechnung .mal{padding-bottom:14px;color:var(--text);font-weight:600}
+    .pos-rechnung .f{margin:0}
+    .pos-summe{text-align:right;padding-bottom:10px}
+    .pos-summe small{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase}
+    .pos-summe b{font:700 1.2rem var(--display);color:var(--tinte);white-space:nowrap}
+    .pos-rechnung.pauschal{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+    .einheit{position:relative}.einheit input{padding-right:46px}
+    .einheit em{position:absolute;right:13px;bottom:13px;font-style:normal;font-size:.82rem;color:var(--text);pointer-events:none}
+    .hinzu{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;align-items:center}
+    .hinzu .btn{padding:11px 18px;font-size:.95rem}
+    .vorlage{font:500 .86rem var(--display);border:1.5px dashed var(--linie-stark);background:none;color:var(--blau);border-radius:100px;padding:7px 12px;cursor:pointer;transition:background .2s,border-color .2s}
+    .vorlage:hover{background:rgba(59,85,230,.06);border-color:var(--elektrik)}
+    .optionen{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+    .schalter{display:flex;align-items:center;gap:10px;cursor:pointer;font-weight:500;color:var(--tinte)}
+    .schalter input{position:absolute;opacity:0;pointer-events:none}
+    .schalter i{width:44px;height:26px;border-radius:100px;background:var(--linie-stark);position:relative;transition:background .25s;flex:none}
+    .schalter i::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(12,18,38,.2);transition:transform .3s cubic-bezier(.3,1.5,.5,1)}
+    .schalter input:checked+i{background:var(--elektrik)}
+    .schalter input:checked+i::after{transform:translateX(18px)}
+    .summen{display:grid;gap:8px;margin-top:6px}
+    .summen div{display:flex;justify-content:space-between;color:var(--text)}
+    .summen .total{border-top:1.5px solid var(--linie);padding-top:12px;margin-top:4px;color:var(--tinte);font-weight:700;font-size:1.3rem;align-items:baseline}
+    .summen .total b{color:var(--elektrik);font-size:1.6rem;letter-spacing:-.02em}
+    .ed-fuss{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:6px}
+    .leise{background:none;border:0;color:var(--text);font:500 .92rem var(--display);cursor:pointer;padding:8px 0}
+    .leise.rot{color:var(--rot)}
+    .papierkorb-hinweis{background:rgba(229,72,77,.08);color:#9B1C21;border-radius:16px;padding:14px 18px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+
+    /* Vorschau */
+    .vorschau{position:sticky;top:140px}
+    .vorschau .kopfzeile{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    .vorschau .kopfzeile .label{margin:0}
+    .blaetter-rahmen{max-height:calc(100vh - 190px);overflow-y:auto;overflow-x:hidden;border-radius:16px;padding:4px 4px 20px;scrollbar-width:thin}
+    #blaetter{transform-origin:0 0;width:794px}
+    .blatt{width:794px;height:1123px;background:#fff;box-shadow:0 1px 2px rgba(12,18,38,.06),0 24px 60px -30px rgba(28,42,123,.45);margin-bottom:18px;position:relative;overflow:hidden;color:#0C1226;font:400 13px/1.5 var(--display);padding:58px 64px 0}
+    .blatt .inhalt{height:990px;overflow:hidden}
+    .blatt .b-kopf{display:flex;justify-content:space-between;align-items:flex-start}
+    .blatt .b-kopf img{height:24px;width:auto;margin-top:4px}
+    .blatt .b-firma{text-align:right;font-size:11.5px;line-height:1.55;color:#47506B}
+    .blatt .b-firma b{color:#0C1226;font-size:12.5px}
+    .blatt .b-adresse{margin:40px 0 0 auto;width:260px;font-size:13.5px;line-height:1.5;min-height:90px}
+    .blatt .b-adresse small{display:block;font:500 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#8A90A3;margin-bottom:6px}
+    .blatt .b-titel{margin-top:24px}
+    .blatt .b-titel .art{font:600 10px/14px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:#3B55E6}
+    .blatt .b-titel .art i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#3B55E6;margin-right:9px;vertical-align:1px}
+    .blatt h1{font-size:25px;line-height:1.15;margin:8px 0 12px;color:#0C1226;letter-spacing:-.02em}
+    .blatt .b-meta{display:flex;gap:28px;font-size:11.5px;color:#47506B;padding:10px 0;border-top:1px solid rgba(28,42,123,.12);border-bottom:1px solid rgba(28,42,123,.12)}
+    .blatt .b-meta b{display:block;font:500 8.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#8A90A3;margin-bottom:2px}
+    .blatt .b-text{margin:18px 0;white-space:pre-wrap;color:#2B3350}
+    .blatt table{width:100%;border-collapse:collapse;font-size:12px}
+    .blatt th{font:500 8.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#8A90A3;text-align:left;padding:8px 6px;border-bottom:1.5px solid #1C2A7B}
+    .blatt th.z,.blatt td.z{text-align:right;white-space:nowrap}
+    .blatt td{padding:10px 6px;border-bottom:1px solid rgba(28,42,123,.1);vertical-align:top}
+    .blatt td.p{font:500 10.5px var(--mono);color:#3B55E6;width:30px}
+    .blatt td .bez{font-weight:600;color:#0C1226}
+    .blatt td .bes{color:#5A6380;font-size:11px;white-space:pre-wrap;margin-top:2px}
+    .blatt .b-summen{margin:14px 0 0 auto;width:300px;font-size:12.5px}
+    .blatt .b-summen div{display:flex;justify-content:space-between;padding:4px 6px;color:#47506B}
+    .blatt .b-summen .t{margin-top:6px;background:#1C2A7B;color:#fff;border-radius:10px;padding:11px 14px;font-weight:700;font-size:15px}
+    .blatt .b-gruss{margin-top:22px;white-space:pre-wrap;color:#2B3350}
+    .blatt .b-gruss b{display:block;margin-top:10px;color:#0C1226}
+    .blatt .b-fuss{position:absolute;left:64px;right:64px;bottom:34px;display:flex;justify-content:space-between;gap:12px;font:500 8.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#8A90A3;border-top:1px solid rgba(28,42,123,.12);padding-top:12px}
+    .blatt .b-folge{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+    .blatt .b-folge span{font:500 9px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#8A90A3}
+
+    /* Dialoge */
+    .dlg{border:0;border-radius:22px;padding:0;width:min(480px,calc(100% - 24px));box-shadow:0 40px 100px -30px rgba(12,18,38,.5);color:var(--tinte)}
+    .dlg::backdrop{background:rgba(12,18,38,.38);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+    .dlg[open]{animation:dlgRein .34s cubic-bezier(.2,.9,.3,1)}
+    @keyframes dlgRein{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+    .dlg-innen{padding:24px;max-height:calc(100vh - 40px);overflow:auto}
+    .dlg h2{font-size:1.4rem;margin:4px 0 6px}
+    .dlg p{margin:0 0 14px}
+    .dlg .knoepfe{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+    .dlg .knoepfe .btn{justify-content:center}
+    .dlg .zeilen-knoepfe{display:flex;justify-content:space-between;gap:10px;margin-top:10px;align-items:center}
+    .toast{position:fixed;left:50%;bottom:24px;z-index:80;transform:translate(-50%,20px);opacity:0;background:var(--tinte);color:#fff;border-radius:100px;padding:11px 18px;font-size:.92rem;box-shadow:0 14px 40px -12px rgba(12,18,38,.5);transition:opacity .3s,transform .35s cubic-bezier(.3,1.5,.5,1);pointer-events:none;white-space:nowrap}
+    .toast.da{opacity:1;transform:translate(-50%,0)}
+    .bitte-warten{position:fixed;inset:0;z-index:90;background:rgba(247,249,253,.75);backdrop-filter:blur(4px);display:grid;place-items:center}
+    .bitte-warten div{background:#fff;border-radius:18px;box-shadow:var(--schatten-hoch);padding:20px 26px;display:flex;gap:12px;align-items:center;font-weight:600;color:var(--tinte)}
+    .bitte-warten i{width:18px;height:18px;border-radius:50%;border:2.5px solid var(--flaeche);border-top-color:var(--elektrik);animation:drehen .8s linear infinite}
+    @keyframes drehen{to{transform:rotate(360deg)}}
+    .mobil-summe{display:none}
+    .nur-mobil{display:none}
+
+    @media (max-width:1100px){
+      .ed-raster{grid-template-columns:minmax(0,1fr)}
+      .vorschau{position:fixed;inset:0;z-index:60;background:var(--papier);padding:16px var(--rand) 24px;transform:translateY(100%);transition:transform .45s cubic-bezier(.2,.9,.3,1);top:0;overflow:auto}
+      .vorschau.offen{transform:none}
+      .blaetter-rahmen{max-height:none;overflow:hidden}
+      .nur-mobil{display:inline-flex}
+      .mobil-summe{display:flex;position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:40;background:var(--blau);color:#fff;border-radius:18px;padding:12px 12px 12px 20px;align-items:center;justify-content:space-between;box-shadow:0 20px 40px -16px rgba(28,42,123,.7)}
+      .mobil-summe small{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+      .mobil-summe b{font-size:1.3rem}
+      .mobil-summe .btn{padding:10px 16px;font-size:.92rem;background:#fff;color:var(--blau);box-shadow:none}
+    }
+    @media (max-width:820px){
+      .ue-raster{grid-template-columns:minmax(0,1fr)}
+      .ordner{position:static;flex-direction:row;overflow-x:auto;gap:6px;margin:0 calc(-1 * var(--rand));padding:2px var(--rand) 8px;scrollbar-width:none}
+      .ordner::-webkit-scrollbar{display:none}
+      .ordner .titel{display:none}
+      .ord{width:auto;white-space:nowrap;background:#fff;box-shadow:inset 0 0 0 1.5px var(--linie);padding:8px 12px;font-size:.92rem}
+      .ord.an{box-shadow:inset 0 0 0 1.5px var(--elektrik)}
+      .ord .mehr{opacity:1}
+    }
+    @media (max-width:640px){
+      .zahlen{gap:8px}.zahl{padding:13px}.zahl b{font-size:1.35rem}.zahl span{font-size:.78rem}
+      .zeile{grid-template-columns:42px minmax(0,1fr);padding:12px 14px 12px 12px}
+      .zeile .doc{width:42px;height:42px}
+      .zeile .rechts{grid-column:2;flex-direction:row;justify-content:space-between;align-items:center;text-align:left}
+      .reihe2,.reihe3{grid-template-columns:minmax(0,1fr)}
+      .reihe3.bleibt,.reihe2.bleibt{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .block{padding:18px}
+      .pos-rechnung{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
+      .pos-rechnung .pos-summe{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline;padding:8px 2px 0;border-top:1px dashed var(--linie)}
+      .pos-rechnung.pauschal{grid-template-columns:minmax(0,1fr)}
+      .pos-rechnung .gleich{display:none}
+      .ed-leiste .rechts .btn-zweit{display:none}
+      .ed-leiste .rechts .btn-zweit.nur-mobil{display:inline-flex}
+      .a-kopf nav a span{display:none}
+      .ue-kopf .btn{width:100%;justify-content:center}
+      .chips{flex-wrap:nowrap;overflow-x:auto;margin-left:calc(-1 * var(--rand));margin-right:calc(-1 * var(--rand));padding:0 var(--rand) 4px;scrollbar-width:none}
+      .chips::-webkit-scrollbar{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header class="a-kopf" id="kopf">
+    <div class="wrap">
+      <a href="/admin/" class="nav-logo" aria-label="Zum Admin"><span class="logo-punkt" aria-hidden="true"></span><img src="/logo-wort.png" alt="Nasuvia" width="94" height="18" /></a>
+      <span class="marke-admin">Offerten</span>
+      <nav>
+        <button type="button" id="einstKnopf">Einstellungen</button>
+        <a href="/admin/">← <span>Admin</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Übersicht -->
+  <main id="uebersicht" class="wrap" style="padding-bottom:70px" hidden>
+    <div class="ue-kopf">
+      <div><p class="label">Admin</p><h1>Offerten</h1></div>
+      <button class="btn btn-haupt" id="neuKnopf" type="button">+ Neue Offerte</button>
+    </div>
+    <div class="zahlen">
+      <div class="karte zahl"><b id="zEntwurf">0</b><span>Entwürfe</span></div>
+      <div class="karte zahl blau"><b id="zOffen">0</b><span>Gesendet, offen</span></div>
+      <div class="karte zahl gruen"><b id="zAngenommen">0</b><span>Angenommen</span></div>
+    </div>
+    <div class="ue-raster">
+      <aside class="ordner" id="ordner"></aside>
+      <section>
+        <div class="suche"><input type="search" id="suche" placeholder="Suchen nach Kunde, Titel oder Nummer" autocomplete="off"></div>
+        <div class="chips" id="statusChips">
+          <button class="chip an" data-s="alle">Alle</button>
+          <button class="chip" data-s="entwurf">Entwurf</button>
+          <button class="chip" data-s="gesendet">Gesendet</button>
+          <button class="chip" data-s="angenommen">Angenommen</button>
+          <button class="chip" data-s="abgelehnt">Abgelehnt</button>
+        </div>
+        <div class="liste" id="liste"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Editor -->
+  <div id="editor" hidden>
+    <div class="ed-leiste">
+      <div class="wrap">
+        <button class="zurueck" id="zurueck" type="button">← Alle Offerten</button>
+        <span class="nr" id="edNr">OF-2026-001</span>
+        <span class="stand" id="stand"><i></i><span>Gespeichert</span></span>
+        <div class="rechts">
+          <button class="btn btn-zweit nur-mobil" id="vorschauKnopf" type="button">Vorschau</button>
+          <button class="btn btn-zweit" id="pdfKnopf" type="button">PDF</button>
+          <button class="btn btn-haupt" id="sendenKnopf" type="button">Per E-Mail senden</button>
+        </div>
+      </div>
+    </div>
+    <div class="wrap ed-raster">
+      <div id="formular">
+        <div class="papierkorb-hinweis" id="geloeschtHinweis" hidden><span>Diese Offerte liegt im Papierkorb.</span><button class="btn btn-zweit btn-klein" id="wiederherstellen" type="button">Wiederherstellen</button></div>
+
+        <section class="block">
+          <h2><span class="k">1</span>Offerte</h2>
+          <label class="f"><span>Titel</span><input id="fTitel" placeholder="Zum Beispiel: Glasfaser-Erschliessung MFH Musterstrasse 5"></label>
+          <div class="reihe3">
+            <label class="f"><span>Nummer</span><input id="fNr"></label>
+            <label class="f"><span>Datum</span><input id="fDatum" type="date"></label>
+            <label class="f"><span>Gültig bis</span><input id="fGueltig" type="date"></label>
+          </div>
+          <label class="f"><span>Ordner</span><select id="fOrdner"></select></label>
+          <div>
+            <div class="f" style="margin:0"><span>Status</span><div class="segment" id="fStatus">
+              <button type="button" data-s="entwurf">Entwurf</button><button type="button" data-s="gesendet">Gesendet</button><button type="button" data-s="angenommen">Angenommen</button><button type="button" data-s="abgelehnt">Abgelehnt</button>
+            </div></div>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2><span class="k">2</span>Kunde</h2>
+          <div class="kundenwahl" id="kundenwahl" hidden><label class="f"><span>Gespeicherte Kunden</span><select id="fKundeListe"></select></label></div>
+          <div class="reihe2">
+            <label class="f"><span>Firma oder Name</span><input id="kName" autocomplete="off"></label>
+            <label class="f"><span>Zuhanden <small>(freiwillig)</small></span><input id="kZhd" autocomplete="off"></label>
+          </div>
+          <div class="reihe2">
+            <label class="f"><span>Strasse und Nr.</span><input id="kStrasse" autocomplete="off"></label>
+            <label class="f"><span>PLZ und Ort</span><input id="kOrt" autocomplete="off"></label>
+          </div>
+          <label class="f"><span>E-Mail</span><input id="kMail" type="email" autocomplete="off" placeholder="Für den Versand"></label>
+        </section>
+
+        <section class="block">
+          <h2><span class="k">3</span>Positionen</h2>
+          <div class="pos-liste" id="posListe"></div>
+          <div class="hinzu">
+            <button class="btn btn-zweit" type="button" id="posNeu">+ Position</button>
+            <span id="vorlagen"></span>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2><span class="k">4</span>Texte und Summe</h2>
+          <label class="f"><span>Einleitung</span><textarea id="fEinleitung"></textarea></label>
+          <label class="f"><span>Schlusstext</span><textarea id="fSchluss"></textarea></label>
+          <div class="optionen">
+            <label class="schalter"><input type="checkbox" id="fMwst"><i></i>MWST 8.1 %</label>
+            <label class="f einheit" style="margin:0;width:150px"><span>Rabatt</span><input id="fRabatt" inputmode="decimal" placeholder="0"><em>%</em></label>
+          </div>
+          <div class="summen" id="summen"></div>
+          <div class="ed-fuss">
+            <button class="leise" type="button" id="duplizieren">Duplizieren</button>
+            <button class="leise rot" type="button" id="loeschen">In den Papierkorb</button>
+          </div>
+        </section>
+      </div>
+
+      <aside class="vorschau" id="vorschau">
+        <div class="kopfzeile"><p class="label">Vorschau</p><span style="display:flex;gap:8px"><button class="btn btn-zweit btn-klein nur-mobil" id="vorschauPdf" type="button">PDF</button><button class="btn btn-haupt btn-klein nur-mobil" id="vorschauZu" type="button">Schliessen</button></span></div>
+        <div class="blaetter-rahmen" id="rahmen"><div id="blaetter"></div></div>
+      </aside>
+    </div>
+    <div class="mobil-summe"><div><small>Total</small><b id="mTotal">CHF 0.00</b></div><button class="btn" type="button" id="mVorschau">Vorschau</button></div>
+  </div>
+
+  <dialog class="dlg" id="dlg"><div class="dlg-innen" id="dlgInnen"></div></dialog>
+  <div class="toast" id="toast"></div>
+  <div class="bitte-warten" id="warten" hidden><div><i></i><span id="wartenText">PDF wird erstellt</span></div></div>
+
+  <script>
+  // Offerten: schreiben, in Ordnern ablegen, als PDF im Nasuvia-Design erzeugen und per Mail senden.
+  // Alles liegt in der Tabelle „datensaetze“ des eigenen Kontos (wie Buchhaltung und Rechnungen).
+  (function(){
+    var sb = window.supabase.createClient('https://dyepnomhidubsfwyorke.supabase.co', 'sb_publishable_zEmC1R5vq234zR6ST7PTmA_uY7Z1-ph', {
+      auth: { persistSession: true, autoRefreshToken: true, storageKey: 'nasuvia.admin' }
+    });
+    var FIRMA = { name: 'Nasuvia', zusatz: 'Glasfasertechnik', strasse: 'Tössfeldstrasse 37', ort: '8406 Winterthur', tel: '+41 79 821 84 08', mail: 'info@nasuvia.ch', web: 'www.nasuvia.ch', uid: 'CHE-345.606.175 MWST' };
+    var MWST = 8.1;
+    var ART = 'offerte', ART_EINST = 'offerteneinstellungen', ID_EINST = 'offerten-einstellungen';
+    var STATUS = { entwurf: 'Entwurf', gesendet: 'Gesendet', angenommen: 'Angenommen', abgelehnt: 'Abgelehnt' };
+    var VORLAGEN = [
+      ['Spleissen im BEP', 'stunden'], ['Kabel einziehen', 'stunden'], ['OTO-Dose montieren', 'stueck'],
+      ['Messen und beschriften', 'pauschal'], ['Material', 'stueck'], ['Anfahrt', 'pauschal']
+    ];
+    var STD = {
+      ansatz: 95,
+      einleitung: 'Vielen Dank für Ihre Anfrage. Gerne offerieren wir Ihnen folgende Arbeiten:',
+      schluss: 'Diese Offerte ist 30 Tage gültig. Die Arbeiten werden nach Aufwand oder wie offeriert abgerechnet. Wir freuen uns auf Ihren Auftrag.'
+    };
+
+    var $ = function(id){ return document.getElementById(id); };
+    var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var heute = function(){ var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+    var plusTage = function(iso, n){ var d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); };
+    var datumCH = function(iso){ if (!iso) return ''; var t = iso.split('-'); return t[2] + '.' + t[1] + '.' + t[0]; };
+    var neueId = function(p){ return p + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); };
+    // Nimmt 1'250.50, 1250,50 und CHF 1250.50 entgegen
+    var zahl = function(w){ var s = String(w == null ? '' : w).replace(/[^\d,.\-]/g, ''); if (s.indexOf(',') > -1 && s.indexOf('.') > -1) s = s.replace(/,/g, ''); else s = s.replace(',', '.'); var n = parseFloat(s); return isFinite(n) ? n : 0; };
+    var chf = function(rp, ohne){ var neg = rp < 0; rp = Math.abs(Math.round(rp)); var f = Math.floor(rp / 100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'") + '.' + String(rp % 100).padStart(2, '0'); return (neg ? '-' : '') + (ohne ? '' : 'CHF ') + f; };
+    var zahlText = function(n){ return (Math.round(n * 100) / 100).toString(); };
+
+    var benutzer = null, offerten = [], einst = { ordner: [], ansatz: STD.ansatz }, kunden = [];
+    var ansicht = { ordner: 'alle', status: 'alle', suche: '' };
+    var aktuell = null, speicherTimer = null, vorschauTimer = null;
+
+    function toast(t){ var e = $('toast'); e.textContent = t; e.classList.add('da'); clearTimeout(toast.t); toast.t = setTimeout(function(){ e.classList.remove('da'); }, 2200); }
+    function warten(an, text){ $('warten').hidden = !an; if (text) $('wartenText').textContent = text; }
+
+    /* ---------- Speichern in Supabase ---------- */
+    async function hochladen(id, art, daten, geloescht){
+      var r = await sb.from('datensaetze').upsert({ user_id: benutzer.id, id: id, art: art, daten: daten, geaendert: new Date().toISOString(), geloescht: !!geloescht }, { onConflict: 'user_id,id' });
+      if (r.error) throw r.error;
+    }
+    function standZeigen(z){ var s = $('stand'); s.className = 'stand' + (z === 'laeuft' ? ' laeuft' : z === 'fehler' ? ' fehler' : ''); s.lastChild.textContent = z === 'laeuft' ? 'Speichert' : z === 'fehler' ? 'Nicht gespeichert' : 'Gespeichert'; }
+    function baldSpeichern(){
+      if (!aktuell) return;
+      aktuell.geaendert = new Date().toISOString();
+      standZeigen('laeuft');
+      clearTimeout(speicherTimer);
+      speicherTimer = setTimeout(jetztSpeichern, 700);
+    }
+    async function jetztSpeichern(){
+      clearTimeout(speicherTimer);
+      if (!aktuell) return;
+      var o = aktuell;
+      try { await hochladen(o.id, ART, offerteDaten(o), o.geloescht); if (o === aktuell) standZeigen('ok'); }
+      catch (e) { standZeigen('fehler'); toast('Speichern hat nicht geklappt: ' + (navigator.onLine === false ? 'kein Internet' : e.message)); }
+    }
+    function offerteDaten(o){ var d = Object.assign({}, o); delete d.id; delete d.geloescht; return d; }
+    async function einstSpeichern(){ try { await hochladen(ID_EINST, ART_EINST, einst, false); } catch (e) { toast('Einstellungen nicht gespeichert: ' + e.message); } }
+
+    async function laden(){
+      var r = await sb.from('datensaetze').select('id,art,daten,geloescht').in('art', [ART, ART_EINST]).limit(5000);
+      if (r.error) { $('liste').innerHTML = '<div class="leer"><b>Die Offerten konnten nicht geladen werden.</b><p>' + esc(r.error.message) + '</p></div>'; return; }
+      offerten = [];
+      (r.data || []).forEach(function(z){
+        if (z.art === ART_EINST) einst = Object.assign({ ordner: [], ansatz: STD.ansatz }, z.daten || {});
+        else if (!(z.daten && z.daten.endgueltig)) offerten.push(Object.assign({}, z.daten, { id: z.id, geloescht: z.geloescht }));
+      });
+      // Gespeicherte Kunden aus der Rechnungs-App (nur lesen)
+      var k = await sb.from('datensaetze').select('daten').eq('art', 'rechnungsstamm').eq('id', 'rgstamm-kunden').maybeSingle();
+      kunden = (k.data && k.data.daten && Array.isArray(k.data.daten.liste) ? k.data.daten.liste : []).filter(function(x){ return x && x.name && x.name !== 'Neuer Kunde'; });
+      kunden.sort(function(a, b){ return a.name.localeCompare(b.name, 'de'); });
+    }
+
+    /* ---------- Rechnen ---------- */
+    function posBetrag(p){
+      if (p.art === 'pauschal') return Math.round(zahl(p.betrag) * 100);
+      return Math.round(zahl(p.menge) * zahl(p.preis) * 100);
+    }
+    function summen(o){
+      var zwischen = o.positionen.reduce(function(s, p){ return s + posBetrag(p); }, 0);
+      var rabatt = Math.round(zwischen * zahl(o.rabatt) / 100);
+      var netto = zwischen - rabatt;
+      var mwst = o.mwst ? Math.round(netto * MWST / 100) : 0;
+      var total = Math.round((netto + mwst) / 5) * 5; // auf 5 Rappen gerundet
+      return { zwischen: zwischen, rabatt: rabatt, netto: netto, mwst: mwst, total: total, rundung: total - netto - mwst };
+    }
+    function naechsteNr(){
+      var jahr = new Date().getFullYear(), max = 0;
+      offerten.forEach(function(o){ var m = String(o.nr || '').match(/^OF-(\d{4})-(\d+)$/); if (m && +m[1] === jahr) max = Math.max(max, +m[2]); });
+      return 'OF-' + jahr + '-' + String(max + 1).padStart(3, '0');
+    }
+
+    /* ---------- Übersicht ---------- */
+    var ORDNER_ICON = '<svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>';
+    function ordnerZeichnen(){
+      var aktiv = offerten.filter(function(o){ return !o.geloescht; });
+      var n = function(f){ return aktiv.filter(f).length; };
+      var html = '<p class="titel">Ordner</p>' +
+        knopf('alle', '<svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>', 'Alle Offerten', aktiv.length) +
+        einst.ordner.map(function(f){ return knopf(f.id, ORDNER_ICON, f.name, n(function(o){ return o.ordner === f.id; }), true); }).join('') +
+        knopf('ohne', '<svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/></svg>', 'Ohne Ordner', n(function(o){ return !o.ordner || !einst.ordner.some(function(f){ return f.id === o.ordner; }); })) +
+        knopf('papierkorb', '<svg viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>', 'Papierkorb', offerten.filter(function(o){ return o.geloescht; }).length) +
+        '<button class="ord neu" type="button" data-neu>' + '<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Neuer Ordner</button>';
+      $('ordner').innerHTML = html;
+      function knopf(id, icon, name, zahl_, eigener){
+        return '<button class="ord' + (ansicht.ordner === id ? ' an' : '') + '" type="button" data-o="' + esc(id) + '">' + icon + '<span>' + esc(name) + '</span><span class="n">' + zahl_ + '</span>' +
+          (eigener ? '<span class="mehr" data-mehr="' + esc(id) + '" title="Ordner bearbeiten">⋯</span>' : '') + '</button>';
+      }
+    }
+    function listeZeichnen(){
+      var aktiv = offerten.filter(function(o){ return !o.geloescht; });
+      $('zEntwurf').textContent = aktiv.filter(function(o){ return o.status === 'entwurf'; }).length;
+      $('zOffen').textContent = aktiv.filter(function(o){ return o.status === 'gesendet'; }).length;
+      var angenommen = aktiv.filter(function(o){ return o.status === 'angenommen'; }).reduce(function(s, o){ return s + summen(o).total; }, 0);
+      $('zAngenommen').textContent = angenommen ? chf(angenommen).replace('.00', '') : '0';
+      var q = ansicht.suche.trim().toLowerCase();
+      var liste = offerten.filter(function(o){
+        if (ansicht.ordner === 'papierkorb') { if (!o.geloescht) return false; }
+        else {
+          if (o.geloescht) return false;
+          if (ansicht.ordner === 'ohne' && o.ordner && einst.ordner.some(function(f){ return f.id === o.ordner; })) return false;
+          if (ansicht.ordner !== 'alle' && ansicht.ordner !== 'ohne' && o.ordner !== ansicht.ordner) return false;
+        }
+        if (ansicht.status !== 'alle' && o.status !== ansicht.status) return false;
+        if (q && [o.nr, o.titel, o.kunde && o.kunde.name, o.kunde && o.kunde.ort].join(' ').toLowerCase().indexOf(q) < 0) return false;
+        return true;
+      }).sort(function(a, b){ return String(b.datum + b.nr).localeCompare(a.datum + a.nr); });
+      if (!liste.length) {
+        $('liste').innerHTML = '<div class="leer"><svg viewBox="0 0 160 70" aria-hidden="true"><path d="M8 50h50" stroke="#DCE2F5" stroke-width="5" stroke-linecap="round"/><path class="faser" d="M8 50h50" stroke="#3B55E6" stroke-width="3" stroke-linecap="round" fill="none"/><rect x="62" y="16" width="40" height="48" rx="7" fill="#fff" stroke="#1C2A7B" stroke-width="2.5"/><path d="M71 30h22M71 39h22M71 48h14" stroke="#DCE2F5" stroke-width="3" stroke-linecap="round"/><circle cx="124" cy="36" r="14" fill="#EEF1FF"/><path d="M118 36l4 4 8-8" stroke="#3B55E6" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+          (ansicht.ordner === 'papierkorb' ? '<b>Der Papierkorb ist leer.</b><p>Gelöschte Offerten landen hier und lassen sich wiederherstellen.</p>' :
+           q || ansicht.status !== 'alle' ? '<b>Nichts gefunden.</b><p>Versuchen Sie einen anderen Suchbegriff oder Filter.</p>' :
+           '<b>Noch keine Offerte hier.</b><p>Legen Sie los: Positionen erfassen, Vorschau ansehen, per Mail senden.</p><button class="btn btn-haupt" type="button" data-neu-offerte style="margin-top:8px">+ Neue Offerte</button>') + '</div>';
+        return;
+      }
+      $('liste').innerHTML = liste.map(function(o, i){
+        var k = o.kunde || {}, f = einst.ordner.find(function(x){ return x.id === o.ordner; });
+        return '<button class="zeile ' + esc(o.status) + '" style="animation-delay:' + Math.min(i, 12) * 30 + 'ms" data-id="' + esc(o.id) + '" type="button">' +
+          '<span class="doc"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg></span>' +
+          '<span><b>' + esc(k.name || 'Ohne Kunde') + (o.titel ? ': ' + esc(o.titel) : '') + '</b><small class="meta"><span>' + esc(o.nr) + '</span><span>' + esc(datumCH(o.datum)) + '</span>' + (f && ansicht.ordner === 'alle' ? '<span>' + esc(f.name) + '</span>' : '') + '</small></span>' +
+          '<span class="rechts"><span class="betrag">' + chf(summen(o).total) + '</span><span class="st ' + esc(o.status) + '">' + STATUS[o.status] + '</span></span></button>';
+      }).join('');
+    }
+    function uebersichtZeigen(){
+      aktuell = null;
+      $('editor').hidden = true; $('uebersicht').hidden = false;
+      ordnerZeichnen(); listeZeichnen();
+      if (location.search) history.replaceState(null, '', location.pathname);
+      window.scrollTo(0, 0);
+    }
+
+    /* ---------- Editor ---------- */
+    function neueOfferte(vorlage){
+      var o = Object.assign({
+        id: neueId('of-'), nr: naechsteNr(), titel: '', datum: heute(), gueltigBis: plusTage(heute(), 30),
+        ordner: ['alle', 'ohne', 'papierkorb'].indexOf(ansicht.ordner) < 0 ? ansicht.ordner : '',
+        status: 'entwurf', kunde: { name: '', zhd: '', strasse: '', ort: '', email: '' },
+        einleitung: einst.einleitung || STD.einleitung, schluss: einst.schluss || STD.schluss,
+        rabatt: '', mwst: true, positionen: [], erstellt: new Date().toISOString(), geaendert: new Date().toISOString()
+      }, vorlage || {});
+      if (!o.positionen.length) o.positionen.push(neuePosition('stunden'));
+      offerten.push(o);
+      return o;
+    }
+    function neuePosition(art, titel){
+      return { id: neueId('p'), art: art || 'stunden', titel: titel || '', text: '', menge: art === 'stueck' ? '1' : '', preis: art === 'stunden' ? String(einst.ansatz || STD.ansatz) : '', betrag: '' };
+    }
+    function oeffnen(o){
+      aktuell = o;
+      $('uebersicht').hidden = true; $('editor').hidden = false;
+      $('edNr').textContent = o.nr;
+      $('geloeschtHinweis').hidden = !o.geloescht;
+      $('fTitel').value = o.titel || ''; $('fNr').value = o.nr || ''; $('fDatum').value = o.datum || ''; $('fGueltig').value = o.gueltigBis || '';
+      $('fOrdner').innerHTML = '<option value="">Ohne Ordner</option>' + einst.ordner.map(function(f){ return '<option value="' + esc(f.id) + '">' + esc(f.name) + '</option>'; }).join('') + '<option value="__neu">+ Neuer Ordner</option>';
+      $('fOrdner').value = o.ordner || '';
+      segment($('fStatus'), o.status);
+      var k = o.kunde || {};
+      $('kName').value = k.name || ''; $('kZhd').value = k.zhd || ''; $('kStrasse').value = k.strasse || ''; $('kOrt').value = k.ort || ''; $('kMail').value = k.email || '';
+      $('kundenwahl').hidden = !kunden.length;
+      $('fKundeListe').innerHTML = '<option value="">Kunde auswählen</option>' + kunden.map(function(x, i){ return '<option value="' + i + '">' + esc(x.name) + (x.ort ? ', ' + esc(x.ort) : '') + '</option>'; }).join('');
+      $('fEinleitung').value = o.einleitung || ''; $('fSchluss').value = o.schluss || '';
+      $('fMwst').checked = !!o.mwst; $('fRabatt').value = o.rabatt || '';
+      positionenZeichnen();
+      summenZeichnen(); vorschauBald(0);
+      standZeigen('ok');
+      history.replaceState(null, '', location.pathname + '?offerte=' + encodeURIComponent(o.id));
+      window.scrollTo(0, 0);
+    }
+    function segment(el, wert){ [].forEach.call(el.children, function(b){ b.classList.toggle('an', b.getAttribute('data-s') === wert); }); }
+
+    var ICON = {
+      hoch: '<svg viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></svg>', runter: '<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>',
+      kopie: '<svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>',
+      weg: '<svg viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>'
+    };
+    function posHtml(p, i, n){
+      var r;
+      if (p.art === 'pauschal') r = '<div class="pos-rechnung pauschal"><label class="f einheit"><span>Betrag</span><input data-feld="betrag" inputmode="decimal" value="' + esc(p.betrag) + '" placeholder="0.00"><em>CHF</em></label>' + summeHtml(p) + '</div>';
+      else r = '<div class="pos-rechnung"><label class="f einheit"><span>' + (p.art === 'stunden' ? 'Stunden' : 'Menge') + '</span><input data-feld="menge" inputmode="decimal" value="' + esc(p.menge) + '" placeholder="0"><em>' + (p.art === 'stunden' ? 'Std.' : 'Stk.') + '</em></label>' +
+        '<span class="mal">×</span><label class="f einheit"><span>' + (p.art === 'stunden' ? 'Ansatz' : 'Preis') + '</span><input data-feld="preis" inputmode="decimal" value="' + esc(p.preis) + '" placeholder="0.00"><em>' + (p.art === 'stunden' ? 'CHF/h' : 'CHF') + '</em></label><span class="mal gleich">=</span>' + summeHtml(p) + '</div>';
+      return '<div class="pos" data-id="' + esc(p.id) + '"><div class="pos-kopf"><span class="pos-nr">' + (i + 1) + '</span>' +
+        '<div class="segment" data-art><button type="button" data-s="stunden" class="' + (p.art === 'stunden' ? 'an' : '') + '">Stunden</button><button type="button" data-s="pauschal" class="' + (p.art === 'pauschal' ? 'an' : '') + '">Pauschal</button><button type="button" data-s="stueck" class="' + (p.art === 'stueck' ? 'an' : '') + '">Stück</button></div>' +
+        '<div class="pos-werkzeug"><button class="ikon" type="button" data-tun="hoch" title="Nach oben"' + (i === 0 ? ' disabled' : '') + '>' + ICON.hoch + '</button><button class="ikon" type="button" data-tun="runter" title="Nach unten"' + (i === n - 1 ? ' disabled' : '') + '>' + ICON.runter + '</button><button class="ikon" type="button" data-tun="kopie" title="Duplizieren">' + ICON.kopie + '</button><button class="ikon rot" type="button" data-tun="weg" title="Entfernen">' + ICON.weg + '</button></div></div>' +
+        '<label class="f"><span>Bezeichnung</span><input data-feld="titel" value="' + esc(p.titel) + '" placeholder="Was wird gemacht?"></label>' +
+        '<label class="f"><span>Beschreibung <small>(freiwillig)</small></span><textarea data-feld="text" rows="2" placeholder="Details für den Kunden">' + esc(p.text) + '</textarea></label>' + r + '</div>';
+    }
+    function summeHtml(p){ return '<div class="pos-summe"><small>Betrag</small><b data-summe>' + chf(posBetrag(p)) + '</b></div>'; }
+    function positionenZeichnen(){
+      var o = aktuell;
+      $('posListe').innerHTML = o.positionen.map(function(p, i){ return posHtml(p, i, o.positionen.length); }).join('') ||
+        '<p style="margin:0;color:var(--text)">Noch keine Position. Fügen Sie eine hinzu oder nehmen Sie eine Vorlage.</p>';
+    }
+    function summenZeichnen(){
+      var s = summen(aktuell);
+      $('summen').innerHTML = '<div><span>Zwischensumme</span><span>' + chf(s.zwischen) + '</span></div>' +
+        (s.rabatt ? '<div><span>Rabatt ' + esc(zahlText(zahl(aktuell.rabatt))) + ' %</span><span>CHF -' + chf(s.rabatt, true) + '</span></div>' : '') +
+        (aktuell.mwst ? '<div><span>MWST ' + MWST + ' %</span><span>' + chf(s.mwst) + '</span></div>' : '') +
+        '<div class="total"><span>Total</span><b id="totalZahl">' + chf(s.total) + '</b></div>';
+      $('mTotal').textContent = chf(s.total);
+    }
+    function geaendert(nurZahlen){
+      summenZeichnen();
+      if (!nurZahlen) $('edNr').textContent = aktuell.nr;
+      baldSpeichern(); vorschauBald();
+    }
+
+    // Eingaben im Formular
+    function feld(id, fn){ $(id).addEventListener('input', function(){ if (!aktuell) return; fn(this.value); geaendert(); }); }
+    feld('fTitel', function(v){ aktuell.titel = v; });
+    feld('fNr', function(v){ aktuell.nr = v.trim(); });
+    feld('fDatum', function(v){ aktuell.datum = v; });
+    feld('fGueltig', function(v){ aktuell.gueltigBis = v; });
+    feld('kName', function(v){ aktuell.kunde.name = v; });
+    feld('kZhd', function(v){ aktuell.kunde.zhd = v; });
+    feld('kStrasse', function(v){ aktuell.kunde.strasse = v; });
+    feld('kOrt', function(v){ aktuell.kunde.ort = v; });
+    feld('kMail', function(v){ aktuell.kunde.email = v.trim(); });
+    feld('fEinleitung', function(v){ aktuell.einleitung = v; });
+    feld('fSchluss', function(v){ aktuell.schluss = v; });
+    feld('fRabatt', function(v){ aktuell.rabatt = v; });
+    $('fMwst').addEventListener('change', function(){ aktuell.mwst = this.checked; geaendert(); });
+    $('fStatus').addEventListener('click', function(e){
+      var b = e.target.closest('button[data-s]'); if (!b) return;
+      aktuell.status = b.getAttribute('data-s'); segment(this, aktuell.status); geaendert();
+    });
+    $('fOrdner').addEventListener('change', async function(){
+      if (this.value === '__neu') {
+        var name = await eingabe('Neuer Ordner', 'Zum Beispiel einen Kunden oder ein Projekt.', '', 'Erstellen');
+        if (!name) { this.value = aktuell.ordner || ''; return; }
+        var f = ordnerAnlegen(name);
+        this.insertBefore(new Option(f.name, f.id), this.lastElementChild);
+        this.value = f.id;
+      }
+      aktuell.ordner = this.value; geaendert();
+    });
+    $('fKundeListe').addEventListener('change', function(){
+      var k = kunden[+this.value]; if (!k) return;
+      aktuell.kunde = { name: k.name || '', zhd: '', strasse: [k.strasse, k.nr].filter(Boolean).join(' '), ort: [k.plz, k.ort].filter(Boolean).join(' '), email: k.mail || '' };
+      $('kName').value = aktuell.kunde.name; $('kZhd').value = ''; $('kStrasse').value = aktuell.kunde.strasse; $('kOrt').value = aktuell.kunde.ort; $('kMail').value = aktuell.kunde.email;
+      this.value = ''; geaendert(); toast('Kunde übernommen');
+    });
+
+    // Positionen
+    $('posListe').addEventListener('input', function(e){
+      var t = e.target, el = t.closest('.pos'); if (!el || !t.dataset.feld) return;
+      var p = aktuell.positionen.find(function(x){ return x.id === el.dataset.id; });
+      p[t.dataset.feld] = t.value;
+      var s = el.querySelector('[data-summe]'); if (s) s.textContent = chf(posBetrag(p));
+      geaendert(true);
+    });
+    $('posListe').addEventListener('click', function(e){
+      var el = e.target.closest('.pos'); if (!el) return;
+      var liste = aktuell.positionen, i = liste.findIndex(function(x){ return x.id === el.dataset.id; }), p = liste[i];
+      var art = e.target.closest('[data-art] button');
+      if (art) {
+        var neu = art.getAttribute('data-s'); if (neu === p.art) return;
+        // Beim Wechsel den Betrag sinnvoll mitnehmen
+        var vorher = posBetrag(p);
+        p.art = neu;
+        if (neu === 'pauschal') p.betrag = vorher ? zahlText(vorher / 100) : p.betrag;
+        else if (neu === 'stunden' && !p.preis) p.preis = String(einst.ansatz || STD.ansatz);
+        if (neu !== 'pauschal' && !p.menge) p.menge = neu === 'stueck' ? '1' : '';
+        positionenZeichnen(); geaendert(true); return;
+      }
+      var b = e.target.closest('[data-tun]'); if (!b) return;
+      var tun = b.dataset.tun;
+      if (tun === 'hoch' && i > 0) { liste.splice(i - 1, 0, liste.splice(i, 1)[0]); positionenZeichnen(); }
+      if (tun === 'runter' && i < liste.length - 1) { liste.splice(i + 1, 0, liste.splice(i, 1)[0]); positionenZeichnen(); }
+      if (tun === 'kopie') { var k = Object.assign({}, p, { id: neueId('p') }); liste.splice(i + 1, 0, k); positionenZeichnen(); }
+      if (tun === 'weg') {
+        el.classList.add('weg');
+        setTimeout(function(){ liste.splice(liste.indexOf(p), 1); positionenZeichnen(); geaendert(true); }, 280);
+        return;
+      }
+      geaendert(true);
+    });
+    function positionDazu(art, titel){
+      var p = neuePosition(art, titel);
+      aktuell.positionen.push(p); positionenZeichnen(); geaendert(true);
+      var el = $('posListe').lastElementChild;
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      var inp = el.querySelector(titel ? (art === 'pauschal' ? '[data-feld=betrag]' : '[data-feld=menge]') : '[data-feld=titel]');
+      setTimeout(function(){ inp && inp.focus({ preventScroll: true }); }, 350);
+    }
+    $('posNeu').addEventListener('click', function(){ positionDazu('stunden'); });
+    $('vorlagen').innerHTML = VORLAGEN.map(function(v, i){ return '<button class="vorlage" type="button" data-v="' + i + '">+ ' + esc(v[0]) + '</button>'; }).join(' ');
+    $('vorlagen').addEventListener('click', function(e){ var b = e.target.closest('[data-v]'); if (b) { var v = VORLAGEN[+b.dataset.v]; positionDazu(v[1], v[0]); } });
+
+    /* ---------- Vorschau und PDF ---------- */
+    function vorschauBald(ms){ clearTimeout(vorschauTimer); vorschauTimer = setTimeout(vorschauBauen, ms == null ? 250 : ms); }
+    function blattNeu(nr){
+      var b = document.createElement('div'); b.className = 'blatt';
+      b.innerHTML = '<div class="inhalt"></div><div class="b-fuss"><span>' + esc(FIRMA.name + ' ' + FIRMA.zusatz) + '</span><span>' + esc(FIRMA.web) + '</span><span>' + esc(FIRMA.uid) + '</span><span data-seite>Seite ' + nr + '</span></div>';
+      $('blaetter').appendChild(b);
+      return b.firstChild;
+    }
+    function tabelleNeu(ziel){
+      var t = document.createElement('table');
+      t.innerHTML = '<thead><tr><th>Pos.</th><th>Leistung</th><th class="z">Menge</th><th class="z">Ansatz</th><th class="z">Betrag CHF</th></tr></thead><tbody></tbody>';
+      ziel.appendChild(t); return t.tBodies[0];
+    }
+    function vorschauBauen(){
+      if (!aktuell) return;
+      var o = aktuell, k = o.kunde || {}, s = summen(o);
+      $('blaetter').innerHTML = '';
+      var seite = 1, ziel = blattNeu(seite), tbody = null;
+      var voll = function(){ return ziel.scrollHeight > ziel.clientHeight + 1; };
+      function folgeseite(){
+        seite++; ziel = blattNeu(seite);
+        ziel.insertAdjacentHTML('beforeend', '<div class="b-folge"><img src="/logo.png" alt="Nasuvia" style="height:18px"><span>Offerte ' + esc(o.nr) + ' (Fortsetzung)</span></div>');
+      }
+      function setzen(html){
+        var box = document.createElement('div'); box.innerHTML = html; var el = box.firstElementChild;
+        ziel.appendChild(el);
+        if (voll() && ziel.children.length > 1) { el.remove(); folgeseite(); ziel.appendChild(el); }
+      }
+      // Kopf, Adresse und Titel
+      ziel.insertAdjacentHTML('beforeend',
+        '<div class="b-kopf"><img src="/logo.png" alt="Nasuvia"><div class="b-firma"><b>' + esc(FIRMA.name) + '</b> ' + esc(FIRMA.zusatz) + '<br>' + esc(FIRMA.strasse) + ', ' + esc(FIRMA.ort) + '<br>' + esc(FIRMA.tel) + '<br>' + esc(FIRMA.mail) + '</div></div>' +
+        '<div class="b-adresse"><small>Offerte an</small>' + [k.name, k.zhd ? 'z.H. ' + k.zhd : '', k.strasse, k.ort].filter(Boolean).map(esc).join('<br>') + '</div>' +
+        '<div class="b-titel"><div class="art"><i></i>Offerte</div><h1>' + esc(o.titel || 'Offerte') + '</h1>' +
+        '<div class="b-meta"><div><b>Nummer</b>' + esc(o.nr) + '</div><div><b>Datum</b>' + esc(datumCH(o.datum)) + '</div>' + (o.gueltigBis ? '<div><b>Gültig bis</b>' + esc(datumCH(o.gueltigBis)) + '</div>' : '') + '</div></div>' +
+        (o.einleitung ? '<div class="b-text">' + esc(o.einleitung) + '</div>' : '<div style="height:18px"></div>'));
+      tbody = tabelleNeu(ziel);
+      o.positionen.forEach(function(p, i){
+        var menge = p.art === 'pauschal' ? 'Pauschal' : zahlText(zahl(p.menge)) + (p.art === 'stunden' ? ' Std.' : ' Stk.');
+        var ansatz = p.art === 'pauschal' ? '' : chf(Math.round(zahl(p.preis) * 100), true) + (p.art === 'stunden' ? '/h' : '');
+        var tr = document.createElement('tr');
+        tr.innerHTML = '<td class="p">' + String(i + 1).padStart(2, '0') + '</td><td><div class="bez">' + esc(p.titel || 'Position') + '</div>' + (p.text ? '<div class="bes">' + esc(p.text) + '</div>' : '') + '</td>' +
+          '<td class="z">' + esc(menge) + '</td><td class="z">' + esc(ansatz) + '</td><td class="z">' + chf(posBetrag(p), true) + '</td>';
+        tbody.appendChild(tr);
+        if (voll()) { tr.remove(); folgeseite(); tbody = tabelleNeu(ziel); tbody.appendChild(tr); }
+      });
+      setzen('<div class="b-summen"><div><span>Zwischensumme</span><span>' + chf(s.zwischen, true) + '</span></div>' +
+        (s.rabatt ? '<div><span>Rabatt ' + esc(zahlText(zahl(o.rabatt))) + ' %</span><span>-' + chf(s.rabatt, true) + '</span></div>' : '') +
+        (o.mwst ? '<div><span>MWST ' + MWST + ' %</span><span>' + chf(s.mwst, true) + '</span></div>' : '<div><span>Ohne MWST</span><span></span></div>') +
+        (s.rundung ? '<div><span>Rundung</span><span>' + chf(s.rundung, true) + '</span></div>' : '') +
+        '<div class="t"><span>Total</span><span>' + chf(s.total) + '</span></div></div>');
+      setzen('<div class="b-gruss">' + esc(o.schluss || '') + '\n\nFreundliche Grüsse<b>' + esc(FIRMA.name) + ' ' + esc(FIRMA.zusatz) + '</b></div>');
+      // Seitenzahlen „x von y“
+      var alle = $('blaetter').querySelectorAll('[data-seite]');
+      [].forEach.call(alle, function(e, i){ e.textContent = 'Seite ' + (i + 1) + ' von ' + alle.length; });
+      massstab();
+    }
+    function massstab(){
+      var w = $('rahmen').clientWidth - 8; if (w <= 0) return;
+      var f = Math.min(1, w / 794);
+      $('blaetter').style.transform = 'scale(' + f + ')';
+      $('blaetter').style.height = ($('blaetter').scrollHeight * f) + 'px';
+    }
+    window.addEventListener('resize', function(){ if (aktuell) massstab(); });
+
+    async function pdfErstellen(){
+      clearTimeout(vorschauTimer); vorschauBauen();
+      if (document.fonts && document.fonts.ready) await document.fonts.ready;
+      if (!window.html2canvas || !window.jspdf) throw new Error('PDF-Werkzeug noch nicht geladen. Bitte gleich nochmals versuchen.');
+      var box = document.createElement('div');
+      box.style.cssText = 'position:fixed;left:-30000px;top:0;width:794px;pointer-events:none';
+      document.body.appendChild(box);
+      try {
+        var pdf = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4', compress: true });
+        var blaetter = $('blaetter').querySelectorAll('.blatt');
+        for (var i = 0; i < blaetter.length; i++) {
+          var kopie = blaetter[i].cloneNode(true); kopie.style.boxShadow = 'none'; kopie.style.margin = '0';
+          box.innerHTML = ''; box.appendChild(kopie);
+          var c = await window.html2canvas(kopie, { scale: 2.5, backgroundColor: '#ffffff', logging: false, useCORS: true });
+          if (i) pdf.addPage();
+          pdf.addImage(c.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
+        }
+        pdf.setProperties({ title: 'Offerte ' + aktuell.nr, author: FIRMA.name, subject: aktuell.titel || '' });
+        return pdf.output('blob');
+      } finally { box.remove(); }
+    }
+    function dateiname(o){
+      var s = function(t){ return String(t || '').replace(/[^\p{L}\p{N}\s-]/gu, '').trim().replace(/\s+/g, '-'); };
+      return 'Offerte-' + s(o.nr) + (o.kunde && o.kunde.name ? '-' + s(o.kunde.name) : '') + '.pdf';
+    }
+    async function pdfAblegen(o, blob){
+      // Kopie in der privaten Ablage, damit das PDF auf allen Geräten da ist
+      try { await sb.storage.from('belege').upload(benutzer.id + '/offerten/' + dateiname(o), blob, { upsert: true, contentType: 'application/pdf' }); } catch (e) {}
+    }
+
+    $('pdfKnopf').addEventListener('click', async function(){
+      try {
+        warten(true, 'PDF wird erstellt'); await jetztSpeichern();
+        var blob = await pdfErstellen(), datei = dateiname(aktuell), url = URL.createObjectURL(blob);
+        pdfAblegen(aktuell, blob);
+        warten(false);
+        dialog('<p class="label">PDF</p><h2>Offerte ' + esc(aktuell.nr) + '</h2><p>' + esc(datei) + '</p>' +
+          '<div class="knoepfe"><a class="btn btn-haupt" href="' + url + '" target="_blank" rel="noopener">PDF öffnen</a><a class="btn btn-zweit" href="' + url + '" download="' + esc(datei) + '">Herunterladen</a>' +
+          '<p style="font-size:.88rem;margin:4px 0 0">Tipp: Auf dem Mac in den Ordner Nasuvia, 05 Offerten sichern.</p><button class="leise" type="button" data-zu>Schliessen</button></div>');
+      } catch (e) { warten(false); toast(e.message); }
+    });
+
+    $('sendenKnopf').addEventListener('click', function(){
+      var o = aktuell, k = o.kunde || {};
+      var anrede = k.zhd ? 'Guten Tag ' + k.zhd : 'Guten Tag';
+      var text = anrede + '\n\nVielen Dank für Ihre Anfrage. Im Anhang finden Sie unsere Offerte ' + o.nr + (o.titel ? ' für ' + o.titel : '') + '.\n\nBei Fragen sind wir gerne für Sie da.\n\nFreundliche Grüsse\n' + FIRMA.name + ' ' + FIRMA.zusatz + '\n' + FIRMA.tel + '\n' + FIRMA.web;
+      var d = dialog('<p class="label">Per E-Mail senden</p><h2>Offerte ' + esc(o.nr) + '</h2>' +
+        '<label class="f"><span>An</span><input id="mAn" type="email" value="' + esc(k.email) + '" placeholder="E-Mail des Kunden"></label>' +
+        '<label class="f"><span>Betreff</span><input id="mBetreff" value="' + esc('Offerte ' + o.nr + (o.titel ? ': ' + o.titel : '')) + '"></label>' +
+        '<label class="f"><span>Nachricht</span><textarea id="mText" style="min-height:170px">' + esc(text) + '</textarea></label>' +
+        '<div class="knoepfe"><button class="btn btn-haupt" type="button" id="mLos">PDF erstellen und senden</button><button class="leise" type="button" data-zu>Abbrechen</button></div>');
+      d.querySelector('#mLos').onclick = async function(){
+        var an = d.querySelector('#mAn').value.trim(), betreff = d.querySelector('#mBetreff').value, nachricht = d.querySelector('#mText').value;
+        if (an && an !== k.email) { o.kunde.email = an; $('kMail').value = an; }
+        d.close();
+        try {
+          warten(true, 'PDF wird erstellt');
+          var blob = await pdfErstellen(), datei = dateiname(o);
+          pdfAblegen(o, blob);
+          warten(false);
+          versenden(o, blob, datei, an, betreff, nachricht);
+        } catch (e) { warten(false); toast(e.message); }
+      };
+    });
+    function versenden(o, blob, datei, an, betreff, nachricht){
+      var file = new File([blob], datei, { type: 'application/pdf' }), url = URL.createObjectURL(blob);
+      var teilen = navigator.canShare && navigator.canShare({ files: [file] });
+      var mailto = 'mailto:' + encodeURIComponent(an) + '?subject=' + encodeURIComponent(betreff) + '&body=' + encodeURIComponent(nachricht);
+      var d = dialog('<p class="label">Bereit zum Senden</p><h2>' + esc(datei) + '</h2>' +
+        '<p>' + (teilen ? 'Tippen Sie auf „Mit Mail senden“ und wählen Sie Mail. Die Offerte ist schon angehängt, Text und Betreff kopieren wir Ihnen in die Zwischenablage.' : 'Laden Sie das PDF herunter und ziehen Sie es in die Mail, die sich gleich öffnet.') + '</p>' +
+        '<div class="knoepfe">' + (teilen ? '<button class="btn btn-haupt" type="button" data-teilen>Mit Mail senden</button><a class="btn btn-zweit" href="' + mailto + '" data-mailto>Nur Mail öffnen</a>' :
+          '<a class="btn btn-haupt" href="' + url + '" download="' + esc(datei) + '" data-laden>1. PDF herunterladen</a><a class="btn btn-zweit" href="' + mailto + '" data-mailto>2. Mail öffnen</a>') +
+        '<button class="leise" type="button" data-zu>Fertig</button></div>');
+      var gesendet = function(){
+        if (o.status === 'entwurf') { o.status = 'gesendet'; if (o === aktuell) segment($('fStatus'), 'gesendet'); }
+        o.gesendetAm = new Date().toISOString(); o.gesendetAn = an;
+        if (o === aktuell) baldSpeichern();
+      };
+      var t = d.querySelector('[data-teilen]');
+      if (t) t.onclick = async function(){
+        try { await navigator.clipboard.writeText(nachricht); } catch (e) {}
+        try { await navigator.share({ files: [file], title: betreff, text: nachricht }); gesendet(); d.close(); toast('Offerte gesendet'); }
+        catch (e) { if (e && e.name !== 'AbortError') window.open(url, '_blank'); }
+      };
+      d.querySelector('[data-mailto]').addEventListener('click', gesendet);
+    }
+
+    /* ---------- Dialoge ---------- */
+    function dialog(html){
+      var d = $('dlg'); $('dlgInnen').innerHTML = html;
+      d.querySelectorAll('[data-zu]').forEach(function(b){ b.onclick = function(){ d.close(); }; });
+      d.showModal(); return d;
+    }
+    function eingabe(titel, text, wert, knopf){
+      return new Promise(function(fertig){
+        var d = dialog('<h2>' + esc(titel) + '</h2><p>' + esc(text) + '</p><label class="f"><span>Name</span><input id="eWert" value="' + esc(wert) + '" maxlength="60"></label>' +
+          '<div class="zeilen-knoepfe"><button class="leise" type="button" data-zu>Abbrechen</button><button class="btn btn-haupt" type="button" id="eOk">' + esc(knopf) + '</button></div>');
+        var inp = d.querySelector('#eWert'), ok = false;
+        setTimeout(function(){ inp.focus(); inp.select(); }, 50);
+        var los = function(){ if (!inp.value.trim()) return; ok = true; d.close(); };
+        d.querySelector('#eOk').onclick = los;
+        inp.onkeydown = function(e){ if (e.key === 'Enter') { e.preventDefault(); los(); } };
+        d.addEventListener('close', function f(){ d.removeEventListener('close', f); fertig(ok ? inp.value.trim() : null); });
+      });
+    }
+    function ordnerAnlegen(name){ var f = { id: neueId('o-'), name: name }; einst.ordner.push(f); einstSpeichern(); return f; }
+
+    /* ---------- Übersicht: Klicks ---------- */
+    $('ordner').addEventListener('click', async function(e){
+      if (e.target.closest('[data-neu]')) {
+        var name = await eingabe('Neuer Ordner', 'Zum Beispiel einen Kunden, ein Projekt oder ein Jahr.', '', 'Erstellen');
+        if (name) { var f = ordnerAnlegen(name); ansicht.ordner = f.id; ordnerZeichnen(); listeZeichnen(); toast('Ordner erstellt'); }
+        return;
+      }
+      var m = e.target.closest('[data-mehr]');
+      if (m) {
+        e.stopPropagation();
+        var f2 = einst.ordner.find(function(x){ return x.id === m.dataset.mehr; }); if (!f2) return;
+        var d = dialog('<p class="label">Ordner</p><h2>' + esc(f2.name) + '</h2><label class="f"><span>Name</span><input id="oName" value="' + esc(f2.name) + '" maxlength="60"></label>' +
+          '<div class="zeilen-knoepfe"><button class="leise rot" type="button" id="oWeg">Ordner löschen</button><button class="btn btn-haupt" type="button" id="oOk">Speichern</button></div>' +
+          '<p style="font-size:.86rem;margin-top:12px">Beim Löschen bleiben die Offerten erhalten und landen unter „Ohne Ordner“.</p>');
+        d.querySelector('#oOk').onclick = function(){ var n = d.querySelector('#oName').value.trim(); if (n) { f2.name = n; einstSpeichern(); ordnerZeichnen(); listeZeichnen(); } d.close(); };
+        d.querySelector('#oWeg').onclick = function(){
+          einst.ordner = einst.ordner.filter(function(x){ return x !== f2; }); einstSpeichern();
+          if (ansicht.ordner === f2.id) ansicht.ordner = 'alle';
+          ordnerZeichnen(); listeZeichnen(); d.close(); toast('Ordner gelöscht');
+        };
+        return;
+      }
+      var b = e.target.closest('[data-o]'); if (!b) return;
+      ansicht.ordner = b.dataset.o; ordnerZeichnen(); listeZeichnen();
+    });
+    $('statusChips').addEventListener('click', function(e){
+      var b = e.target.closest('.chip'); if (!b) return;
+      ansicht.status = b.dataset.s; [].forEach.call(this.children, function(x){ x.classList.toggle('an', x === b); }); listeZeichnen();
+    });
+    $('suche').addEventListener('input', function(){ ansicht.suche = this.value; listeZeichnen(); });
+    $('liste').addEventListener('click', function(e){
+      if (e.target.closest('[data-neu-offerte]')) { oeffnen(neueOfferte()); baldSpeichern(); return; }
+      var z = e.target.closest('.zeile'); if (!z) return;
+      var o = offerten.find(function(x){ return x.id === z.dataset.id; }); if (o) oeffnen(o);
+    });
+    $('neuKnopf').addEventListener('click', function(){ oeffnen(neueOfferte()); baldSpeichern(); setTimeout(function(){ $('fTitel').focus(); }, 100); });
+    $('zurueck').addEventListener('click', async function(){ await jetztSpeichern(); uebersichtZeigen(); });
+    $('duplizieren').addEventListener('click', async function(){
+      await jetztSpeichern();
+      var kopie = JSON.parse(JSON.stringify(aktuell));
+      delete kopie.id; delete kopie.gesendetAm; delete kopie.gesendetAn; delete kopie.anfrage;
+      kopie.positionen.forEach(function(p){ p.id = neueId('p'); });
+      var o = neueOfferte(Object.assign(kopie, { nr: naechsteNr(), status: 'entwurf', datum: heute(), gueltigBis: plusTage(heute(), 30), geloescht: false, erstellt: new Date().toISOString() }));
+      oeffnen(o); baldSpeichern(); toast('Kopie erstellt: ' + o.nr);
+    });
+    $('loeschen').addEventListener('click', async function(){
+      if (aktuell.geloescht) {
+        if (!confirm('Diese Offerte endgültig löschen? Das kann nicht rückgängig gemacht werden.')) return;
+        aktuell.endgueltig = true; await jetztSpeichern();
+        offerten = offerten.filter(function(x){ return x !== aktuell; });
+        uebersichtZeigen(); toast('Endgültig gelöscht'); return;
+      }
+      aktuell.geloescht = true; await jetztSpeichern(); uebersichtZeigen(); toast('In den Papierkorb gelegt');
+    });
+    $('wiederherstellen').addEventListener('click', async function(){
+      aktuell.geloescht = false; $('geloeschtHinweis').hidden = true; await jetztSpeichern(); loeschenText(); toast('Wiederhergestellt');
+    });
+    function loeschenText(){ $('loeschen').textContent = aktuell && aktuell.geloescht ? 'Endgültig löschen' : 'In den Papierkorb'; }
+    var altOeffnen = oeffnen; oeffnen = function(o){ altOeffnen(o); loeschenText(); };
+
+    // Vorschau auf kleinen Bildschirmen
+    function vorschauAuf(){ $('vorschau').classList.add('offen'); document.body.style.overflow = 'hidden'; setTimeout(massstab, 30); }
+    function vorschauZu(){ $('vorschau').classList.remove('offen'); document.body.style.overflow = ''; }
+    $('vorschauKnopf').addEventListener('click', vorschauAuf);
+    $('mVorschau').addEventListener('click', vorschauAuf);
+    $('vorschauZu').addEventListener('click', vorschauZu);
+    $('vorschauPdf').addEventListener('click', function(){ $('pdfKnopf').click(); });
+
+    // Einstellungen
+    $('einstKnopf').addEventListener('click', function(){
+      var d = dialog('<p class="label">Offerten</p><h2>Einstellungen</h2><p>Gilt für neue Offerten.</p>' +
+        '<label class="f einheit"><span>Stundenansatz</span><input id="sAnsatz" inputmode="decimal" value="' + esc(einst.ansatz || STD.ansatz) + '"><em>CHF/h</em></label>' +
+        '<label class="f"><span>Einleitung</span><textarea id="sEin">' + esc(einst.einleitung || STD.einleitung) + '</textarea></label>' +
+        '<label class="f"><span>Schlusstext</span><textarea id="sSchluss">' + esc(einst.schluss || STD.schluss) + '</textarea></label>' +
+        '<div class="zeilen-knoepfe"><button class="leise" type="button" data-zu>Abbrechen</button><button class="btn btn-haupt" type="button" id="sOk">Speichern</button></div>');
+      d.querySelector('#sOk').onclick = function(){
+        einst.ansatz = zahl(d.querySelector('#sAnsatz').value) || STD.ansatz;
+        einst.einleitung = d.querySelector('#sEin').value; einst.schluss = d.querySelector('#sSchluss').value;
+        einstSpeichern(); d.close(); toast('Einstellungen gespeichert');
+      };
+    });
+
+    window.addEventListener('scroll', function(){ $('kopf').classList.toggle('schatten', window.scrollY > 4); }, { passive: true });
+    window.addEventListener('beforeunload', function(e){ if ($('stand').classList.contains('laeuft')) { jetztSpeichern(); e.preventDefault(); } });
+    document.addEventListener('keydown', function(e){ if ((e.metaKey || e.ctrlKey) && e.key === 's' && aktuell) { e.preventDefault(); jetztSpeichern(); toast('Gespeichert'); } });
+
+    /* ---------- Start ---------- */
+    async function aufAnfrage(id){
+      // Offerte aus einer Anfrage der Website: Kunde ist schon ausgefüllt
+      var r = await sb.from('anfragen').select('*').eq('id', id).maybeSingle();
+      if (!r.data) return null;
+      var a = r.data, d = a.daten || {};
+      var vorhanden = offerten.find(function(o){ return o.anfrage === a.id && !o.geloescht; });
+      if (vorhanden) return vorhanden;
+      var o = neueOfferte({
+        titel: String(a.art || '').replace(/^Anfrage:\s*/, ''), anfrage: a.id,
+        kunde: { name: d.Firma || a.name || '', zhd: d.Firma && a.name ? a.name : '', strasse: d.Adresse || d.Strasse || '', ort: d['PLZ und Ort'] || d['Ort oder Region'] || d.Ort || '', email: a.email || '' }
+      });
+      await jetztSpeichernFuer(o);
+      return o;
+    }
+    async function jetztSpeichernFuer(o){ var vorher = aktuell; aktuell = o; await jetztSpeichern(); aktuell = vorher; }
+
+    var gestartet = false;
+    sb.auth.onAuthStateChange(async function(ereignis, sitzung){
+      if (!sitzung) { if (ereignis !== 'INITIAL_SESSION' || !gestartet) location.replace('/admin/'); return; }
+      benutzer = sitzung.user;
+      if (gestartet) return;
+      gestartet = true;
+      await laden();
+      var p = new URLSearchParams(location.search), o = null;
+      if (p.get('anfrage')) o = await aufAnfrage(p.get('anfrage'));
+      else if (p.get('offerte')) o = offerten.find(function(x){ return x.id === p.get('offerte'); });
+      if (o) oeffnen(o); else uebersichtZeigen();
+    });
+  })();
+  </script>
+</body>
+</html>

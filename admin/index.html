@@ -27,7 +27,7 @@
     .login .feld{margin-bottom:12px}
     .login .btn{width:100%;justify-content:center;margin-top:6px}
     .login .meldung{min-height:1.3em}
-    .apps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:24px}
+    .apps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:24px}
     .app{display:flex;align-items:center;gap:14px;padding:16px 18px;text-decoration:none;color:inherit;transition:transform .3s cubic-bezier(.3,1.4,.5,1),box-shadow .3s}
     .app:hover{transform:translateY(-3px);box-shadow:var(--schatten-hoch)}
     .app:active{transform:scale(.98)}
@@ -93,7 +93,9 @@
       .a-kopf nav button{font-size:.9rem;padding:8px 8px;white-space:nowrap}
       .a-kopf .wrap{gap:10px}
       .apps{gap:10px;margin-top:16px}
-      .app{flex-direction:column;align-items:flex-start;gap:12px;padding:16px;position:relative}
+      .app{flex-direction:column;align-items:flex-start;gap:12px;padding:14px;position:relative}
+      .app small{display:none}
+      .app .icon{width:40px;height:40px;border-radius:12px}
       .app-pfeil{position:absolute;top:14px;right:14px}
       .zahlen{margin-top:10px}
       .filter{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;margin-left:calc(-1 * var(--rand));margin-right:calc(-1 * var(--rand));padding-left:var(--rand);padding-right:var(--rand)}
@@ -139,6 +141,11 @@
           <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg></span>
           <span class="app-text"><b>Rechnungen</b><small>Schreiben und versenden</small></span>
           <span class="app-pfeil" aria-hidden="true">↗</span>
+        </a>
+        <a class="karte app" href="/admin/offerten/">
+          <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 12h6M9 16h3"/><path d="m14.5 16.5 1.5 1.5 3-3"/></svg></span>
+          <span class="app-text"><b>Offerten</b><small>Erstellen, ablegen, senden</small></span>
+          <span class="app-pfeil" aria-hidden="true">→</span>
         </a>
       </div>
       <div class="zahlen">
@@ -250,6 +257,7 @@
         '<div class="aktionen">' +
           (a.telefon ? '<a class="btn btn-haupt" href="tel:' + esc(a.telefon.replace(/[^\d+]/g, '')) + '">Anrufen</a>' : '') +
           (a.email ? '<a class="btn btn-zweit" href="mailto:' + esc(a.email) + '?subject=' + encodeURIComponent('Ihre Anfrage ' + (a.nummer || '')) + '">E-Mail</a>' : '') +
+          '<a class="btn btn-zweit" href="/admin/offerten/?anfrage=' + encodeURIComponent(a.id) + '">Offerte erstellen</a>' +
           '<a class="btn btn-zweit" href="' + rechnungen + '" target="_blank" rel="noopener">Rechnung schreiben ↗</a>' +
         '</div>' +
         '<h3>Status</h3><div class="segment" id="dStatus">' + Object.keys(STATUS).map(function(s){ return '<button data-s="' + s + '" class="' + (a.status === s ? 'an' : '') + '">' + STATUS[s] + '</button>'; }).join('') + '</div>' +
