@@ -25,6 +25,9 @@
     .a-kopf nav{margin-left:auto;display:flex;gap:4px}
     .a-kopf nav a,.a-kopf nav button{font:500 .95rem var(--display);color:var(--tinte);text-decoration:none;background:none;border:0;cursor:pointer;padding:8px 12px;border-radius:100px;white-space:nowrap}
     .a-kopf nav a:hover,.a-kopf nav button:hover{background:var(--flaeche)}
+    .a-kopf nav a.zum-admin{display:inline-flex;align-items:center;gap:6px;color:var(--elektrik);font-weight:600;background:rgba(59,85,230,.08)}
+    .a-kopf nav a.zum-admin:hover{background:rgba(59,85,230,.14)}
+    .zum-admin svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round}
 
     /* ---------- Übersicht ---------- */
     .ue-kopf{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin:26px 0 18px;flex-wrap:wrap}
@@ -129,10 +132,29 @@
     .pos-summe small{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase}
     .pos-summe b{font:700 1.2rem var(--display);color:var(--tinte);white-space:nowrap}
     .pos-rechnung.pauschal{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+    .pos-rechnung.mit-einheit{grid-template-columns:minmax(0,.8fr) minmax(0,.8fr) auto minmax(0,1fr) auto minmax(0,1.1fr)}
     .einheit{position:relative}.einheit input{padding-right:46px}
     .einheit em{position:absolute;right:13px;bottom:13px;font-style:normal;font-size:.82rem;color:var(--text);pointer-events:none}
-    .hinzu{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;align-items:center}
-    .hinzu .btn{padding:11px 18px;font-size:.95rem}
+    .hinzu{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .hinzu-titel{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text);margin:20px 0 10px}
+    .hinzu-kat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .hinzu-kat button{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;border:1.5px solid var(--linie);background:#fff;border-radius:16px;padding:14px;cursor:pointer;transition:transform .25s cubic-bezier(.3,1.5,.5,1),border-color .2s,box-shadow .2s;color:var(--tinte)}
+    .hinzu-kat button:hover{transform:translateY(-2px);border-color:var(--elektrik);box-shadow:var(--schatten)}
+    .hinzu-kat button:active{transform:scale(.97)}
+    .hinzu-kat svg{width:28px;height:28px;padding:6px;border-radius:10px;background:rgba(59,85,230,.1);fill:none;stroke:var(--blau);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-bottom:6px;box-sizing:content-box}
+    .hinzu-kat b{font-size:1rem}.hinzu-kat small{font-size:.8rem;color:var(--text);line-height:1.3}
+    .pos-name{font-weight:600;color:var(--tinte)}
+    .segment.kat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;border-radius:14px;margin-bottom:12px}
+    .segment.kat button{border-radius:10px;padding:9px 6px}
+    .pos-art{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+    .pos-art>span{font-size:.82rem;font-weight:600;color:var(--tinte)}
+    .pos-art .segment{background:rgba(59,85,230,.07)}
+    .pos-art .segment button{padding:6px 12px;font-size:.84rem}
+    .pos .einheit select{padding-right:30px;background-position:right 8px center}
+    .pos-basis{font-size:.8rem;color:var(--text);margin-top:4px}
+    .blatt td .tag{display:inline-block;font:500 7.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#3B55E6;background:rgba(59,85,230,.08);border-radius:100px;padding:2px 6px;margin-right:6px;vertical-align:1px}
+    .summen .teil{font-size:.92rem}
+    .blatt .b-summen .teil{font-size:11.5px;color:#8A90A3;padding-top:2px;padding-bottom:2px}
     .vorlage{font:500 .86rem var(--display);border:1.5px dashed var(--linie-stark);background:none;color:var(--blau);border-radius:100px;padding:7px 12px;cursor:pointer;transition:background .2s,border-color .2s}
     .vorlage:hover{background:rgba(59,85,230,.06);border-color:var(--elektrik)}
     .optionen{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
@@ -240,9 +262,13 @@
       .pos-rechnung .pos-summe{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline;padding:8px 2px 0;border-top:1px dashed var(--linie)}
       .pos-rechnung.pauschal{grid-template-columns:minmax(0,1fr)}
       .pos-rechnung .gleich{display:none}
+      .pos-rechnung.mit-einheit{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+      .pos-rechnung.mit-einheit .mal{display:none}
+      .hinzu-kat{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .segment.kat{grid-template-columns:repeat(2,minmax(0,1fr))}
       .ed-leiste .rechts .btn-zweit{display:none}
       .ed-leiste .rechts .btn-zweit.nur-mobil{display:inline-flex}
-      .a-kopf nav a span{display:none}
+      .a-kopf nav button{padding:8px 8px}
       .ue-kopf .btn{width:100%;justify-content:center}
       .chips{flex-wrap:nowrap;overflow-x:auto;margin-left:calc(-1 * var(--rand));margin-right:calc(-1 * var(--rand));padding:0 var(--rand) 4px;scrollbar-width:none}
       .chips::-webkit-scrollbar{display:none}
@@ -256,7 +282,7 @@
       <span class="marke-admin">Offerten</span>
       <nav>
         <button type="button" id="einstKnopf">Einstellungen</button>
-        <a href="/admin/">← <span>Admin</span></a>
+        <a href="/admin/" class="zum-admin"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>Admin</a>
       </nav>
     </div>
   </header>
@@ -339,10 +365,15 @@
         <section class="block">
           <h2><span class="k">3</span>Positionen</h2>
           <div class="pos-liste" id="posListe"></div>
-          <div class="hinzu">
-            <button class="btn btn-zweit" type="button" id="posNeu">+ Position</button>
-            <span id="vorlagen"></span>
+          <p class="hinzu-titel">Hinzufügen</p>
+          <div class="hinzu-kat" id="posNeu">
+            <button type="button" data-kat="arbeit"><svg viewBox="0 0 24 24"><path d="M14.5 5.5a3.5 3.5 0 0 0-4.9 4.9L3 17l4 4 6.6-6.6a3.5 3.5 0 0 0 4.9-4.9l-2.3 2.3-2.4-.6-.6-2.4Z"/></svg><b>Arbeit</b><small>Stundensatz oder pauschal</small></button>
+            <button type="button" data-kat="material"><svg viewBox="0 0 24 24"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="m3 7.5 9 4.5 9-4.5M12 12v9"/></svg><b>Material</b><small>Menge × Preis</small></button>
+            <button type="button" data-kat="kleinmaterial"><svg viewBox="0 0 24 24"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><circle cx="9" cy="17" r="2.5"/><circle cx="17" cy="17" r="3"/></svg><b>Kleinmaterial</b><small>Pauschal oder %</small></button>
+            <button type="button" data-kat="anfahrt"><svg viewBox="0 0 24 24"><path d="M3 16V8h11v8M14 11h4l3 3v2h-7"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><b>Anfahrt</b><small>Pauschal oder km</small></button>
           </div>
+          <p class="hinzu-titel">Vorlagen</p>
+          <div class="hinzu" id="vorlagen"></div>
         </section>
 
         <section class="block">
@@ -384,9 +415,18 @@
     var MWST = 8.1;
     var ART = 'offerte', ART_EINST = 'offerteneinstellungen', ID_EINST = 'offerten-einstellungen';
     var STATUS = { entwurf: 'Entwurf', gesendet: 'Gesendet', angenommen: 'Angenommen', abgelehnt: 'Abgelehnt' };
+    // Was ist es, und wie wird abgerechnet
+    var KAT = {
+      arbeit: { name: 'Arbeit', titel: '', arten: [['stunden', 'Stundensatz'], ['pauschal', 'Pauschal']] },
+      material: { name: 'Material', titel: 'Material', arten: [['stueck', 'Menge × Preis'], ['pauschal', 'Pauschal']] },
+      kleinmaterial: { name: 'Kleinmaterial', titel: 'Kleinmaterial', arten: [['pauschal', 'Pauschal'], ['prozent', 'Prozent der Arbeit']] },
+      anfahrt: { name: 'Anfahrt', titel: 'Anfahrt', arten: [['pauschal', 'Pauschal'], ['km', 'Nach Kilometer']] }
+    };
+    var EINHEITEN = ['Stk.', 'm', 'Rolle', 'Set', 'Pack.'];
     var VORLAGEN = [
-      ['Spleissen im BEP', 'stunden'], ['Kabel einziehen', 'stunden'], ['OTO-Dose montieren', 'stueck'],
-      ['Messen und beschriften', 'pauschal'], ['Material', 'stueck'], ['Anfahrt', 'pauschal']
+      ['Spleissen im BEP', 'arbeit', 'stunden'], ['Kabel einziehen', 'arbeit', 'stunden'], ['OTO-Dose montieren', 'arbeit', 'stunden'],
+      ['Messen und beschriften', 'arbeit', 'pauschal'], ['OTO-Dose', 'material', 'stueck', 'Stk.'], ['Glasfaserkabel', 'material', 'stueck', 'm'],
+      ['Kabelkanal', 'material', 'stueck', 'm'], ['Leerrohr', 'material', 'stueck', 'm']
     ];
     var STD = {
       ansatz: 95,
@@ -450,12 +490,20 @@
     }
 
     /* ---------- Rechnen ---------- */
-    function posBetrag(p){
+    // Ältere Positionen ohne Kategorie: Stück gilt als Material, alles andere als Arbeit
+    function kat(p){ return KAT[p.kat] ? p.kat : (p.art === 'stueck' ? 'material' : 'arbeit'); }
+    function arbeitSumme(o){ return o.positionen.reduce(function(s, p){ return kat(p) === 'arbeit' ? s + posBetrag(p, o) : s; }, 0); }
+    function posBetrag(p, o){
       if (p.art === 'pauschal') return Math.round(zahl(p.betrag) * 100);
+      if (p.art === 'prozent') return kat(p) === 'arbeit' ? 0 : Math.round(arbeitSumme(o || aktuell) * zahl(p.menge) / 100);
       return Math.round(zahl(p.menge) * zahl(p.preis) * 100);
     }
+    function teilSummen(o){
+      var t = {}; o.positionen.forEach(function(p){ var k = kat(p); t[k] = (t[k] || 0) + posBetrag(p, o); });
+      return Object.keys(KAT).filter(function(k){ return k in t; }).map(function(k){ return [KAT[k].name, t[k]]; });
+    }
     function summen(o){
-      var zwischen = o.positionen.reduce(function(s, p){ return s + posBetrag(p); }, 0);
+      var zwischen = o.positionen.reduce(function(s, p){ return s + posBetrag(p, o); }, 0);
       var rabatt = Math.round(zwischen * zahl(o.rabatt) / 100);
       var netto = zwischen - rabatt;
       var mwst = o.mwst ? Math.round(netto * MWST / 100) : 0;
@@ -535,12 +583,23 @@
         einleitung: einst.einleitung || STD.einleitung, schluss: einst.schluss || STD.schluss,
         rabatt: '', mwst: true, positionen: [], erstellt: new Date().toISOString(), geaendert: new Date().toISOString()
       }, vorlage || {});
-      if (!o.positionen.length) o.positionen.push(neuePosition('stunden'));
+      if (!o.positionen.length) o.positionen.push(neuePosition('arbeit'));
       offerten.push(o);
       return o;
     }
-    function neuePosition(art, titel){
-      return { id: neueId('p'), art: art || 'stunden', titel: titel || '', text: '', menge: art === 'stueck' ? '1' : '', preis: art === 'stunden' ? String(einst.ansatz || STD.ansatz) : '', betrag: '' };
+    function neuePosition(k, art, titel, einheit){
+      k = KAT[k] ? k : 'arbeit';
+      var p = { id: neueId('p'), kat: k, art: art || KAT[k].arten[0][0], titel: titel != null ? titel : KAT[k].titel, text: '', menge: '', preis: '', betrag: '', einheit: einheit || 'Stk.' };
+      vorgaben(p);
+      return p;
+    }
+    // Sinnvolle Startwerte aus den Einstellungen, ohne Eingaben zu überschreiben
+    function vorgaben(p){
+      if (p.art === 'stunden' && !p.preis) p.preis = String(einst.ansatz || STD.ansatz);
+      if (p.art === 'stueck' && !p.menge) p.menge = '1';
+      if (p.art === 'km' && !p.preis && einst.kmAnsatz) p.preis = String(einst.kmAnsatz);
+      if (p.art === 'prozent' && !p.menge && einst.kleinProzent) p.menge = String(einst.kleinProzent);
+      if (p.art === 'pauschal' && !p.betrag && p.kat === 'anfahrt' && einst.anfahrt) p.betrag = String(einst.anfahrt);
     }
     function oeffnen(o){
       aktuell = o;
@@ -570,26 +629,47 @@
       kopie: '<svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>',
       weg: '<svg viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>'
     };
+    function eingabeFeld(name, feld_, wert, einheit, platz){
+      return '<label class="f einheit"><span>' + name + '</span><input data-feld="' + feld_ + '" inputmode="decimal" value="' + esc(wert) + '" placeholder="' + (platz || '0') + '"><em>' + einheit + '</em></label>';
+    }
+    function rechnungHtml(p){
+      var mal = '<span class="mal">×</span>', gleich = '<span class="mal gleich">=</span>';
+      if (p.art === 'pauschal') return '<div class="pos-rechnung pauschal">' + eingabeFeld('Betrag', 'betrag', p.betrag, 'CHF', '0.00') + summeHtml(p) + '</div>';
+      if (p.art === 'prozent') return '<div class="pos-rechnung pauschal"><div>' + eingabeFeld('Prozent der Arbeit', 'menge', p.menge, '%') + '<p class="pos-basis" data-basis>Arbeit total ' + chf(arbeitSumme(aktuell)) + '</p></div>' + summeHtml(p) + '</div>';
+      if (p.art === 'stunden') return '<div class="pos-rechnung">' + eingabeFeld('Stunden', 'menge', p.menge, 'Std.') + mal + eingabeFeld('Stundensatz', 'preis', p.preis, 'CHF/h', '0.00') + gleich + summeHtml(p) + '</div>';
+      if (p.art === 'km') return '<div class="pos-rechnung">' + eingabeFeld('Kilometer', 'menge', p.menge, 'km') + mal + eingabeFeld('Preis pro km', 'preis', p.preis, 'CHF', '0.00') + gleich + summeHtml(p) + '</div>';
+      var einh = '<label class="f"><span>Einheit</span><select data-feld="einheit">' +
+        EINHEITEN.map(function(e){ return '<option' + (e === (p.einheit || 'Stk.') ? ' selected' : '') + '>' + e + '</option>'; }).join('') + '</select></label>';
+      return '<div class="pos-rechnung mit-einheit">' + eingabeFeld('Menge', 'menge', p.menge, '') + einh + mal + eingabeFeld('Preis pro ' + esc(p.einheit || 'Stk.'), 'preis', p.preis, 'CHF', '0.00') + gleich + summeHtml(p) + '</div>';
+    }
     function posHtml(p, i, n){
-      var r;
-      if (p.art === 'pauschal') r = '<div class="pos-rechnung pauschal"><label class="f einheit"><span>Betrag</span><input data-feld="betrag" inputmode="decimal" value="' + esc(p.betrag) + '" placeholder="0.00"><em>CHF</em></label>' + summeHtml(p) + '</div>';
-      else r = '<div class="pos-rechnung"><label class="f einheit"><span>' + (p.art === 'stunden' ? 'Stunden' : 'Menge') + '</span><input data-feld="menge" inputmode="decimal" value="' + esc(p.menge) + '" placeholder="0"><em>' + (p.art === 'stunden' ? 'Std.' : 'Stk.') + '</em></label>' +
-        '<span class="mal">×</span><label class="f einheit"><span>' + (p.art === 'stunden' ? 'Ansatz' : 'Preis') + '</span><input data-feld="preis" inputmode="decimal" value="' + esc(p.preis) + '" placeholder="0.00"><em>' + (p.art === 'stunden' ? 'CHF/h' : 'CHF') + '</em></label><span class="mal gleich">=</span>' + summeHtml(p) + '</div>';
-      return '<div class="pos" data-id="' + esc(p.id) + '"><div class="pos-kopf"><span class="pos-nr">' + (i + 1) + '</span>' +
-        '<div class="segment" data-art><button type="button" data-s="stunden" class="' + (p.art === 'stunden' ? 'an' : '') + '">Stunden</button><button type="button" data-s="pauschal" class="' + (p.art === 'pauschal' ? 'an' : '') + '">Pauschal</button><button type="button" data-s="stueck" class="' + (p.art === 'stueck' ? 'an' : '') + '">Stück</button></div>' +
+      var k = kat(p), r = rechnungHtml(p);
+      return '<div class="pos" data-id="' + esc(p.id) + '"><div class="pos-kopf"><span class="pos-nr">' + (i + 1) + '</span><span class="pos-name">' + KAT[k].name + '</span>' +
         '<div class="pos-werkzeug"><button class="ikon" type="button" data-tun="hoch" title="Nach oben"' + (i === 0 ? ' disabled' : '') + '>' + ICON.hoch + '</button><button class="ikon" type="button" data-tun="runter" title="Nach unten"' + (i === n - 1 ? ' disabled' : '') + '>' + ICON.runter + '</button><button class="ikon" type="button" data-tun="kopie" title="Duplizieren">' + ICON.kopie + '</button><button class="ikon rot" type="button" data-tun="weg" title="Entfernen">' + ICON.weg + '</button></div></div>' +
-        '<label class="f"><span>Bezeichnung</span><input data-feld="titel" value="' + esc(p.titel) + '" placeholder="Was wird gemacht?"></label>' +
+        '<div class="segment kat" data-kat>' + Object.keys(KAT).map(function(x){ return '<button type="button" data-s="' + x + '" class="' + (x === k ? 'an' : '') + '">' + KAT[x].name + '</button>'; }).join('') + '</div>' +
+        '<div class="pos-art"><span>Abrechnung</span><div class="segment" data-art>' + KAT[k].arten.map(function(a){ return '<button type="button" data-s="' + a[0] + '" class="' + (a[0] === p.art ? 'an' : '') + '">' + a[1] + '</button>'; }).join('') + '</div></div>' +
+        '<label class="f"><span>Bezeichnung</span><input data-feld="titel" value="' + esc(p.titel) + '" placeholder="' + (k === 'arbeit' ? 'Was wird gemacht?' : k === 'material' ? 'Zum Beispiel: Glasfaserkabel' : '') + '"></label>' +
         '<label class="f"><span>Beschreibung <small>(freiwillig)</small></span><textarea data-feld="text" rows="2" placeholder="Details für den Kunden">' + esc(p.text) + '</textarea></label>' + r + '</div>';
     }
-    function summeHtml(p){ return '<div class="pos-summe"><small>Betrag</small><b data-summe>' + chf(posBetrag(p)) + '</b></div>'; }
+    function summeHtml(p){ return '<div class="pos-summe"><small>Betrag</small><b data-summe>' + chf(posBetrag(p, aktuell)) + '</b></div>'; }
+    // Prozent-Positionen hängen an der Arbeit: alle Beträge auf einmal nachführen
+    function betraegeNachfuehren(){
+      [].forEach.call($('posListe').querySelectorAll('.pos'), function(el){
+        var p = aktuell.positionen.find(function(x){ return x.id === el.dataset.id; }); if (!p) return;
+        var s = el.querySelector('[data-summe]'); if (s) s.textContent = chf(posBetrag(p, aktuell));
+        var b = el.querySelector('[data-basis]'); if (b) b.textContent = 'Arbeit total ' + chf(arbeitSumme(aktuell));
+      });
+    }
     function positionenZeichnen(){
       var o = aktuell;
       $('posListe').innerHTML = o.positionen.map(function(p, i){ return posHtml(p, i, o.positionen.length); }).join('') ||
-        '<p style="margin:0;color:var(--text)">Noch keine Position. Fügen Sie eine hinzu oder nehmen Sie eine Vorlage.</p>';
+        '<p style="margin:0;color:var(--text)">Noch keine Position. Wählen Sie unten, was Sie hinzufügen möchten.</p>';
     }
     function summenZeichnen(){
       var s = summen(aktuell);
-      $('summen').innerHTML = '<div><span>Zwischensumme</span><span>' + chf(s.zwischen) + '</span></div>' +
+      var teile = teilSummen(aktuell);
+      $('summen').innerHTML = (teile.length > 1 ? teile.map(function(t){ return '<div class="teil"><span>' + t[0] + '</span><span>' + chf(t[1]) + '</span></div>'; }).join('') : '') +
+        '<div><span>Zwischensumme</span><span>' + chf(s.zwischen) + '</span></div>' +
         (s.rabatt ? '<div><span>Rabatt ' + esc(zahlText(zahl(aktuell.rabatt))) + ' %</span><span>CHF -' + chf(s.rabatt, true) + '</span></div>' : '') +
         (aktuell.mwst ? '<div><span>MWST ' + MWST + ' %</span><span>' + chf(s.mwst) + '</span></div>' : '') +
         '<div class="total"><span>Total</span><b id="totalZahl">' + chf(s.total) + '</b></div>';
@@ -642,22 +722,35 @@
       var t = e.target, el = t.closest('.pos'); if (!el || !t.dataset.feld) return;
       var p = aktuell.positionen.find(function(x){ return x.id === el.dataset.id; });
       p[t.dataset.feld] = t.value;
-      var s = el.querySelector('[data-summe]'); if (s) s.textContent = chf(posBetrag(p));
+      betraegeNachfuehren();
       geaendert(true);
+    });
+    $('posListe').addEventListener('change', function(e){
+      var t = e.target; if (t.dataset.feld !== 'einheit') return;
+      var el = t.closest('.pos'), p = aktuell.positionen.find(function(x){ return x.id === el.dataset.id; });
+      p.einheit = t.value; positionenZeichnen(); geaendert(true);
     });
     $('posListe').addEventListener('click', function(e){
       var el = e.target.closest('.pos'); if (!el) return;
       var liste = aktuell.positionen, i = liste.findIndex(function(x){ return x.id === el.dataset.id; }), p = liste[i];
+      var kb = e.target.closest('[data-kat] button');
+      if (kb) {
+        var nk = kb.getAttribute('data-s'); if (nk === kat(p)) return;
+        // Standardname mitwechseln, eigene Bezeichnungen bleiben
+        var standard = Object.keys(KAT).some(function(x){ return KAT[x].titel === p.titel; }) || !p.titel;
+        p.kat = nk; p.art = KAT[nk].arten[0][0]; p.menge = ''; p.preis = ''; p.betrag = '';
+        if (standard) p.titel = KAT[nk].titel;
+        vorgaben(p); positionenZeichnen(); geaendert(true); return;
+      }
       var art = e.target.closest('[data-art] button');
       if (art) {
         var neu = art.getAttribute('data-s'); if (neu === p.art) return;
-        // Beim Wechsel den Betrag sinnvoll mitnehmen
-        var vorher = posBetrag(p);
+        // Beim Wechsel auf Pauschal den bisherigen Betrag mitnehmen
+        var vorher = posBetrag(p, aktuell);
         p.art = neu;
         if (neu === 'pauschal') p.betrag = vorher ? zahlText(vorher / 100) : p.betrag;
-        else if (neu === 'stunden' && !p.preis) p.preis = String(einst.ansatz || STD.ansatz);
-        if (neu !== 'pauschal' && !p.menge) p.menge = neu === 'stueck' ? '1' : '';
-        positionenZeichnen(); geaendert(true); return;
+        else { p.menge = ''; p.preis = ''; }
+        vorgaben(p); positionenZeichnen(); geaendert(true); return;
       }
       var b = e.target.closest('[data-tun]'); if (!b) return;
       var tun = b.dataset.tun;
@@ -671,17 +764,17 @@
       }
       geaendert(true);
     });
-    function positionDazu(art, titel){
-      var p = neuePosition(art, titel);
+    function positionDazu(k, art, titel, einheit){
+      var p = neuePosition(k, art, titel, einheit);
       aktuell.positionen.push(p); positionenZeichnen(); geaendert(true);
       var el = $('posListe').lastElementChild;
       el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      var inp = el.querySelector(titel ? (art === 'pauschal' ? '[data-feld=betrag]' : '[data-feld=menge]') : '[data-feld=titel]');
+      var inp = el.querySelector(p.titel ? (p.art === 'pauschal' ? '[data-feld=betrag]' : '[data-feld=menge]') : '[data-feld=titel]');
       setTimeout(function(){ inp && inp.focus({ preventScroll: true }); }, 350);
     }
-    $('posNeu').addEventListener('click', function(){ positionDazu('stunden'); });
-    $('vorlagen').innerHTML = VORLAGEN.map(function(v, i){ return '<button class="vorlage" type="button" data-v="' + i + '">+ ' + esc(v[0]) + '</button>'; }).join(' ');
-    $('vorlagen').addEventListener('click', function(e){ var b = e.target.closest('[data-v]'); if (b) { var v = VORLAGEN[+b.dataset.v]; positionDazu(v[1], v[0]); } });
+    $('posNeu').addEventListener('click', function(e){ var b = e.target.closest('[data-kat]'); if (b) positionDazu(b.dataset.kat); });
+    $('vorlagen').innerHTML = VORLAGEN.map(function(v, i){ return '<button class="vorlage" type="button" data-v="' + i + '">+ ' + esc(v[0]) + '</button>'; }).join('');
+    $('vorlagen').addEventListener('click', function(e){ var b = e.target.closest('[data-v]'); if (b) { var v = VORLAGEN[+b.dataset.v]; positionDazu(v[1], v[2], v[0], v[3]); } });
 
     /* ---------- Vorschau und PDF ---------- */
     function vorschauBald(ms){ clearTimeout(vorschauTimer); vorschauTimer = setTimeout(vorschauBauen, ms == null ? 250 : ms); }
@@ -720,15 +813,19 @@
         (o.einleitung ? '<div class="b-text">' + esc(o.einleitung) + '</div>' : '<div style="height:18px"></div>'));
       tbody = tabelleNeu(ziel);
       o.positionen.forEach(function(p, i){
-        var menge = p.art === 'pauschal' ? 'Pauschal' : zahlText(zahl(p.menge)) + (p.art === 'stunden' ? ' Std.' : ' Stk.');
-        var ansatz = p.art === 'pauschal' ? '' : chf(Math.round(zahl(p.preis) * 100), true) + (p.art === 'stunden' ? '/h' : '');
+        var einh = p.art === 'stunden' ? 'Std.' : p.art === 'km' ? 'km' : p.art === 'prozent' ? '%' : (p.einheit || 'Stk.');
+        var menge = p.art === 'pauschal' ? 'Pauschal' : zahlText(zahl(p.menge)) + ' ' + einh;
+        var ansatz = p.art === 'pauschal' ? '' : p.art === 'prozent' ? 'von ' + chf(arbeitSumme(o), true) :
+          chf(Math.round(zahl(p.preis) * 100), true) + (p.art === 'stunden' ? '/h' : '/' + einh);
         var tr = document.createElement('tr');
-        tr.innerHTML = '<td class="p">' + String(i + 1).padStart(2, '0') + '</td><td><div class="bez">' + esc(p.titel || 'Position') + '</div>' + (p.text ? '<div class="bes">' + esc(p.text) + '</div>' : '') + '</td>' +
-          '<td class="z">' + esc(menge) + '</td><td class="z">' + esc(ansatz) + '</td><td class="z">' + chf(posBetrag(p), true) + '</td>';
+        tr.innerHTML = '<td class="p">' + String(i + 1).padStart(2, '0') + '</td><td><div class="bez">' + (kat(p) !== 'arbeit' ? '<span class="tag">' + KAT[kat(p)].name + '</span>' : '') + esc(p.titel || KAT[kat(p)].name || 'Position') + '</div>' + (p.text ? '<div class="bes">' + esc(p.text) + '</div>' : '') + '</td>' +
+          '<td class="z">' + esc(menge) + '</td><td class="z">' + esc(ansatz) + '</td><td class="z">' + chf(posBetrag(p, o), true) + '</td>';
         tbody.appendChild(tr);
         if (voll()) { tr.remove(); folgeseite(); tbody = tabelleNeu(ziel); tbody.appendChild(tr); }
       });
-      setzen('<div class="b-summen"><div><span>Zwischensumme</span><span>' + chf(s.zwischen, true) + '</span></div>' +
+      var teile = teilSummen(o);
+      setzen('<div class="b-summen">' + (teile.length > 1 ? teile.map(function(t){ return '<div class="teil"><span>' + t[0] + '</span><span>' + chf(t[1], true) + '</span></div>'; }).join('') : '') +
+        '<div><span>Zwischensumme</span><span>' + chf(s.zwischen, true) + '</span></div>' +
         (s.rabatt ? '<div><span>Rabatt ' + esc(zahlText(zahl(o.rabatt))) + ' %</span><span>-' + chf(s.rabatt, true) + '</span></div>' : '') +
         (o.mwst ? '<div><span>MWST ' + MWST + ' %</span><span>' + chf(s.mwst, true) + '</span></div>' : '<div><span>Ohne MWST</span><span></span></div>') +
         (s.rundung ? '<div><span>Rundung</span><span>' + chf(s.rundung, true) + '</span></div>' : '') +
@@ -925,12 +1022,16 @@
     // Einstellungen
     $('einstKnopf').addEventListener('click', function(){
       var d = dialog('<p class="label">Offerten</p><h2>Einstellungen</h2><p>Gilt für neue Offerten.</p>' +
-        '<label class="f einheit"><span>Stundenansatz</span><input id="sAnsatz" inputmode="decimal" value="' + esc(einst.ansatz || STD.ansatz) + '"><em>CHF/h</em></label>' +
+        '<div class="reihe2 bleibt"><label class="f einheit"><span>Stundensatz</span><input id="sAnsatz" inputmode="decimal" value="' + esc(einst.ansatz || STD.ansatz) + '"><em>CHF/h</em></label>' +
+        '<label class="f einheit"><span>Kilometer</span><input id="sKm" inputmode="decimal" value="' + esc(einst.kmAnsatz || '') + '" placeholder="0.00"><em>CHF/km</em></label>' +
+        '<label class="f einheit"><span>Anfahrt pauschal</span><input id="sAnfahrt" inputmode="decimal" value="' + esc(einst.anfahrt || '') + '" placeholder="0.00"><em>CHF</em></label>' +
+        '<label class="f einheit"><span>Kleinmaterial</span><input id="sKlein" inputmode="decimal" value="' + esc(einst.kleinProzent || '') + '" placeholder="0"><em>%</em></label></div>' +
         '<label class="f"><span>Einleitung</span><textarea id="sEin">' + esc(einst.einleitung || STD.einleitung) + '</textarea></label>' +
         '<label class="f"><span>Schlusstext</span><textarea id="sSchluss">' + esc(einst.schluss || STD.schluss) + '</textarea></label>' +
         '<div class="zeilen-knoepfe"><button class="leise" type="button" data-zu>Abbrechen</button><button class="btn btn-haupt" type="button" id="sOk">Speichern</button></div>');
       d.querySelector('#sOk').onclick = function(){
         einst.ansatz = zahl(d.querySelector('#sAnsatz').value) || STD.ansatz;
+        einst.kmAnsatz = zahl(d.querySelector('#sKm').value) || ''; einst.anfahrt = zahl(d.querySelector('#sAnfahrt').value) || ''; einst.kleinProzent = zahl(d.querySelector('#sKlein').value) || '';
         einst.einleitung = d.querySelector('#sEin').value; einst.schluss = d.querySelector('#sSchluss').value;
         einstSpeichern(); d.close(); toast('Einstellungen gespeichert');
       };
@@ -958,16 +1059,20 @@
     async function jetztSpeichernFuer(o){ var vorher = aktuell; aktuell = o; await jetztSpeichern(); aktuell = vorher; }
 
     var gestartet = false;
-    sb.auth.onAuthStateChange(async function(ereignis, sitzung){
-      if (!sitzung) { if (ereignis !== 'INITIAL_SESSION' || !gestartet) location.replace('/admin/'); return; }
-      benutzer = sitzung.user;
-      if (gestartet) return;
-      gestartet = true;
+    async function starten(){
       await laden();
       var p = new URLSearchParams(location.search), o = null;
       if (p.get('anfrage')) o = await aufAnfrage(p.get('anfrage'));
       else if (p.get('offerte')) o = offerten.find(function(x){ return x.id === p.get('offerte'); });
       if (o) oeffnen(o); else uebersichtZeigen();
+    }
+    // Keine Datenbank-Aufrufe direkt in dieser Rückmeldung: die Anmeldung hält dort eine Sperre
+    sb.auth.onAuthStateChange(function(ereignis, sitzung){
+      if (!sitzung) { location.replace('/admin/'); return; }
+      benutzer = sitzung.user;
+      if (gestartet) return;
+      gestartet = true;
+      setTimeout(function(){ starten().catch(function(e){ $('uebersicht').hidden = false; $('liste').innerHTML = '<div class="leer"><b>Das hat nicht geklappt.</b><p>' + esc(e.message || e) + '</p></div>'; }); }, 0);
     });
   })();
   </script>
