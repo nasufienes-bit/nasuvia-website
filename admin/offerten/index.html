@@ -269,6 +269,7 @@
       .ed-leiste .rechts .btn-zweit{display:none}
       .ed-leiste .rechts .btn-zweit.nur-mobil{display:inline-flex}
       .a-kopf nav button{padding:8px 8px}
+      .a-kopf nav a.zum-admin,.a-kopf .marke-admin{display:none}
       .ue-kopf .btn{width:100%;justify-content:center}
       .chips{flex-wrap:nowrap;overflow-x:auto;margin-left:calc(-1 * var(--rand));margin-right:calc(-1 * var(--rand));padding:0 var(--rand) 4px;scrollbar-width:none}
       .chips::-webkit-scrollbar{display:none}
@@ -404,6 +405,7 @@
   <div class="toast" id="toast"></div>
   <div class="bitte-warten" id="warten" hidden><div><i></i><span id="wartenText">PDF wird erstellt</span></div></div>
 
+  <script src="/admin/navi.js" data-hier="offerten" data-einfuegen=".a-kopf .wrap"></script>
   <script>
   // Offerten: schreiben, in Ordnern ablegen, als PDF im Nasuvia-Design erzeugen und per Mail senden.
   // Alles liegt in der Tabelle „datensaetze“ des eigenen Kontos (wie Buchhaltung und Rechnungen).
