@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>document.documentElement.classList.add('js');</script>
+  <title>Glasfaser Winterthur: vom BEP bis zur OTO-Dose | Nasuvia</title>
+  <meta name="description" content="Glasfaser bis in jede Wohnung: spleissen, Kabel einziehen, OTO-Dose montieren, messen und beschriften. Für Private, Verwaltungen, Provider und Firmen." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://www.nasuvia.ch/glasfaser/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.nasuvia.ch/glasfaser/" />
+  <meta property="og:site_name" content="Nasuvia" />
+  <meta property="og:title" content="Glasfaser Winterthur: vom BEP bis zur OTO-Dose | Nasuvia" />
+  <meta property="og:description" content="Glasfaser bis in jede Wohnung: spleissen, Kabel einziehen, OTO-Dose montieren, messen und beschriften. Für Private, Verwaltungen, Provider und Firmen." />
+  <meta property="og:image" content="https://www.nasuvia.ch/og-image.jpg" />
+  <meta property="og:image:alt" content="Glasfaser vom BEP bis zur OTO-Dose" />
+  <meta property="og:locale" content="de_CH" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="geo.region" content="CH-ZH" />
+  <meta name="geo.placename" content="Winterthur" />
+  <meta name="theme-color" content="#F7F9FD" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preload" href="/assets/league-spartan-latin-wght-normal-0z8Zi79b.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/site.css?v=12" />
+  <style>
+    .feature-card h3{font-size:1.15rem;margin-bottom:.5rem}
+    .hn-karte{background:#fff;border-radius:22px;box-shadow:0 1px 2px rgba(12,18,38,.05),0 24px 60px -30px rgba(28,42,123,.35);padding:22px;margin-top:2rem}
+    .hn-schalter{display:inline-flex;background:#EEF1F8;border-radius:100px;padding:4px;gap:2px;margin-bottom:16px}
+    .hn-schalter button{border:0;background:none;border-radius:100px;padding:9px 18px;font:inherit;font-size:.95rem;cursor:pointer;color:#47506B}
+    .hn-schalter button.an{background:#fff;color:#1C2A7B;font-weight:600;box-shadow:0 2px 8px rgba(12,18,38,.08)}
+    .hn-plan{width:100%;height:auto;display:block}
+    .hn-plan .wand{fill:none;stroke:#1C2A7B;stroke-width:3;stroke-linecap:round}
+    .hn-plan .raum{transition:fill .8s ease}
+    .hn-plan .r4{fill:rgba(14,159,110,.10)} .hn-plan .r2{fill:rgba(183,121,31,.12)} .hn-plan .r1{fill:rgba(229,72,77,.10)} .hn-plan .r0{fill:rgba(229,72,77,.18)}
+    .hn-plan .name{font:600 15px 'League Spartan',system-ui,sans-serif;fill:#0C1226}
+    .hn-plan .status{font:500 12px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase}
+    .hn-plan .s4{fill:#0A7150} .hn-plan .s2{fill:#B7791F} .hn-plan .s1,.hn-plan .s0{fill:#E5484D}
+    .hn-plan .balken rect{fill:rgba(28,42,123,.15);transition:fill .5s ease}
+    .hn-plan .balken rect.an{fill:#3B55E6}
+    .hn-plan .geraet{fill:#1C2A7B} .hn-plan .geraet-text{font:600 10px 'JetBrains Mono',monospace;fill:#fff;letter-spacing:.05em}
+    .hn-plan .welle{fill:none;stroke:#3B55E6;stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center}
+    .hn-plan.heute .welle{animation:hnWelle 3s ease-out infinite}
+    .hn-plan.heute .welle:nth-of-type(2){animation-delay:1s} .hn-plan.heute .welle:nth-of-type(3){animation-delay:2s}
+    @keyframes hnWelle{0%{transform:scale(.15);opacity:.7}100%{transform:scale(1);opacity:0}}
+    .hn-plan .kabel{fill:none;stroke:#3B55E6;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--l);stroke-dashoffset:var(--l);transition:stroke-dashoffset 1.6s ease}
+    .hn-plan.nasuvia .kabel{stroke-dashoffset:0}
+    .hn-plan .ap,.hn-plan .dose,.hn-plan .switch{opacity:0;transform:scale(.4);transform-box:fill-box;transform-origin:center;transition:opacity .4s ease 1.4s,transform .5s cubic-bezier(.3,1.6,.5,1) 1.4s}
+    .hn-plan.nasuvia .ap,.hn-plan.nasuvia .dose,.hn-plan.nasuvia .switch{opacity:1;transform:scale(1)}
+    .hn-plan .switch{transition-delay:0s}
+    .hn-plan .ap-ring{fill:none;stroke:#3B55E6;stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center}
+    .hn-plan.nasuvia .ap-ring{animation:hnRing 2.4s ease-out 2s infinite}
+    @keyframes hnRing{0%{transform:scale(.4);opacity:.8}100%{transform:scale(2.6);opacity:0}}
+    .hn-legende{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-size:.9rem;color:#47506B}
+    .hn-legende i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:7px;vertical-align:-1px}
+    .hn-text{margin-top:10px;font-size:1.05rem;color:#0C1226;min-height:3em}
+
+    .hn-kette{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:2.4rem}
+    .hn-kette::before{content:"";position:absolute;left:10%;right:10%;top:34px;height:3px;background:rgba(28,42,123,.12);border-radius:3px}
+    .hn-puls{position:absolute;left:10%;right:10%;top:29px;height:13px;pointer-events:none}
+    .hn-puls i{position:absolute;left:0;top:0;width:13px;height:13px;margin-left:-6px;border-radius:50%;background:#3B55E6;box-shadow:0 0 16px 4px rgba(59,85,230,.55);animation:hnPuls 5s linear infinite}
+    @keyframes hnPuls{0%{left:0;opacity:1}80%{left:100%;opacity:1}90%,100%{left:100%;opacity:0}}
+    .hn-glied{text-align:center;position:relative}
+    .hn-glied .kreis{width:68px;height:68px;border-radius:50%;margin:0 auto 12px;background:#fff;border:2px solid rgba(28,42,123,.15);display:grid;place-items:center;position:relative;z-index:1;animation:hnLeuchten 5s linear infinite}
+    .hn-glied:nth-child(2) .kreis{animation-delay:1s} .hn-glied:nth-child(3) .kreis{animation-delay:2s} .hn-glied:nth-child(4) .kreis{animation-delay:3s} .hn-glied:nth-child(5) .kreis{animation-delay:4s}
+    @keyframes hnLeuchten{0%{border-color:#3B55E6;box-shadow:0 0 0 8px rgba(59,85,230,.14)}16%{border-color:rgba(28,42,123,.15);box-shadow:0 0 0 0 rgba(59,85,230,0)}100%{border-color:rgba(28,42,123,.15)}}
+    .hn-glied svg{width:32px;height:32px;stroke:#1C2A7B;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+    .hn-glied strong{display:block;color:#0C1226;font-size:1.05rem;margin-bottom:4px}
+    .hn-glied span{font-size:.92rem;line-height:1.45;color:#47506B;display:block}
+
+    .hn-vergleich{display:grid;gap:22px;margin-top:2rem}
+    .hn-zeile{display:grid;grid-template-columns:150px minmax(0,1fr) 110px;gap:16px;align-items:center}
+    .hn-zeile b{color:#0C1226;font-size:1.05rem}
+    .hn-bahn{position:relative;height:38px;border-radius:100px;background:#EEF1F8;overflow:hidden}
+    .hn-bahn .punkt{position:absolute;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#3B55E6;left:0;animation:hnFahrt 2.2s linear infinite}
+    .hn-bahn.langsam .punkt{animation-duration:4.4s}
+    .hn-bahn.langsam .punkt.weg{animation-name:hnVerlust}
+    .hn-bahn .verstaerker{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;background:#fff;border:2px dashed #B7791F;z-index:1}
+    @keyframes hnFahrt{0%{left:0}100%{left:100%}}
+    @keyframes hnVerlust{0%{left:0;opacity:1}48%{opacity:1}56%{left:56%;opacity:0;transform:translateY(14px)}100%{left:56%;opacity:0}}
+    .hn-ergebnis{font:600 .8rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;text-align:right}
+    .hn-ergebnis.gut{color:#0A7150} .hn-ergebnis.schlecht{color:#E5484D}
+
+    .hn-form{max-width:860px;margin:2rem auto 0;padding:28px}
+    .hn-fortschritt{display:flex;justify-content:space-between;align-items:center;gap:12px;font:500 .78rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#47506B;margin-bottom:10px}
+    .hn-fortschritt b{color:#1C2A7B;font-weight:600}
+    .hn-leiste{height:5px;border-radius:5px;background:#EEF1F8;overflow:hidden;margin-bottom:26px}
+    .hn-leiste i{display:block;height:100%;width:20%;background:#3B55E6;border-radius:5px;transition:width .5s ease}
+    .hn-schritt{animation:hnEin .45s ease}
+    .hn-schritt[hidden]{display:none}
+    .hn-fortschritt[hidden],.hn-leiste[hidden],.hn-knoepfe[hidden]{display:none}
+    @keyframes hnEin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+    .hn-schritt h3{font-size:1.45rem;color:#0C1226;margin-bottom:.35rem}
+    .hn-schritt > p{color:#47506B;margin-bottom:1.2rem;line-height:1.55}
+    .hn-frage{border:0;padding:0;margin:0 0 22px;min-width:0}
+    .hn-frage legend,.hn-feld > span{display:block;font-weight:600;color:#0C1226;margin-bottom:10px;font-size:1.02rem;padding:0}
+    .hn-frage legend small,.hn-feld > span small{font-weight:400;color:#47506B}
+    .hn-wahl{display:flex;flex-wrap:wrap;gap:8px}
+    .hn-wahl label{position:relative;display:block}
+    .hn-wahl input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+    .hn-wahl label > span{display:flex;align-items:center;gap:10px;padding:12px 16px;border:1.5px solid rgba(28,42,123,.15);border-radius:14px;background:#fff;cursor:pointer;font-size:.98rem;color:#0C1226;transition:border-color .2s,background .2s,box-shadow .2s,transform .2s;user-select:none}
+    .hn-wahl label > span:hover{border-color:rgba(59,85,230,.5)}
+    .hn-wahl input:checked + span{border-color:#3B55E6;background:rgba(59,85,230,.07);color:#1C2A7B;font-weight:600;box-shadow:0 6px 18px -10px rgba(59,85,230,.6)}
+    .hn-wahl input:focus-visible + span{outline:2px solid #3B55E6;outline-offset:2px}
+    .hn-wahl.gross{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+    .hn-wahl.gross label > span{flex-direction:column;align-items:flex-start;gap:8px;height:100%;padding:14px 16px}
+    .hn-wahl.gross label > span em{font-style:normal;font-weight:400;font-size:.88rem;color:#47506B;line-height:1.4}
+    .hn-wahl svg{width:64px;height:40px;flex:none}
+    .hn-feld{display:block;margin-bottom:16px}
+    .hn-feld input,.hn-feld textarea{width:100%;box-sizing:border-box;font:inherit;font-size:1rem;color:#0C1226;padding:13px 15px;border:1.5px solid rgba(28,42,123,.15);border-radius:12px;background:#fff;transition:border-color .2s}
+    .hn-feld input:focus,.hn-feld textarea:focus{outline:none;border-color:#3B55E6;box-shadow:0 0 0 4px rgba(59,85,230,.12)}
+    .hn-feld textarea{min-height:96px;resize:vertical}
+    .hn-felder{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+    .hn-extra{margin:-8px 0 22px;padding:16px;border-radius:14px;background:#F6F8FC}
+    .hn-extra[hidden]{display:none}
+    .hn-hinweis{font-size:.92rem;color:#47506B;background:#F6F8FC;border-radius:12px;padding:12px 14px;margin:-6px 0 22px}
+    .hn-hinweis[hidden]{display:none}
+    .hn-fehler{color:#E5484D;font-size:.92rem;margin:8px 0 0;min-height:0}
+    .hn-frage.fehlt .hn-wahl label > span,.hn-feld.fehlt input{border-color:#E5484D}
+    .hn-knoepfe{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:26px;padding-top:20px;border-top:1px solid rgba(28,42,123,.08)}
+    .hn-knoepfe .btn[hidden]{display:none}
+    .hn-zurueck{background:none;border:0;font:inherit;color:#47506B;cursor:pointer;padding:10px 4px}
+    .hn-zurueck:hover{color:#1C2A7B}
+    .hn-zurueck[hidden]{visibility:hidden;display:block}
+    .hn-form button.btn{border:0;cursor:pointer;font:inherit}
+    .hn-bild{display:block;width:100%;max-width:520px;height:auto;margin:0 auto 22px;background:#F6F8FC;border-radius:16px}
+    .hn-bild .wandflaeche{fill:#F6F8FC}
+    .hn-bild .boden{stroke:#1C2A7B;stroke-width:3;stroke-linecap:round}
+    .hn-bild .beschrift{font:500 11px 'JetBrains Mono',monospace;fill:#47506B;letter-spacing:.06em;text-transform:uppercase}
+    .hn-bild .faser{fill:none;stroke:#0E9F6E;stroke-width:3;stroke-linecap:round}
+    .hn-oto .dose{transform-box:fill-box;transition:transform 1.4s cubic-bezier(.6,0,.3,1)}
+    .hn-oto .ziel{fill:none;stroke:#3B55E6;stroke-width:2;stroke-dasharray:5 5;opacity:0;transition:opacity .4s}
+    .hn-oto .verlaengerung{stroke-dasharray:200;stroke-dashoffset:200;transition:stroke-dashoffset 1.4s cubic-bezier(.6,0,.3,1)}
+    .hn-oto.versetzen .ziel{opacity:1}
+    .hn-oto.versetzen .dose{animation:hnOtoWeg 4.5s cubic-bezier(.6,0,.3,1) infinite}
+    .hn-oto.versetzen .verlaengerung{animation:hnOtoKabel 4.5s cubic-bezier(.6,0,.3,1) infinite}
+    @keyframes hnOtoWeg{0%,12%{transform:translateX(0)}50%,85%{transform:translateX(190px)}100%{transform:translateX(0)}}
+    @keyframes hnOtoKabel{0%,12%{stroke-dashoffset:200}50%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:200}}
+    .hn-oto .puls{fill:none;stroke:#0E9F6E;stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center;animation:hnRing 2.6s ease-out infinite}
+    .hn-oto.versetzen .puls{display:none}
+    .hn-kanal .kanal{fill:#fff;stroke:rgba(28,42,123,.25);stroke-width:1.5}
+    .hn-kanal .ader{fill:none;stroke:#3B55E6;stroke-width:3;stroke-linecap:round;stroke-dasharray:330;stroke-dashoffset:330;animation:hnAder 4s ease-in-out infinite}
+    @keyframes hnAder{0%{stroke-dashoffset:330}55%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:-330}}
+    .hn-kanal .lupe{fill:#fff;stroke:#1C2A7B;stroke-width:2}
+    .hn-kanal .mass{stroke:#1C2A7B;stroke-width:1.2}
+    .hn-kanal .massText{font:600 12px 'JetBrains Mono',monospace;fill:#1C2A7B}
+    .hn-zimmer{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+    .hn-zimmer label > span::before{content:"";width:16px;height:16px;border-radius:5px;border:1.5px solid rgba(28,42,123,.3);flex:none;transition:all .2s}
+    .hn-zimmer input:checked + span::before{background:#3B55E6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat;border-color:#3B55E6}
+    .hn-zusammen{background:#F6F8FC;border-radius:14px;padding:16px 18px;margin:6px 0 20px}
+    .hn-zusammen h4{font-size:1rem;color:#0C1226;margin-bottom:8px}
+    .hn-zusammen dl{display:grid;grid-template-columns:minmax(120px,auto) 1fr;gap:6px 16px;margin:0;font-size:.93rem}
+    .hn-zusammen dt{color:#47506B}
+    .hn-zusammen dd{margin:0;color:#0C1226;font-weight:500}
+    .hn-datenschutz{font-size:.85rem;color:#47506B;margin-top:4px}
+    .hn-honig{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+    .hn-fertig{text-align:center;padding:20px 0 6px}
+    .hn-fertig svg{width:84px;height:84px;margin:0 auto 14px;display:block}
+    .hn-fertig circle{fill:none;stroke:#0E9F6E;stroke-width:3;stroke-dasharray:240;stroke-dashoffset:240;animation:hnStrich .8s ease forwards}
+    .hn-fertig path{fill:none;stroke:#0E9F6E;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:hnStrich .5s ease .7s forwards}
+    @keyframes hnStrich{to{stroke-dashoffset:0}}
+    .hn-fertig h3{font-size:1.5rem;color:#0C1226;margin-bottom:.4rem}
+    .hn-fertig p{color:#47506B;max-width:520px;margin:0 auto .6rem}
+    .hn-fertig .btn{margin-top:12px}
+    .hn-senden-laeuft{opacity:.6;pointer-events:none}
+    @media (max-width:760px){
+      .hn-form{padding:18px 16px}
+      .hn-felder{grid-template-columns:minmax(0,1fr)}
+      .hn-wahl.gross{grid-template-columns:minmax(0,1fr)}
+      .hn-wahl.gross label > span{gap:4px}
+      .hn-wahl label{flex:1 1 auto}
+      .hn-wahl label > span{justify-content:center}
+      .hn-wahl.gross label > span,.hn-zimmer label > span{justify-content:flex-start}
+      .hn-zusammen dl{grid-template-columns:minmax(0,1fr)}
+      .hn-zusammen dd{margin-bottom:6px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .hn-schritt,.hn-oto .dose,.hn-oto .verlaengerung,.hn-oto .puls,.hn-kanal .ader{animation:none!important}
+      .hn-kanal .ader{stroke-dashoffset:0}
+      .hn-oto.versetzen .dose{transform:translateX(190px)}
+      .hn-oto.versetzen .verlaengerung{stroke-dashoffset:0}
+    }
+
+    .hn-schritte{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-top:2rem}
+    @media (max-width:760px){
+      .hn-karte{padding:14px;border-radius:18px}
+      .hn-plan .name{font-size:23px}
+      .hn-plan .status{font-size:16px;letter-spacing:.04em}
+      .hn-plan .geraet-text{font-size:12px}
+      .hn-kette{grid-template-columns:minmax(0,1fr);gap:18px}
+      .hn-kette::before{left:33px;right:auto;top:34px;bottom:34px;width:3px;height:auto}
+      .hn-puls{left:27px;right:auto;top:34px;bottom:34px;width:13px;height:auto}
+      .hn-puls i{left:0;top:0;margin:-6px 0 0 0;animation-name:hnPulsSenkrecht}
+      @keyframes hnPulsSenkrecht{0%{top:0;opacity:1}80%{top:100%;opacity:1}90%,100%{top:100%;opacity:0}}
+      .hn-glied{display:grid;grid-template-columns:68px minmax(0,1fr);gap:14px;text-align:left;align-items:center}
+      .hn-glied .kreis{margin:0}
+      .hn-zeile{grid-template-columns:minmax(0,1fr) 90px;gap:8px 12px}
+      .hn-zeile .hn-bahn{grid-column:1 / -1;grid-row:2}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .hn-plan .welle,.hn-plan .ap-ring,.hn-puls,.hn-bahn .punkt,.hn-glied .kreis{animation:none!important}
+      .hn-bahn .punkt{display:none}
+      .hn-plan .kabel,.hn-plan .ap,.hn-plan .dose,.hn-plan .switch{transition:none}
+    }
+
+    .hn-form{max-width:860px;margin:0 auto}
+    .hn-karte{margin-top:0}
+    .hn-form .btn{border:0}
+  </style>
+  <style>
+    .vorteile{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-top:22px}
+    .vorteil{background:#fff;border-radius:18px;padding:20px;box-shadow:0 1px 2px rgba(12,18,38,.05),0 18px 40px -28px rgba(28,42,123,.35)}
+    .vorteil b{display:block;font-size:1.08rem;color:#1C2A7B;margin-bottom:6px}
+    .vorteil p{margin:0;color:#47506B;font-size:.97rem}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+    .chips span{background:#EEF1F8;color:#1C2A7B;border-radius:100px;padding:7px 14px;font-size:.92rem;font-weight:600}
+    .bild-karte{background:#fff;border-radius:22px;padding:18px;box-shadow:0 1px 2px rgba(12,18,38,.05),0 24px 60px -30px rgba(28,42,123,.35)}
+    .bild-karte svg{width:100%;height:auto;display:block}
+    .zwei{display:grid;gap:28px;align-items:center;grid-template-columns:1fr}
+    @media(min-width:860px){.zwei{grid-template-columns:1.05fr .95fr}}
+    .hinweis-klein{font-size:.9rem;color:#47506B;margin-top:14px}
+  </style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Glasfaserinstallation", "serviceType": "Glasfaserinstallation FTTH", "description": "Glasfaser bis in jede Wohnung: spleissen, Kabel einziehen, OTO-Dose montieren, messen und beschriften. Für Private, Verwaltungen, Provider und Firmen.", "url": "https://www.nasuvia.ch/glasfaser/", "provider": {"@id": "https://www.nasuvia.ch/#organization"}, "areaServed": [{"@type": "City", "name": "Winterthur"}, {"@type": "City", "name": "Zürich"}, {"@type": "City", "name": "Frauenfeld"}, {"@type": "City", "name": "Schaffhausen"}, {"@type": "City", "name": "Uster"}, {"@type": "City", "name": "Wil SG"}, {"@type": "Country", "name": "Schweiz"}], "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Glasfaser", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Spleissen im BEP"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Glasfaserkabel einziehen"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "OTO-Dose montieren"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "OTO-Dose versetzen"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Messen und beschriften"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Störungsdienst Glasfaser"}}]}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Was ist eine OTO-Dose?", "acceptedAnswer": {"@type": "Answer", "text": "Die OTO-Dose ist die Glasfaser-Steckdose in Ihrer Wohnung. Dort schliessen Sie das Gerät Ihres Internet-Anbieters an."}}, {"@type": "Question", "name": "Kann die OTO-Dose an einen anderen Ort?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Wir versetzen die OTO-Dose dorthin, wo Sie sie brauchen, zum Beispiel ins Wohnzimmer neben den Fernseher."}}, {"@type": "Question", "name": "Für wen arbeiten Sie?", "acceptedAnswer": {"@type": "Answer", "text": "Für Provider, Verwaltungen, Gemeinden, Firmen und Elektriker. Und auch für Private, die ihre Glasfaser-Dose versetzen oder erweitern möchten."}}, {"@type": "Question", "name": "Was passiert nach der Installation?", "acceptedAnswer": {"@type": "Answer", "text": "Jede OTO-Dose wird gemessen und nach Swisscom-Vorgabe beschriftet. So ist sofort klar, dass alles funktioniert."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Start", "item": "https://www.nasuvia.ch/"}, {"@type": "ListItem", "position": 2, "name": "Glasfaser", "item": "https://www.nasuvia.ch/glasfaser/"}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <a href="/" class="nav-logo" aria-label="Nasuvia Startseite"><span class="logo-punkt" aria-hidden="true"></span><img src="/logo-wort.png" alt="Nasuvia" width="94" height="18" /></a>
+      <nav class="nav-links" aria-label="Hauptnavigation"><a href="/glasfaser/" aria-current="page">Glasfaser</a><a href="/heimnetz/">Netzwerk</a><a href="/smart-home/">Smart Home</a><a href="/steckdosen-schalter/">Steckdosen</a><a href="/#geschaeft">Geschäftskunden</a><a href="/stoerungsdienst/">Störung</a></nav>
+      <a href="/kontakt/" class="btn btn-haupt btn-klein">Anfrage starten</a>
+      <button class="nav-burger" type="button" aria-label="Menü" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+    </div>
+  </header>
+  <nav class="menu" id="menu" aria-label="Menü">
+    <a href="/glasfaser/">Glasfaser</a>
+    <a href="/heimnetz/">Netzwerk und WLAN</a>
+    <a href="/steckdosen-schalter/">Steckdosen und Schalter</a>
+    <a href="/smart-home/">Smart Home</a>
+    <a href="/provider/" class="klein">Für Provider</a>
+    <a href="/verwaltungen/" class="klein">Für Verwaltungen</a>
+    <a href="/firmen/" class="klein">Für Firmen und Elektriker</a>
+    <a href="/stoerungsdienst/" class="klein">Störungsdienst</a>
+    <a href="/" class="klein">Startseite</a>
+    <a href="/kontakt/" class="btn btn-haupt">Anfrage starten</a>
+    <a href="tel:+41798218408" class="btn btn-zweit"><span class="tel-punkt"></span>+41 79 821 84 08</a>
+  </nav>
+  <main>
+    <section class="hero hero-schmal" style="padding-bottom:40px">
+      <div class="wrap" style="display:block">
+        <nav class="pfad zeig" aria-label="Pfad"><a href="/">Start</a><span>/</span><span>Glasfaser</span></nav>
+        <p class="label zeig">Glasfaser aus Winterthur</p>
+        <h1 class="zeig v1" style="max-width:860px">Glasfaser bis in jede Wohnung.</h1>
+        <p class="lead zeig v2">Vom BEP im Keller bis zur OTO-Dose in der Wohnung: Wir spleissen, ziehen ein, montieren, messen und beschriften. Alles aus einer Hand, sauber gemacht.</p>
+        <div class="knoepfe zeig v3"><a href="/kontakt/" class="btn btn-haupt">Anfrage starten <span class="pfeil" aria-hidden="true">→</span></a><a href="tel:+41798218408" class="btn btn-zweit"><span class="tel-punkt"></span>+41 79 821 84 08</a></div>
+      </div>
+    </section>
+
+    <section class="abschnitt eng" id="weg">
+      <div class="wrap">
+        <div class="kopf zeig"><p class="label">So arbeiten wir</p><h2>Der Weg der Faser, in fünf Schritten.</h2><p>Vom BEP im Keller bis zur OTO-Dose in der Wohnung, alles aus einer Hand. Am Schluss ist jede Dose gemessen und nach Swisscom-Vorgabe beschriftet.</p></div>
+        <div class="weg">
+          <div class="weg-buehne" aria-hidden="true"><div class="weg-zaehler"><i></i><i></i><i></i><i></i><i></i></div><div class="szene an"><svg viewBox="0 0 400 300" aria-hidden="true"><rect class="s-flaeche" width="400" height="300"/><rect class="s-box" x="105" y="58" width="190" height="130" rx="14"/>
+    <text class="s-stark" x="125" y="84">BEP</text>
+    <rect x="125" y="96" width="150" height="16" rx="4" fill="#EEF1F8"/><rect x="125" y="118" width="150" height="16" rx="4" fill="#EEF1F8"/><rect x="125" y="140" width="150" height="16" rx="4" fill="#DCE3FB"/><rect x="125" y="162" width="150" height="16" rx="4" fill="#EEF1F8"/>
+    <g class="sp-links"><path class="s-faser" d="M30 232H194"/></g>
+    <g class="sp-rechts"><path class="s-faser" d="M206 232H370" style="stroke:#3B55E6"/></g>
+    <rect class="sp-naht" x="186" y="225" width="28" height="14" rx="5" fill="#1C2A7B"/>
+    <g class="sp-funke"><circle cx="200" cy="232" r="13" fill="rgba(245,181,61,.35)"/><path d="M200 220v-8M200 244v8M188 232h-8M212 232h8M192 224l-5-5M208 240l5 5M208 224l5-5M192 240l-5 5" stroke="#F5B53D" stroke-width="2.5" stroke-linecap="round"/></g>
+    <text class="s-text" x="200" y="272" text-anchor="middle">Faser an Faser, sauber verschweisst</text></svg></div><div class="szene"><svg viewBox="0 0 400 300" aria-hidden="true"><rect class="s-flaeche" width="400" height="300"/><rect class="s-wand" x="0" y="80" width="400" height="140"/>
+    <g style="transform-origin:48px 150px;animation:drehen 3.6s linear infinite"><circle cx="48" cy="150" r="30" fill="#fff" stroke="#1C2A7B" stroke-width="2.5"/><circle cx="48" cy="150" r="17" fill="none" stroke="#3B55E6" stroke-width="5" stroke-dasharray="8 5"/><circle cx="48" cy="150" r="5" fill="#1C2A7B"/></g>
+    <rect x="96" y="136" width="290" height="28" rx="14" fill="#fff" stroke="rgba(28,42,123,.25)" stroke-width="2"/>
+    <path class="s-kabel ez-kopf" d="M60 150H376" style="stroke-dasharray:330;stroke-dashoffset:330"/>
+    <text class="s-text" x="110" y="124">Rohr</text>
+    <rect x="96" y="250" width="120" height="12" rx="2" fill="#fff" stroke="rgba(28,42,123,.3)" stroke-width="1.5"/>
+    <text class="s-text" x="228" y="260">oder Kanal 1 x 1 cm</text>
+    <text class="s-text" x="200" y="50" text-anchor="middle">vom BEP bis in die Wohnung</text></svg></div><div class="szene"><svg viewBox="0 0 400 300" aria-hidden="true"><rect class="s-flaeche" width="400" height="300"/><rect class="s-wand" x="0" y="0" width="400" height="250"/>
+    <path class="s-boden" d="M0 250H400"/>
+    <path class="s-faser oto-faser" d="M0 150H222"/>
+    <g class="oto-dose"><rect class="s-box" x="210" y="104" width="78" height="92" rx="12"/><text class="s-stark" x="249" y="166" text-anchor="middle">OTO</text><circle class="oto-led" cx="249" cy="128" r="7"/></g>
+    <rect x="305" y="210" width="80" height="34" rx="10" fill="#C9D3F5"/><rect x="300" y="196" width="18" height="48" rx="8" fill="#B4C1F0"/><rect x="372" y="196" width="18" height="48" rx="8" fill="#B4C1F0"/>
+    <path d="M60 250v-40M50 214c10-16 20-16 20 0M48 226c12-14 24-10 24 4" stroke="#0E9F6E" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <text class="s-text" x="249" y="84" text-anchor="middle">dort, wo Sie sie brauchen</text></svg></div><div class="szene"><svg viewBox="0 0 400 300" aria-hidden="true"><rect class="s-flaeche" width="400" height="300"/><rect x="56" y="40" width="288" height="210" rx="22" fill="#1C2A7B"/>
+    <rect x="74" y="58" width="252" height="128" rx="10" fill="#0C1226"/>
+    <path d="M90 80H310M90 110H310M90 140H310M90 170H310" stroke="rgba(143,166,255,.12)"/>
+    <path class="mess-kurve" d="M90 84 L150 96 L153 108 L226 120 L229 126 L292 137 L296 176 L310 176" style="stroke:#8FA6FF"/>
+    <g class="mess-wert"><circle cx="92" cy="214" r="6" fill="#0E9F6E"/><text x="106" y="219" style="font:600 13px 'JetBrains Mono',monospace;fill:#fff">Dämpfung ok</text></g>
+    <g class="mess-wert b"><circle cx="232" cy="214" r="6" fill="#0E9F6E"/><text x="246" y="219" style="font:600 13px 'JetBrains Mono',monospace;fill:#fff">Kein Bruch</text></g></svg></div><div class="szene"><svg viewBox="0 0 400 300" aria-hidden="true"><rect class="s-flaeche" width="400" height="300"/><rect class="s-box" x="40" y="46" width="130" height="150" rx="12"/>
+    <text class="s-stark" x="56" y="70">BEP</text>
+    <rect x="56" y="84" width="98" height="20" rx="4" fill="#EEF1F8"/><rect x="56" y="112" width="98" height="20" rx="4" fill="#EEF1F8"/><rect x="56" y="140" width="98" height="20" rx="4" fill="#EEF1F8"/>
+    <g class="etikett"><rect x="122" y="88" width="28" height="12" rx="3" fill="#3B55E6"/><text x="136" y="97" text-anchor="middle" style="font:700 8px 'JetBrains Mono',monospace;fill:#fff">K1</text></g>
+    <g class="etikett b"><rect x="122" y="116" width="28" height="12" rx="3" fill="#3B55E6"/><text x="136" y="125" text-anchor="middle" style="font:700 8px 'JetBrains Mono',monospace;fill:#fff">K2</text></g>
+    <g class="etikett c"><rect x="122" y="144" width="28" height="12" rx="3" fill="#3B55E6"/><text x="136" y="153" text-anchor="middle" style="font:700 8px 'JetBrains Mono',monospace;fill:#fff">K3</text></g>
+    <path class="s-kabel" d="M170 120H220V236H380"/>
+    <g class="etikett"><rect x="236" y="212" width="62" height="22" rx="5" fill="#fff" stroke="#1C2A7B" stroke-width="2"/><text x="267" y="227" text-anchor="middle" style="font:700 10px 'JetBrains Mono',monospace;fill:#1C2A7B">WHG 1.1</text></g>
+    <g class="etikett b"><rect x="310" y="212" width="62" height="22" rx="5" fill="#fff" stroke="#1C2A7B" stroke-width="2"/><text x="341" y="227" text-anchor="middle" style="font:700 10px 'JetBrains Mono',monospace;fill:#1C2A7B">OTO 1.1</text></g>
+    <text class="s-text" x="290" y="80" text-anchor="middle">nach Swisscom-Vorgabe</text></svg></div></div>
+          <div class="weg-schritte">
+            <div class="weg-schritt an"><p class="nr">01 / 05</p><h3>Spleissen im BEP</h3><p>Im Keller kommt die Glasfaser ins Haus, in den BEP. Dort spleissen wir die Fasern sauber in die Kassetten. KEVs in Racks spleissen wir genauso.</p></div><div class="weg-schritt"><p class="nr">02 / 05</p><h3>Kabel einziehen</h3><p>Wir ziehen das Glasfaserkabel vom BEP bis in die Wohnung. Passt das bestehende Rohr nicht, legen wir ein neues Rohr oder einen schmalen Kanal.</p></div><div class="weg-schritt"><p class="nr">03 / 05</p><h3>OTO-Dose montieren</h3><p>Die OTO-Dose kommt dorthin, wo sie gebraucht wird. Wir montieren sie und spleissen sie an.</p></div><div class="weg-schritt"><p class="nr">04 / 05</p><h3>Messen</h3><p>Jede OTO-Dose wird gemessen. So sehen wir sofort, ob die Dämpfung stimmt und ob irgendwo ein Kabelbruch ist.</p></div><div class="weg-schritt"><p class="nr">05 / 05</p><h3>Beschriften</h3><p>Zum Schluss beschriften wir die Kabel und die Kassetten im BEP nach Swisscom-Vorgabe. So findet sich später jeder sofort zurecht.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="abschnitt eng">
+      <div class="wrap">
+        <div class="kopf zeig"><p class="label">Für wen</p><h2>Ihre Seite, Ihre Fragen.</h2><p>Provider, Verwaltungen und Firmen haben andere Fragen. Darum hat jeder seine eigene, kurze Seite.</p></div>
+        <div class="raster raster-4">
+          <a class="karte link-karte zeig" href="/provider/"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12v9M8.5 21h7"/><circle cx="12" cy="10" r="2"/><path d="M7.8 5.8a6 6 0 0 0 0 8.4M16.2 5.8a6 6 0 0 1 0 8.4M5 3a10 10 0 0 0 0 14M19 3a10 10 0 0 1 0 14"/></svg></span><h3>Provider</h3><p>Sie schicken uns den Auftrag, wir installieren die OTO-Dose. Gemessen und nach Swisscom-Vorgabe beschriftet.</p><span class="weiter">Für Provider <span>→</span></span></a>
+          <a class="karte link-karte zeig v1" href="/verwaltungen/"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2M10 21v-3h4v3"/></svg></span><h3>Verwaltungen</h3><p>Alle Wohnungen auf einmal bereit machen, statt jede einzeln. Auch für Gemeinden.</p><span class="weiter">Für Verwaltungen <span>→</span></span></a>
+          <a class="karte link-karte zeig v2" href="/firmen/"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2Z"/></svg></span><h3>Firmen und Elektriker</h3><p>Fertige OTO-Dosen ab 20 m, online bestellen. Wir liefern, ziehen ein oder spleissen, ganz wie Sie es brauchen.</p><span class="weiter">Für Firmen <span>→</span></span></a>
+          <a class="karte link-karte zeig v3" href="/stoerungsdienst/"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h6M15 12h6"/><path d="m10 8 2 4-2 4M14 8l-2 4 2 4"/></svg></span><h3>Störungsdienst</h3><p>Kabel beschädigt oder Spleiss schlecht? Wir finden den Fehler und reparieren ihn.</p><span class="weiter">Störung melden <span>→</span></span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="abschnitt eng" id="weg">
+      <div class="wrap">
+        <div class="kopf zeig"><p class="label">Glasfaser</p><h2>Glasfaser bis in jede Wohnung.</h2><p>Vom BEP im Keller bis zur OTO-Dose in der Wohnung, alles aus einer Hand. Am Schluss ist jede Dose gemessen und nach Swisscom-Vorgabe beschriftet.</p></div>
+        <div class="weg">
+          <div class="weg-buehne" aria-hidden="true"><div class="weg-zaehler"><i></i><i></i><i></i><i></i><i></i></div><div class="szene an"><svg viewBox="0 0 400 300" aria-hidden="true"><rect class="s-flaeche" width="400" height="300"/><rect class="s-box" x="105" y="58" width="190" height="130" rx="14"/>
+    <text class="s-stark" x="125" y="84">BEP</text>
+    <rect x="125" y="96" width="150" height="16" rx="4" fill="#EEF1F8"/><rect x="125" y="118" width="150" height="16" rx="4" fill="#EEF1F8"/><rect x="125" y="140" width="150" height="16" rx="4" fill="#DCE3FB"/><rect x="125" y="162" width="150" height="16" rx="4" fill="#EEF1F8"/>
+    <g class="sp-links"><path class="s-faser" d="M30 232H194"/></g>
+    <g class="sp-rechts"><path class="s-faser" d="M206 232H370" style="stroke:#3B55E6"/></g>
+    <rect class="sp-naht" x="186" y="225" width="28" height="14" rx="5" fill="#1C2A7B"/>
+    <g class="sp-funke"><circle cx="200" cy="232" r="13" fill="rgba(245,181,61,.35)"/><path d="M200 220v-8M200 244v8M188 232h-8M212 232h8M192 224l-5-5M208 240l5 5M208 224l5-5M192 240l-5 5" stroke="#F5B53D" stroke-width="2.5" stroke-linecap="round"/></g>
+    <text class="s-text" x="200" y="272" text-anchor="middle">Faser an Faser, sauber verschweisst</text></svg></div><div class="szene"><svg viewBox="0 0 400 300" aria-hidden="true"><rect class="s-flaeche" width="400" height="300"/><rect class="s-wand" x="0" y="80" width="400" height="140"/>
+    <g style="transform-origin:48px 150px;animation:drehen 3.6s linear infinite"><circle cx="48" cy="150" r="30" fill="#fff" stroke="#1C2A7B" stroke-width="2.5"/><circle cx="48" cy="150" r="17" fill="none" stroke="#3B55E6" stroke-width="5" stroke-dasharray="8 5"/><circle cx="48" cy="150" r="5" fill="#1C2A7B"/></g>
+    <rect x="96" y="136" width="290" height="28" rx="14" fill="#fff" stroke="rgba(28,42,123,.25)" stroke-width="2"/>
+    <path class="s-kabel ez-kopf" d="M60 150H376" style="stroke-dasharray:330;stroke-dashoffset:330"/>
+    <text class="s-text" x="110" y="124">Rohr</text>
+    <rect x="96" y="250" width="120" height="12" rx="2" fill="#fff" stroke="rgba(28,42,123,.3)" stroke-width="1.5"/>
+    <text class="s-text" x="228" y="260">oder Kanal 1 x 1 cm</text>
+    <text class="s-text" x="200" y="50" text-anchor="middle">vom BEP bis in die Wohnung</text></svg></div><div class="szene"><svg viewBox="0 0 400 300" aria-hidden="true"><rect class="s-flaeche" width="400" height="300"/><rect class="s-wand" x="0" y="0" width="400" height="250"/>
+    <path class="s-boden" d="M0 250H400"/>
+    <path class="s-faser oto-faser" d="M0 150H222"/>
+    <g class="oto-dose"><rect class="s-box" x="210" y="104" width="78" height="92" rx="12"/><text class="s-stark" x="249" y="166" text-anchor="middle">OTO</text><circle class="oto-led" cx="249" cy="128" r="7"/></g>
+    <rect x="305" y="210" width="80" height="34" rx="10" fill="#C9D3F5"/><rect x="300" y="196" width="18" height="48" rx="8" fill="#B4C1F0"/><rect x="372" y="196" width="18" height="48" rx="8" fill="#B4C1F0"/>
+    <path d="M60 250v-40M50 214c10-16 20-16 20 0M48 226c12-14 24-10 24 4" stroke="#0E9F6E" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <text class="s-text" x="249" y="84" text-anchor="middle">dort, wo Sie sie brauchen</text></svg></div><div class="szene"><svg viewBox="0 0 400 300" aria-hidden="true"><rect class="s-flaeche" width="400" height="300"/><rect x="56" y="40" width="288" height="210" rx="22" fill="#1C2A7B"/>
+    <rect x="74" y="58" width="252" height="128" rx="10" fill="#0C1226"/>
+    <path d="M90 80H310M90 110H310M90 140H310M90 170H310" stroke="rgba(143,166,255,.12)"/>
+    <path class="mess-kurve" d="M90 84 L150 96 L153 108 L226 120 L229 126 L292 137 L296 176 L310 176" style="stroke:#8FA6FF"/>
+    <g class="mess-wert"><circle cx="92" cy="214" r="6" fill="#0E9F6E"/><text x="106" y="219" style="font:600 13px 'JetBrains Mono',monospace;fill:#fff">Dämpfung ok</text></g>
+    <g class="mess-wert b"><circle cx="232" cy="214" r="6" fill="#0E9F6E"/><text x="246" y="219" style="font:600 13px 'JetBrains Mono',monospace;fill:#fff">Kein Bruch</text></g></svg></div><div class="szene"><svg viewBox="0 0 400 300" aria-hidden="true"><rect class="s-flaeche" width="400" height="300"/><rect class="s-box" x="40" y="46" width="130" height="150" rx="12"/>
+    <text class="s-stark" x="56" y="70">BEP</text>
+    <rect x="56" y="84" width="98" height="20" rx="4" fill="#EEF1F8"/><rect x="56" y="112" width="98" height="20" rx="4" fill="#EEF1F8"/><rect x="56" y="140" width="98" height="20" rx="4" fill="#EEF1F8"/>
+    <g class="etikett"><rect x="122" y="88" width="28" height="12" rx="3" fill="#3B55E6"/><text x="136" y="97" text-anchor="middle" style="font:700 8px 'JetBrains Mono',monospace;fill:#fff">K1</text></g>
+    <g class="etikett b"><rect x="122" y="116" width="28" height="12" rx="3" fill="#3B55E6"/><text x="136" y="125" text-anchor="middle" style="font:700 8px 'JetBrains Mono',monospace;fill:#fff">K2</text></g>
+    <g class="etikett c"><rect x="122" y="144" width="28" height="12" rx="3" fill="#3B55E6"/><text x="136" y="153" text-anchor="middle" style="font:700 8px 'JetBrains Mono',monospace;fill:#fff">K3</text></g>
+    <path class="s-kabel" d="M170 120H220V236H380"/>
+    <g class="etikett"><rect x="236" y="212" width="62" height="22" rx="5" fill="#fff" stroke="#1C2A7B" stroke-width="2"/><text x="267" y="227" text-anchor="middle" style="font:700 10px 'JetBrains Mono',monospace;fill:#1C2A7B">WHG 1.1</text></g>
+    <g class="etikett b"><rect x="310" y="212" width="62" height="22" rx="5" fill="#fff" stroke="#1C2A7B" stroke-width="2"/><text x="341" y="227" text-anchor="middle" style="font:700 10px 'JetBrains Mono',monospace;fill:#1C2A7B">OTO 1.1</text></g>
+    <text class="s-text" x="290" y="80" text-anchor="middle">nach Swisscom-Vorgabe</text></svg></div></div>
+          <div class="weg-schritte">
+            <div class="weg-schritt an"><p class="nr">01 / 05</p><h3>Spleissen im BEP</h3><p>Im Keller kommt die Glasfaser ins Haus, in den BEP. Dort spleissen wir die Fasern sauber in die Kassetten. KEVs in Racks spleissen wir genauso.</p></div><div class="weg-schritt"><p class="nr">02 / 05</p><h3>Kabel einziehen</h3><p>Wir ziehen das Glasfaserkabel vom BEP bis in die Wohnung. Passt das bestehende Rohr nicht, legen wir ein neues Rohr oder einen schmalen Kanal.</p></div><div class="weg-schritt"><p class="nr">03 / 05</p><h3>OTO-Dose montieren</h3><p>Die OTO-Dose kommt dorthin, wo sie gebraucht wird. Wir montieren sie und spleissen sie an.</p></div><div class="weg-schritt"><p class="nr">04 / 05</p><h3>Messen</h3><p>Jede OTO-Dose wird gemessen. So sehen wir sofort, ob die Dämpfung stimmt und ob irgendwo ein Kabelbruch ist.</p></div><div class="weg-schritt"><p class="nr">05 / 05</p><h3>Beschriften</h3><p>Zum Schluss beschriften wir die Kabel und die Kassetten im BEP nach Swisscom-Vorgabe. So findet sich später jeder sofort zurecht.</p></div>
+          </div>
+        
+      </div>
+    </section>
+
+    <section class="abschnitt eng">
+      <div class="wrap">
+        <div class="kopf mitte zeig"><p class="label">Gut zu wissen</p><h2>Häufige Fragen</h2></div>
+        <div class="faq zeig"><details><summary>Was ist eine OTO-Dose?</summary><p>Die OTO-Dose ist die Glasfaser-Steckdose in Ihrer Wohnung. Dort schliessen Sie das Gerät Ihres Internet-Anbieters an.</p></details><details><summary>Kann die OTO-Dose an einen anderen Ort?</summary><p>Ja. Wir versetzen die OTO-Dose dorthin, wo Sie sie brauchen, zum Beispiel ins Wohnzimmer neben den Fernseher.</p></details><details><summary>Für wen arbeiten Sie?</summary><p>Für Provider, Verwaltungen, Gemeinden, Firmen und Elektriker. Und auch für Private, die ihre Glasfaser-Dose versetzen oder erweitern möchten.</p></details><details><summary>Was passiert nach der Installation?</summary><p>Jede OTO-Dose wird gemessen und nach Swisscom-Vorgabe beschriftet. So ist sofort klar, dass alles funktioniert.</p></details></div>
+      </div>
+    </section>
+
+    <section class="abschnitt eng">
+      <div class="wrap">
+        <div class="band zeig">
+          <div><h2>Wir verbinden Ihr Zuhause.</h2><p>Erzählen Sie uns kurz, worum es geht. Sie bekommen schnell eine klare Antwort.</p></div>
+          <div class="knoepfe" style="margin:0"><a href="/kontakt/" class="btn btn-haupt">Anfrage starten <span class="pfeil" aria-hidden="true">→</span></a><a href="tel:+41798218408" class="btn btn-zweit">+41 79 821 84 08</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="fuss">
+    <div class="wrap">
+      <div class="fuss-raster fuss-5">
+        <div>
+          <img src="/logo.png" alt="Nasuvia" width="161" height="26" loading="lazy" />
+          <p>Wir verbinden Ihr Zuhause.</p>
+        </div>
+        <div>
+          <h4>Für wen</h4>
+          <a href="/provider/">Provider</a><a href="/verwaltungen/">Verwaltungen</a><a href="/firmen/">Firmen und Elektriker</a>
+        </div>
+        <div>
+          <h4>Für Ihr Zuhause</h4>
+          <a href="/glasfaser/">Glasfaser</a><a href="/heimnetz/">Netzwerk und WLAN</a><a href="/steckdosen-schalter/">Steckdosen und Schalter</a><a href="/smart-home/">Smart Home</a>
+        </div>
+        <div>
+          <h4>Service</h4>
+          <a href="/stoerungsdienst/">Störungsdienst</a><a href="/firmen/#bestellen">OTO-Dosen bestellen</a><a href="/kontakt/">Anfrage starten</a>
+        </div>
+        <div>
+          <h4>Kontakt</h4>
+          <a href="tel:+41798218408">+41 79 821 84 08</a><a href="mailto:info@nasuvia.ch">info@nasuvia.ch</a><span style="display:block;padding:3px 0">Tössfeldstrasse 37, 8406 Winterthur</span>
+          <a href="https://www.instagram.com/nasuvia.ch/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.facebook.com/profile.php?id=61578142365968" target="_blank" rel="noopener">Facebook ↗</a>
+        </div>
+      </div>
+      <div class="fuss-unten">
+        <span>© 2026 Nasuvia</span>
+        <span style="display:flex;gap:18px"><a href="/impressum/" style="display:inline">Impressum</a><a href="/admin/" style="display:inline" rel="nofollow">Login</a></span>
+      </div>
+    </div>
+  </footer>
+  <script src="/site.js?v=12" defer></script>
+</body>
+</html>
