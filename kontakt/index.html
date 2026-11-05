@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>document.documentElement.classList.add('js');</script>
-  <title>Anfrage starten | Nasuvia</title>
+  <title>Anfrage und Offerte | Nasuvia Winterthur</title>
   <meta name="description" content="Anfrage an Nasuvia: für Provider, Verwaltungen, Firmen und Elektriker. Störungen melden, OTO-Dosen bestellen oder WLAN zu Hause anfragen." />
   <link rel="canonical" href="https://www.nasuvia.ch/kontakt/" />
   <meta property="og:type" content="website" />
@@ -19,13 +19,13 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preload" href="/assets/league-spartan-latin-wght-normal-0z8Zi79b.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/site.css?v=8" />
+  <link rel="stylesheet" href="/site.css?v=9" />
 </head>
 <body>
   <header class="nav">
     <div class="wrap">
       <a href="/" class="nav-logo" aria-label="Nasuvia Startseite"><span class="logo-punkt" aria-hidden="true"></span><img src="/logo-wort.png" alt="Nasuvia" width="94" height="18" /></a>
-      <nav class="nav-links" aria-label="Hauptnavigation"><a href="/provider/">Provider</a><a href="/verwaltungen/">Verwaltungen</a><a href="/firmen/">Firmen</a><a href="/stoerungsdienst/">Störung</a><a href="/heimnetz/">WLAN zu Hause</a></nav>
+      <nav class="nav-links" aria-label="Hauptnavigation"><a href="/provider/">Provider</a><a href="/verwaltungen/">Verwaltungen</a><a href="/firmen/">Firmen</a><a href="/stoerungsdienst/">Störung</a><a href="/heimnetz/">WLAN</a><a href="/steckdosen-schalter/">Steckdosen</a><a href="/smart-home/">Smart Home</a></nav>
       <a href="/kontakt/" class="btn btn-haupt btn-klein">Anfrage starten</a>
       <button class="nav-burger" type="button" aria-label="Menü" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
     </div>
@@ -37,6 +37,8 @@
     <a href="/stoerungsdienst/">Störungsdienst</a>
     <a href="/firmen/#bestellen" class="klein">OTO-Dosen bestellen</a>
     <a href="/heimnetz/" class="klein">WLAN zu Hause</a>
+    <a href="/steckdosen-schalter/" class="klein">Steckdosen und Schalter</a>
+    <a href="/smart-home/" class="klein">Smart Home</a>
     <a href="/" class="klein">Startseite</a>
     <a href="/kontakt/" class="btn btn-haupt">Anfrage starten</a>
     <a href="tel:+41798218408" class="btn btn-zweit"><span class="tel-punkt"></span>+41 79 821 84 08</a>
@@ -58,6 +60,8 @@
           <a href="/firmen/#bestellen"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2"/><path d="M21 12h2"/></svg></span><b>OTO-Dosen bestellen →</b><span class="t">Vorkonfektioniert, ab 20 m</span></a>
           <a href="/stoerungsdienst/#melden"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h6M15 12h6"/><path d="m10 8 2 4-2 4M14 8l-2 4 2 4"/></svg></span><b>Störung melden →</b><span class="t">Kabel beschädigt oder kein Signal</span></a>
           <a href="/heimnetz/#offerte"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.6 16a5 5 0 0 1 6.8 0"/><circle cx="12" cy="19.5" r="1"/></svg></span><b>WLAN zu Hause →</b><span class="t">Internet in jedem Zimmer</span></a>
+          <a href="/steckdosen-schalter/#offerte"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9.5 9v2.5M14.5 9v2.5M12 13.5v2"/></svg></span><b>Steckdosen und Schalter →</b><span class="t">Neu, modern, T13 mit USB-C</span></a>
+          <a href="/smart-home/#offerte"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M9.5 15.5a3.5 3.5 0 0 1 5 0M8 13.5a5.5 5.5 0 0 1 8 0"/></svg></span><b>Smart Home →</b><span class="t">Sprache, App oder Touch</span></a>
         </div>
         <div data-assistent hidden style="margin-top:28px">
           <form class="karte form" id="anfrageForm" data-form="Anfrage" novalidate>
@@ -107,14 +111,18 @@
   </main>
   <footer class="fuss">
     <div class="wrap">
-      <div class="fuss-raster">
+      <div class="fuss-raster fuss-5">
         <div>
           <img src="/logo.png" alt="Nasuvia" width="161" height="26" loading="lazy" />
           <p>Glasfaser? Wir ziehen durch.</p>
         </div>
         <div>
           <h4>Für wen</h4>
-          <a href="/provider/">Provider</a><a href="/verwaltungen/">Verwaltungen</a><a href="/firmen/">Firmen und Elektriker</a><a href="/heimnetz/">WLAN zu Hause</a>
+          <a href="/provider/">Provider</a><a href="/verwaltungen/">Verwaltungen</a><a href="/firmen/">Firmen und Elektriker</a>
+        </div>
+        <div>
+          <h4>Für Ihr Zuhause</h4>
+          <a href="/heimnetz/">WLAN in jedem Zimmer</a><a href="/steckdosen-schalter/">Steckdosen mit USB-C</a><a href="/smart-home/">Smart Home</a>
         </div>
         <div>
           <h4>Service</h4>
@@ -132,6 +140,6 @@
       </div>
     </div>
   </footer>
-  <script src="/site.js?v=8" defer></script>
+  <script src="/site.js?v=9" defer></script>
 </body>
 </html>

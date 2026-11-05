@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>document.documentElement.classList.add('js');</script>
+  <title>Smart Home Winterthur: Licht, Storen, Heizung per App & Sprache | Nasuvia</title>
+  <meta name="description" content="Smart Home mit Beratung und Installation: Licht, Storen und Heizung per Sprache, App oder Touch-Panel steuern. Offerte online anfragen." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://www.nasuvia.ch/smart-home/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.nasuvia.ch/smart-home/" />
+  <meta property="og:site_name" content="Nasuvia" />
+  <meta property="og:title" content="Smart Home Winterthur: Licht, Storen, Heizung per App & Sprache | Nasuvia" />
+  <meta property="og:description" content="Smart Home mit Beratung und Installation: Licht, Storen und Heizung per Sprache, App oder Touch-Panel steuern. Offerte online anfragen." />
+  <meta property="og:image" content="https://www.nasuvia.ch/og-image.jpg" />
+  <meta property="og:image:alt" content="Smart Home per Sprache, App und Touch" />
+  <meta property="og:locale" content="de_CH" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="geo.region" content="CH-ZH" />
+  <meta name="geo.placename" content="Winterthur" />
+  <meta name="theme-color" content="#F7F9FD" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preload" href="/assets/league-spartan-latin-wght-normal-0z8Zi79b.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/site.css?v=9" />
+  <style>
+    .feature-card h3{font-size:1.15rem;margin-bottom:.5rem}
+    .hn-karte{background:#fff;border-radius:22px;box-shadow:0 1px 2px rgba(12,18,38,.05),0 24px 60px -30px rgba(28,42,123,.35);padding:22px;margin-top:2rem}
+    .hn-schalter{display:inline-flex;background:#EEF1F8;border-radius:100px;padding:4px;gap:2px;margin-bottom:16px}
+    .hn-schalter button{border:0;background:none;border-radius:100px;padding:9px 18px;font:inherit;font-size:.95rem;cursor:pointer;color:#47506B}
+    .hn-schalter button.an{background:#fff;color:#1C2A7B;font-weight:600;box-shadow:0 2px 8px rgba(12,18,38,.08)}
+    .hn-plan{width:100%;height:auto;display:block}
+    .hn-plan .wand{fill:none;stroke:#1C2A7B;stroke-width:3;stroke-linecap:round}
+    .hn-plan .raum{transition:fill .8s ease}
+    .hn-plan .r4{fill:rgba(14,159,110,.10)} .hn-plan .r2{fill:rgba(183,121,31,.12)} .hn-plan .r1{fill:rgba(229,72,77,.10)} .hn-plan .r0{fill:rgba(229,72,77,.18)}
+    .hn-plan .name{font:600 15px 'League Spartan',system-ui,sans-serif;fill:#0C1226}
+    .hn-plan .status{font:500 12px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase}
+    .hn-plan .s4{fill:#0A7150} .hn-plan .s2{fill:#B7791F} .hn-plan .s1,.hn-plan .s0{fill:#E5484D}
+    .hn-plan .balken rect{fill:rgba(28,42,123,.15);transition:fill .5s ease}
+    .hn-plan .balken rect.an{fill:#3B55E6}
+    .hn-plan .geraet{fill:#1C2A7B} .hn-plan .geraet-text{font:600 10px 'JetBrains Mono',monospace;fill:#fff;letter-spacing:.05em}
+    .hn-plan .welle{fill:none;stroke:#3B55E6;stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center}
+    .hn-plan.heute .welle{animation:hnWelle 3s ease-out infinite}
+    .hn-plan.heute .welle:nth-of-type(2){animation-delay:1s} .hn-plan.heute .welle:nth-of-type(3){animation-delay:2s}
+    @keyframes hnWelle{0%{transform:scale(.15);opacity:.7}100%{transform:scale(1);opacity:0}}
+    .hn-plan .kabel{fill:none;stroke:#3B55E6;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--l);stroke-dashoffset:var(--l);transition:stroke-dashoffset 1.6s ease}
+    .hn-plan.nasuvia .kabel{stroke-dashoffset:0}
+    .hn-plan .ap,.hn-plan .dose,.hn-plan .switch{opacity:0;transform:scale(.4);transform-box:fill-box;transform-origin:center;transition:opacity .4s ease 1.4s,transform .5s cubic-bezier(.3,1.6,.5,1) 1.4s}
+    .hn-plan.nasuvia .ap,.hn-plan.nasuvia .dose,.hn-plan.nasuvia .switch{opacity:1;transform:scale(1)}
+    .hn-plan .switch{transition-delay:0s}
+    .hn-plan .ap-ring{fill:none;stroke:#3B55E6;stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center}
+    .hn-plan.nasuvia .ap-ring{animation:hnRing 2.4s ease-out 2s infinite}
+    @keyframes hnRing{0%{transform:scale(.4);opacity:.8}100%{transform:scale(2.6);opacity:0}}
+    .hn-legende{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-size:.9rem;color:#47506B}
+    .hn-legende i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:7px;vertical-align:-1px}
+    .hn-text{margin-top:10px;font-size:1.05rem;color:#0C1226;min-height:3em}
+
+    .hn-kette{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:2.4rem}
+    .hn-kette::before{content:"";position:absolute;left:10%;right:10%;top:34px;height:3px;background:rgba(28,42,123,.12);border-radius:3px}
+    .hn-puls{position:absolute;left:10%;right:10%;top:29px;height:13px;pointer-events:none}
+    .hn-puls i{position:absolute;left:0;top:0;width:13px;height:13px;margin-left:-6px;border-radius:50%;background:#3B55E6;box-shadow:0 0 16px 4px rgba(59,85,230,.55);animation:hnPuls 5s linear infinite}
+    @keyframes hnPuls{0%{left:0;opacity:1}80%{left:100%;opacity:1}90%,100%{left:100%;opacity:0}}
+    .hn-glied{text-align:center;position:relative}
+    .hn-glied .kreis{width:68px;height:68px;border-radius:50%;margin:0 auto 12px;background:#fff;border:2px solid rgba(28,42,123,.15);display:grid;place-items:center;position:relative;z-index:1;animation:hnLeuchten 5s linear infinite}
+    .hn-glied:nth-child(2) .kreis{animation-delay:1s} .hn-glied:nth-child(3) .kreis{animation-delay:2s} .hn-glied:nth-child(4) .kreis{animation-delay:3s} .hn-glied:nth-child(5) .kreis{animation-delay:4s}
+    @keyframes hnLeuchten{0%{border-color:#3B55E6;box-shadow:0 0 0 8px rgba(59,85,230,.14)}16%{border-color:rgba(28,42,123,.15);box-shadow:0 0 0 0 rgba(59,85,230,0)}100%{border-color:rgba(28,42,123,.15)}}
+    .hn-glied svg{width:32px;height:32px;stroke:#1C2A7B;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+    .hn-glied strong{display:block;color:#0C1226;font-size:1.05rem;margin-bottom:4px}
+    .hn-glied span{font-size:.92rem;line-height:1.45;color:#47506B;display:block}
+
+    .hn-vergleich{display:grid;gap:22px;margin-top:2rem}
+    .hn-zeile{display:grid;grid-template-columns:150px minmax(0,1fr) 110px;gap:16px;align-items:center}
+    .hn-zeile b{color:#0C1226;font-size:1.05rem}
+    .hn-bahn{position:relative;height:38px;border-radius:100px;background:#EEF1F8;overflow:hidden}
+    .hn-bahn .punkt{position:absolute;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#3B55E6;left:0;animation:hnFahrt 2.2s linear infinite}
+    .hn-bahn.langsam .punkt{animation-duration:4.4s}
+    .hn-bahn.langsam .punkt.weg{animation-name:hnVerlust}
+    .hn-bahn .verstaerker{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;background:#fff;border:2px dashed #B7791F;z-index:1}
+    @keyframes hnFahrt{0%{left:0}100%{left:100%}}
+    @keyframes hnVerlust{0%{left:0;opacity:1}48%{opacity:1}56%{left:56%;opacity:0;transform:translateY(14px)}100%{left:56%;opacity:0}}
+    .hn-ergebnis{font:600 .8rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;text-align:right}
+    .hn-ergebnis.gut{color:#0A7150} .hn-ergebnis.schlecht{color:#E5484D}
+
+    .hn-form{max-width:860px;margin:2rem auto 0;padding:28px}
+    .hn-fortschritt{display:flex;justify-content:space-between;align-items:center;gap:12px;font:500 .78rem 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#47506B;margin-bottom:10px}
+    .hn-fortschritt b{color:#1C2A7B;font-weight:600}
+    .hn-leiste{height:5px;border-radius:5px;background:#EEF1F8;overflow:hidden;margin-bottom:26px}
+    .hn-leiste i{display:block;height:100%;width:20%;background:#3B55E6;border-radius:5px;transition:width .5s ease}
+    .hn-schritt{animation:hnEin .45s ease}
+    .hn-schritt[hidden]{display:none}
+    .hn-fortschritt[hidden],.hn-leiste[hidden],.hn-knoepfe[hidden]{display:none}
+    @keyframes hnEin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+    .hn-schritt h3{font-size:1.45rem;color:#0C1226;margin-bottom:.35rem}
+    .hn-schritt > p{color:#47506B;margin-bottom:1.2rem;line-height:1.55}
+    .hn-frage{border:0;padding:0;margin:0 0 22px;min-width:0}
+    .hn-frage legend,.hn-feld > span{display:block;font-weight:600;color:#0C1226;margin-bottom:10px;font-size:1.02rem;padding:0}
+    .hn-frage legend small,.hn-feld > span small{font-weight:400;color:#47506B}
+    .hn-wahl{display:flex;flex-wrap:wrap;gap:8px}
+    .hn-wahl label{position:relative;display:block}
+    .hn-wahl input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+    .hn-wahl label > span{display:flex;align-items:center;gap:10px;padding:12px 16px;border:1.5px solid rgba(28,42,123,.15);border-radius:14px;background:#fff;cursor:pointer;font-size:.98rem;color:#0C1226;transition:border-color .2s,background .2s,box-shadow .2s,transform .2s;user-select:none}
+    .hn-wahl label > span:hover{border-color:rgba(59,85,230,.5)}
+    .hn-wahl input:checked + span{border-color:#3B55E6;background:rgba(59,85,230,.07);color:#1C2A7B;font-weight:600;box-shadow:0 6px 18px -10px rgba(59,85,230,.6)}
+    .hn-wahl input:focus-visible + span{outline:2px solid #3B55E6;outline-offset:2px}
+    .hn-wahl.gross{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+    .hn-wahl.gross label > span{flex-direction:column;align-items:flex-start;gap:8px;height:100%;padding:14px 16px}
+    .hn-wahl.gross label > span em{font-style:normal;font-weight:400;font-size:.88rem;color:#47506B;line-height:1.4}
+    .hn-wahl svg{width:64px;height:40px;flex:none}
+    .hn-feld{display:block;margin-bottom:16px}
+    .hn-feld input,.hn-feld textarea{width:100%;box-sizing:border-box;font:inherit;font-size:1rem;color:#0C1226;padding:13px 15px;border:1.5px solid rgba(28,42,123,.15);border-radius:12px;background:#fff;transition:border-color .2s}
+    .hn-feld input:focus,.hn-feld textarea:focus{outline:none;border-color:#3B55E6;box-shadow:0 0 0 4px rgba(59,85,230,.12)}
+    .hn-feld textarea{min-height:96px;resize:vertical}
+    .hn-felder{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+    .hn-extra{margin:-8px 0 22px;padding:16px;border-radius:14px;background:#F6F8FC}
+    .hn-extra[hidden]{display:none}
+    .hn-hinweis{font-size:.92rem;color:#47506B;background:#F6F8FC;border-radius:12px;padding:12px 14px;margin:-6px 0 22px}
+    .hn-hinweis[hidden]{display:none}
+    .hn-fehler{color:#E5484D;font-size:.92rem;margin:8px 0 0;min-height:0}
+    .hn-frage.fehlt .hn-wahl label > span,.hn-feld.fehlt input{border-color:#E5484D}
+    .hn-knoepfe{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:26px;padding-top:20px;border-top:1px solid rgba(28,42,123,.08)}
+    .hn-knoepfe .btn[hidden]{display:none}
+    .hn-zurueck{background:none;border:0;font:inherit;color:#47506B;cursor:pointer;padding:10px 4px}
+    .hn-zurueck:hover{color:#1C2A7B}
+    .hn-zurueck[hidden]{visibility:hidden;display:block}
+    .hn-form button.btn{border:0;cursor:pointer;font:inherit}
+    .hn-bild{display:block;width:100%;max-width:520px;height:auto;margin:0 auto 22px;background:#F6F8FC;border-radius:16px}
+    .hn-bild .wandflaeche{fill:#F6F8FC}
+    .hn-bild .boden{stroke:#1C2A7B;stroke-width:3;stroke-linecap:round}
+    .hn-bild .beschrift{font:500 11px 'JetBrains Mono',monospace;fill:#47506B;letter-spacing:.06em;text-transform:uppercase}
+    .hn-bild .faser{fill:none;stroke:#0E9F6E;stroke-width:3;stroke-linecap:round}
+    .hn-oto .dose{transform-box:fill-box;transition:transform 1.4s cubic-bezier(.6,0,.3,1)}
+    .hn-oto .ziel{fill:none;stroke:#3B55E6;stroke-width:2;stroke-dasharray:5 5;opacity:0;transition:opacity .4s}
+    .hn-oto .verlaengerung{stroke-dasharray:200;stroke-dashoffset:200;transition:stroke-dashoffset 1.4s cubic-bezier(.6,0,.3,1)}
+    .hn-oto.versetzen .ziel{opacity:1}
+    .hn-oto.versetzen .dose{animation:hnOtoWeg 4.5s cubic-bezier(.6,0,.3,1) infinite}
+    .hn-oto.versetzen .verlaengerung{animation:hnOtoKabel 4.5s cubic-bezier(.6,0,.3,1) infinite}
+    @keyframes hnOtoWeg{0%,12%{transform:translateX(0)}50%,85%{transform:translateX(190px)}100%{transform:translateX(0)}}
+    @keyframes hnOtoKabel{0%,12%{stroke-dashoffset:200}50%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:200}}
+    .hn-oto .puls{fill:none;stroke:#0E9F6E;stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center;animation:hnRing 2.6s ease-out infinite}
+    .hn-oto.versetzen .puls{display:none}
+    .hn-kanal .kanal{fill:#fff;stroke:rgba(28,42,123,.25);stroke-width:1.5}
+    .hn-kanal .ader{fill:none;stroke:#3B55E6;stroke-width:3;stroke-linecap:round;stroke-dasharray:330;stroke-dashoffset:330;animation:hnAder 4s ease-in-out infinite}
+    @keyframes hnAder{0%{stroke-dashoffset:330}55%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:-330}}
+    .hn-kanal .lupe{fill:#fff;stroke:#1C2A7B;stroke-width:2}
+    .hn-kanal .mass{stroke:#1C2A7B;stroke-width:1.2}
+    .hn-kanal .massText{font:600 12px 'JetBrains Mono',monospace;fill:#1C2A7B}
+    .hn-zimmer{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+    .hn-zimmer label > span::before{content:"";width:16px;height:16px;border-radius:5px;border:1.5px solid rgba(28,42,123,.3);flex:none;transition:all .2s}
+    .hn-zimmer input:checked + span::before{background:#3B55E6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat;border-color:#3B55E6}
+    .hn-zusammen{background:#F6F8FC;border-radius:14px;padding:16px 18px;margin:6px 0 20px}
+    .hn-zusammen h4{font-size:1rem;color:#0C1226;margin-bottom:8px}
+    .hn-zusammen dl{display:grid;grid-template-columns:minmax(120px,auto) 1fr;gap:6px 16px;margin:0;font-size:.93rem}
+    .hn-zusammen dt{color:#47506B}
+    .hn-zusammen dd{margin:0;color:#0C1226;font-weight:500}
+    .hn-datenschutz{font-size:.85rem;color:#47506B;margin-top:4px}
+    .hn-honig{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+    .hn-fertig{text-align:center;padding:20px 0 6px}
+    .hn-fertig svg{width:84px;height:84px;margin:0 auto 14px;display:block}
+    .hn-fertig circle{fill:none;stroke:#0E9F6E;stroke-width:3;stroke-dasharray:240;stroke-dashoffset:240;animation:hnStrich .8s ease forwards}
+    .hn-fertig path{fill:none;stroke:#0E9F6E;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:hnStrich .5s ease .7s forwards}
+    @keyframes hnStrich{to{stroke-dashoffset:0}}
+    .hn-fertig h3{font-size:1.5rem;color:#0C1226;margin-bottom:.4rem}
+    .hn-fertig p{color:#47506B;max-width:520px;margin:0 auto .6rem}
+    .hn-fertig .btn{margin-top:12px}
+    .hn-senden-laeuft{opacity:.6;pointer-events:none}
+    @media (max-width:760px){
+      .hn-form{padding:18px 16px}
+      .hn-felder{grid-template-columns:minmax(0,1fr)}
+      .hn-wahl.gross{grid-template-columns:minmax(0,1fr)}
+      .hn-wahl.gross label > span{gap:4px}
+      .hn-wahl label{flex:1 1 auto}
+      .hn-wahl label > span{justify-content:center}
+      .hn-wahl.gross label > span,.hn-zimmer label > span{justify-content:flex-start}
+      .hn-zusammen dl{grid-template-columns:minmax(0,1fr)}
+      .hn-zusammen dd{margin-bottom:6px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .hn-schritt,.hn-oto .dose,.hn-oto .verlaengerung,.hn-oto .puls,.hn-kanal .ader{animation:none!important}
+      .hn-kanal .ader{stroke-dashoffset:0}
+      .hn-oto.versetzen .dose{transform:translateX(190px)}
+      .hn-oto.versetzen .verlaengerung{stroke-dashoffset:0}
+    }
+
+    .hn-schritte{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-top:2rem}
+    @media (max-width:760px){
+      .hn-karte{padding:14px;border-radius:18px}
+      .hn-plan .name{font-size:23px}
+      .hn-plan .status{font-size:16px;letter-spacing:.04em}
+      .hn-plan .geraet-text{font-size:12px}
+      .hn-kette{grid-template-columns:minmax(0,1fr);gap:18px}
+      .hn-kette::before{left:33px;right:auto;top:34px;bottom:34px;width:3px;height:auto}
+      .hn-puls{left:27px;right:auto;top:34px;bottom:34px;width:13px;height:auto}
+      .hn-puls i{left:0;top:0;margin:-6px 0 0 0;animation-name:hnPulsSenkrecht}
+      @keyframes hnPulsSenkrecht{0%{top:0;opacity:1}80%{top:100%;opacity:1}90%,100%{top:100%;opacity:0}}
+      .hn-glied{display:grid;grid-template-columns:68px minmax(0,1fr);gap:14px;text-align:left;align-items:center}
+      .hn-glied .kreis{margin:0}
+      .hn-zeile{grid-template-columns:minmax(0,1fr) 90px;gap:8px 12px}
+      .hn-zeile .hn-bahn{grid-column:1 / -1;grid-row:2}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .hn-plan .welle,.hn-plan .ap-ring,.hn-puls,.hn-bahn .punkt,.hn-glied .kreis{animation:none!important}
+      .hn-bahn .punkt{display:none}
+      .hn-plan .kabel,.hn-plan .ap,.hn-plan .dose,.hn-plan .switch{transition:none}
+    }
+
+    .hn-form{max-width:860px;margin:0 auto}
+    .hn-karte{margin-top:0}
+    .hn-form .btn{border:0}
+  </style>
+  <style>
+    .vorteile{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-top:22px}
+    .vorteil{background:#fff;border-radius:18px;padding:20px;box-shadow:0 1px 2px rgba(12,18,38,.05),0 18px 40px -28px rgba(28,42,123,.35)}
+    .vorteil b{display:block;font-size:1.08rem;color:#1C2A7B;margin-bottom:6px}
+    .vorteil p{margin:0;color:#47506B;font-size:.97rem}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+    .chips span{background:#EEF1F8;color:#1C2A7B;border-radius:100px;padding:7px 14px;font-size:.92rem;font-weight:600}
+    .bild-karte{background:#fff;border-radius:22px;padding:18px;box-shadow:0 1px 2px rgba(12,18,38,.05),0 24px 60px -30px rgba(28,42,123,.35)}
+    .bild-karte svg{width:100%;height:auto;display:block}
+    .zwei{display:grid;gap:28px;align-items:center;grid-template-columns:1fr}
+    @media(min-width:860px){.zwei{grid-template-columns:1.05fr .95fr}}
+    .hinweis-klein{font-size:.9rem;color:#47506B;margin-top:14px}
+  </style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Smart Home Beratung und Installation", "serviceType": "Smart-Home-Installation", "description": "Smart Home mit Beratung und Installation: Licht, Storen und Heizung per Sprache, App oder Touch-Panel steuern. Offerte online anfragen.", "url": "https://www.nasuvia.ch/smart-home/", "provider": {"@id": "https://www.nasuvia.ch/#organization"}, "areaServed": [{"@type": "City", "name": "Winterthur"}, {"@type": "City", "name": "Zürich"}, {"@type": "City", "name": "Frauenfeld"}, {"@type": "City", "name": "Schaffhausen"}, {"@type": "City", "name": "Uster"}, {"@type": "City", "name": "Wil SG"}, {"@type": "Country", "name": "Schweiz"}], "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Smart Home Beratung und Installation", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Sprachsteuerung (Siri, Google Assistant, Alexa)"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "App-Steuerung"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Touch-Panel"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Smarte Lichtsteuerung"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Storensteuerung"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Heizungssteuerung"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Smart-Home-Beratung"}}]}, "potentialAction": {"@type": "QuoteAction", "name": "Offerte online anfragen", "target": "https://www.nasuvia.ch/smart-home/#offerte"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Was kostet ein Smart Home?", "acceptedAnswer": {"@type": "Answer", "text": "Das hängt davon ab, was Sie steuern möchten. Ein paar smarte Schalter sind schon mit kleinem Budget möglich. Füllen Sie das Formular aus, dann bekommen Sie eine klare Offerte."}}, {"@type": "Question", "name": "Funktionieren die normalen Schalter weiter?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Sie können weiterhin ganz normal mit dem Schalter an der Wand bedienen. Sprache, App und Touch kommen einfach dazu."}}, {"@type": "Question", "name": "Welches System ist das richtige?", "acceptedAnswer": {"@type": "Answer", "text": "Das hängt davon ab, welches Handy Sie haben und was Ihnen wichtig ist. Wir beraten Sie zu Apple Home, Google, Amazon Alexa und zu Lösungen, die ganz ohne Cloud funktionieren."}}, {"@type": "Question", "name": "Geht Smart Home auch in einer Mietwohnung?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Viele Lösungen funktionieren mit Funk, ohne neue Kabel. Beim Auszug lässt sich alles wieder zurückbauen. Fragen Sie vorher kurz bei Ihrer Verwaltung nach."}}, {"@type": "Question", "name": "Brauche ich gutes WLAN?", "acceptedAnswer": {"@type": "Answer", "text": "Ja, ein stabiles Netz ist die Grundlage. Wenn nötig, bringen wir das WLAN gleich in jedes Zimmer. Mehr dazu auf WLAN in jedem Zimmer."}}, {"@type": "Question", "name": "Sind meine Daten sicher?", "acceptedAnswer": {"@type": "Answer", "text": "Wir richten alles mit sicheren Passwörtern ein und empfehlen auf Wunsch Geräte, die lokal funktionieren und keine Daten in die Cloud schicken."}}, {"@type": "Question", "name": "Kann ich klein anfangen?", "acceptedAnswer": {"@type": "Answer", "text": "Ja, sehr gerne. Viele beginnen mit dem Licht oder mit neuen Schaltern und erweitern später Schritt für Schritt."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Start", "item": "https://www.nasuvia.ch/"}, {"@type": "ListItem", "position": 2, "name": "Smart Home", "item": "https://www.nasuvia.ch/smart-home/"}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <a href="/" class="nav-logo" aria-label="Nasuvia Startseite"><span class="logo-punkt" aria-hidden="true"></span><img src="/logo-wort.png" alt="Nasuvia" width="94" height="18" /></a>
+      <nav class="nav-links" aria-label="Hauptnavigation"><a href="/provider/">Provider</a><a href="/verwaltungen/">Verwaltungen</a><a href="/firmen/">Firmen</a><a href="/stoerungsdienst/">Störung</a><a href="/heimnetz/">WLAN</a><a href="/steckdosen-schalter/">Steckdosen</a><a href="/smart-home/" aria-current="page">Smart Home</a></nav>
+      <a href="/kontakt/" class="btn btn-haupt btn-klein">Anfrage starten</a>
+      <button class="nav-burger" type="button" aria-label="Menü" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+    </div>
+  </header>
+  <nav class="menu" id="menu" aria-label="Menü">
+    <a href="/provider/">Für Provider</a>
+    <a href="/verwaltungen/">Für Verwaltungen</a>
+    <a href="/firmen/">Für Firmen und Elektriker</a>
+    <a href="/stoerungsdienst/">Störungsdienst</a>
+    <a href="/firmen/#bestellen" class="klein">OTO-Dosen bestellen</a>
+    <a href="/heimnetz/" class="klein">WLAN zu Hause</a>
+    <a href="/steckdosen-schalter/" class="klein">Steckdosen und Schalter</a>
+    <a href="/smart-home/" class="klein">Smart Home</a>
+    <a href="/" class="klein">Startseite</a>
+    <a href="/kontakt/" class="btn btn-haupt">Anfrage starten</a>
+    <a href="tel:+41798218408" class="btn btn-zweit"><span class="tel-punkt"></span>+41 79 821 84 08</a>
+  </nav>
+  <main>
+    <section class="hero hero-schmal" style="padding-bottom:40px">
+      <div class="wrap" style="display:block">
+        <nav class="pfad zeig" aria-label="Pfad"><a href="/">Start</a><span>/</span><span>Smart Home</span></nav>
+        <p class="label zeig">Für Ihr Zuhause</p>
+        <h1 class="zeig v1" style="max-width:860px">Smart Home. Ihr Zuhause hört auf Sie.</h1>
+        <p class="lead zeig v2">Licht, Storen und Heizung per Sprache, per App oder mit einem Touch-Panel an der Wand steuern. Wir beraten Sie, installieren alles und zeigen Ihnen, wie es geht. Von einem smarten Schalter bis zum ganzen Haus.</p>
+        <div class="knoepfe zeig v3"><a href="#offerte" class="btn btn-haupt">Offerte online anfragen <span class="pfeil" aria-hidden="true">→</span></a><a href="tel:+41798218408" class="btn btn-zweit"><span class="tel-punkt"></span>+41 79 821 84 08</a></div>
+      </div>
+    </section>
+
+    <section class="abschnitt eng">
+      <div class="wrap">
+        <div class="kopf zeig"><p class="label">Ihr Zuhause, ganz einfach</p><h2>Licht, Storen und Heizung. Per Sprache, App oder Touch.</h2><p>Smart Home heisst: Ihr Zuhause macht, was Sie möchten, ohne dass Sie aufstehen müssen. Wir beraten Sie, was zu Ihnen passt, installieren alles und richten es so ein, dass die ganze Familie es sofort bedienen kann.</p></div><div class="zwei" style="margin-top:22px"><div><div class="vorteile"><div class="vorteil zeig"><b>Sprachsteuerung</b><p>„Licht im Wohnzimmer an.“ Mit Siri, Google Assistant oder Alexa, ganz wie Sie möchten.</p></div><div class="vorteil zeig v1"><b>App-Steuerung</b><p>Alles auf dem Handy, auch von unterwegs: Storen runter, Heizung rauf, nachschauen, ob das Licht aus ist.</p></div><div class="vorteil zeig v2"><b>Touch-Panel</b><p>Ein schönes Bedienfeld an der Wand. Ein Tipp, und Licht, Storen und Musik sind bereit für den Filmabend.</p></div><div class="vorteil zeig"><b>Automatisch</b><p>Am Morgen gehen die Storen hoch, beim Verlassen der Wohnung geht alles aus. Sie müssen an nichts mehr denken.</p></div></div></div><div class="bild-karte zeig v1"><svg viewBox="0 0 420 280" role="img" aria-label="Smart Home: Licht, Storen und Heizung per Sprache, App oder Touch-Panel steuern">
+  <rect width="420" height="280" rx="18" fill="#F6F8FC"/>
+  <path d="M60 120 210 40l150 80" fill="none" stroke="#1C2A7B" stroke-width="2.5" stroke-linejoin="round"/>
+  <rect x="80" y="118" width="260" height="130" fill="#fff" stroke="#1C2A7B" stroke-width="2.5"/>
+  <g transform="translate(110 140)"><circle cx="20" cy="20" r="20" fill="#FFF1C9"><animate attributeName="fill" values="#EEF1F8;#FFF1C9;#FFF1C9;#EEF1F8" dur="4s" repeatCount="indefinite"/></circle><path d="M14 18a6 6 0 1 1 12 0c0 3-3 4-3 7h-6c0-3-3-4-3-7zM17 29h6" stroke="#1C2A7B" stroke-width="2" fill="none"/><text x="20" y="58" text-anchor="middle" style="font:600 11px system-ui;fill:#47506B">Licht</text></g>
+  <g transform="translate(190 140)"><rect x="2" y="2" width="36" height="36" rx="6" fill="#EEF1F8"/><path d="M8 10h24M8 16h24M8 22h24" stroke="#1C2A7B" stroke-width="2"><animateTransform attributeName="transform" type="translate" values="0 0;0 6;0 0" dur="4s" repeatCount="indefinite"/></path><text x="20" y="58" text-anchor="middle" style="font:600 11px system-ui;fill:#47506B">Storen</text></g>
+  <g transform="translate(270 140)"><circle cx="20" cy="20" r="20" fill="#FDE4DA"/><text x="20" y="25" text-anchor="middle" style="font:700 12px system-ui;fill:#B4442A">21°</text><text x="20" y="58" text-anchor="middle" style="font:600 11px system-ui;fill:#47506B">Heizung</text></g>
+  <g transform="translate(18 196)"><rect width="46" height="70" rx="9" fill="#1C2A7B"/><rect x="5" y="8" width="36" height="50" rx="4" fill="#3B55E6"/><text x="23" y="38" text-anchor="middle" style="font:700 9px system-ui;fill:#fff">App</text></g>
+  <g transform="translate(356 190)"><rect width="50" height="50" rx="10" fill="#fff" stroke="#1C2A7B" stroke-width="2"/><circle cx="25" cy="25" r="11" fill="#3B55E6" opacity=".2"><animate attributeName="r" values="8;14;8" dur="2s" repeatCount="indefinite"/></circle><text x="25" y="68" text-anchor="middle" style="font:600 11px system-ui;fill:#47506B">Touch</text></g>
+  <g transform="translate(26 26)"><path d="M10 4v14a6 6 0 0 0 12 0V4a6 6 0 0 0-12 0zM4 18a12 12 0 0 0 24 0M16 30v6" stroke="#3B55E6" stroke-width="2.5" fill="none" stroke-linecap="round"/><text x="38" y="20" style="font:600 12px system-ui;fill:#1C2A7B">„Licht an“</text></g>
+</svg></div></div>
+      </div>
+    </section>
+
+    <section class="abschnitt eng">
+      <div class="wrap">
+        <div class="kopf zeig"><p class="label">Das steuern wir</p><h2>Von einem smarten Schalter bis zum ganzen Haus.</h2><p>Sie müssen nicht alles auf einmal machen. Viele beginnen mit dem Licht und erweitern später.</p></div><div class="raster raster-4" style="margin-top:22px"><div class="karte zeig"><p class="label" style="margin-bottom:10px">Licht</p><h3 style="font-size:1.2rem;margin-bottom:8px">Licht und Stimmungen</h3><p>Dimmen, Farben, Szenen wie „Abendessen“ oder „Kino“. Mit einem Tipp oder einem Wort.</p></div><div class="karte zeig v1"><p class="label" style="margin-bottom:10px">Storen</p><h3 style="font-size:1.2rem;margin-bottom:8px">Storen und Rollläden</h3><p>Per App, nach Zeitplan oder automatisch bei Sonne und Wind.</p></div><div class="karte zeig v2"><p class="label" style="margin-bottom:10px">Klima</p><h3 style="font-size:1.2rem;margin-bottom:8px">Heizung und Temperatur</h3><p>Jeder Raum so warm, wie Sie es möchten. Das spart Energie und Kosten.</p></div><div class="karte zeig"><p class="label" style="margin-bottom:10px">Sicherheit</p><h3 style="font-size:1.2rem;margin-bottom:8px">Tür, Kamera, Alarm</h3><p>Türklingel mit Video, Fenster- und Türkontakte, Benachrichtigung aufs Handy.</p></div><div class="karte zeig v1"><p class="label" style="margin-bottom:10px">Energie</p><h3 style="font-size:1.2rem;margin-bottom:8px">Steckdosen und Verbrauch</h3><p>Smarte Steckdosen schalten Geräte aus und zeigen, wie viel Strom sie brauchen.</p></div><div class="karte zeig v2"><p class="label" style="margin-bottom:10px">Unterhaltung</p><h3 style="font-size:1.2rem;margin-bottom:8px">Musik und TV</h3><p>Musik in jedem Raum, Fernseher und Licht zusammen gesteuert.</p></div><div class="karte zeig"><p class="label" style="margin-bottom:10px">Netzwerk</p><h3 style="font-size:1.2rem;margin-bottom:8px">Stabiles WLAN</h3><p>Smart Home braucht gutes WLAN. Das bringen wir gleich mit, siehe <a href="/heimnetz/">WLAN in jedem Zimmer</a>.</p></div><div class="karte zeig v1"><p class="label" style="margin-bottom:10px">Beratung</p><h3 style="font-size:1.2rem;margin-bottom:8px">Wir beraten Sie</h3><p>Welches System passt? Apple, Google, Amazon oder eine Lösung ohne Cloud. Wir erklären es einfach und ehrlich.</p></div></div>
+      </div>
+    </section>
+
+    <section class="abschnitt eng">
+      <div class="wrap">
+        <div class="kopf zeig"><p class="label">So läuft es ab</p><h2>Von der Idee zum smarten Zuhause.</h2></div><div class="raster raster-4" style="margin-top:22px"><div class="karte zeig"><p class="label" style="margin-bottom:10px">01</p><h3 style="font-size:1.2rem;margin-bottom:8px">Wünsche angeben</h3><p>Im Formular wählen Sie, was Sie steuern möchten und wie. Das dauert zwei Minuten.</p></div><div class="karte zeig v1"><p class="label" style="margin-bottom:10px">02</p><h3 style="font-size:1.2rem;margin-bottom:8px">Beratung</h3><p>Wir besprechen mit Ihnen, was sinnvoll ist, am Telefon oder bei Ihnen zu Hause.</p></div><div class="karte zeig v2"><p class="label" style="margin-bottom:10px">03</p><h3 style="font-size:1.2rem;margin-bottom:8px">Installation</h3><p>Wir installieren und verbinden alles, sauber und ohne grosse Baustelle.</p></div><div class="karte zeig"><p class="label" style="margin-bottom:10px">04</p><h3 style="font-size:1.2rem;margin-bottom:8px">Einführung</h3><p>Wir richten die App, die Sprachsteuerung und die Szenen ein und zeigen Ihnen alles in Ruhe.</p></div></div>
+      </div>
+    </section>
+
+    <section class="abschnitt eng" id="offerte">
+      <div class="wrap">
+        <div class="kopf zeig"><p class="label">Offerte online anfragen</p><h2>Ihre Smart-Home-Offerte in zwei Minuten.</h2><p>Sagen Sie uns, was Sie steuern möchten und wie. Wir beraten Sie und schicken Ihnen eine Offerte.</p></div><form class="hn-karte hn-form" id="hnForm" data-art="Offerte Smart Home" data-betreff="Offerte Smart Home" novalidate><div class="hn-fortschritt"><span>Schritt <b id="hnNr">1</b> von 4</span><span id="hnTitel"></span></div><div class="hn-leiste" aria-hidden="true"><i id="hnLeiste"></i></div><div class="hn-schritt" data-titel="Ihr Zuhause"><h3>Erzählen Sie uns kurz von Ihrem Zuhause.</h3><p>Wissen Sie etwas nicht genau? Kein Problem, wir beraten Sie.</p><fieldset class="hn-frage" data-pflicht><legend>Was ist es?</legend><div class="hn-wahl"><label><input type="radio" name="Objekt" value="Wohnung"><span>Wohnung</span></label><label><input type="radio" name="Objekt" value="Haus"><span>Haus</span></label><label><input type="radio" name="Objekt" value="Büro oder Geschäft"><span>Büro oder Geschäft</span></label></div></fieldset><fieldset class="hn-frage" data-pflicht><legend>Wie viele Zimmer?</legend><div class="hn-wahl"><label><input type="radio" name="Zimmer" value="1.5"><span>1.5</span></label><label><input type="radio" name="Zimmer" value="2.5"><span>2.5</span></label><label><input type="radio" name="Zimmer" value="3.5"><span>3.5</span></label><label><input type="radio" name="Zimmer" value="4.5"><span>4.5</span></label><label><input type="radio" name="Zimmer" value="5.5"><span>5.5</span></label><label><input type="radio" name="Zimmer" value="6.5 oder mehr"><span>6.5 oder mehr</span></label></div></fieldset><fieldset class="hn-frage" data-pflicht><legend>Neubau oder bestehend?</legend><div class="hn-wahl"><label><input type="radio" name="Bau" value="Bestehend"><span>Bestehend</span></label><label><input type="radio" name="Bau" value="Umbau oder Renovation"><span>Umbau oder Renovation</span></label><label><input type="radio" name="Bau" value="Neubau"><span>Neubau</span></label></div></fieldset><fieldset class="hn-frage" data-pflicht><legend>Miete oder Eigentum?</legend><div class="hn-wahl"><label><input type="radio" name="Wohnform" value="Miete"><span>Miete</span></label><label><input type="radio" name="Wohnform" value="Eigentum"><span>Eigentum</span></label></div></fieldset></div>
+<div class="hn-schritt" data-titel="Was steuern" hidden><h3>Was möchten Sie smart steuern?</h3><p>Mehrere Antworten sind möglich.</p><fieldset class="hn-frage" data-pflicht><legend>Bereiche</legend><div class="hn-wahl"><label><input type="checkbox" name="Steuern" value="Licht"><span>Licht</span></label><label><input type="checkbox" name="Steuern" value="Storen oder Rollläden"><span>Storen oder Rollläden</span></label><label><input type="checkbox" name="Steuern" value="Heizung"><span>Heizung</span></label><label><input type="checkbox" name="Steuern" value="Steckdosen"><span>Steckdosen</span></label><label><input type="checkbox" name="Steuern" value="Türklingel und Kamera"><span>Türklingel und Kamera</span></label><label><input type="checkbox" name="Steuern" value="Alarm und Kontakte"><span>Alarm und Kontakte</span></label><label><input type="checkbox" name="Steuern" value="Musik und TV"><span>Musik und TV</span></label><label><input type="checkbox" name="Steuern" value="Weiss noch nicht, bitte beraten"><span>Weiss noch nicht, bitte beraten</span></label></div></fieldset></div>
+<div class="hn-schritt" data-titel="Wie steuern" hidden><h3>Wie möchten Sie steuern?</h3><p>Sie können auch alles kombinieren. Die normalen Schalter funktionieren immer weiter.</p><fieldset class="hn-frage" data-pflicht><legend>Bedienung</legend><div class="hn-wahl gross"><label><input type="checkbox" name="Bedienung" value="Per Sprache"><span>Per Sprache<em>Siri, Google oder Alexa.</em></span></label><label><input type="checkbox" name="Bedienung" value="Per App"><span>Per App<em>Auf dem Handy, auch von unterwegs.</em></span></label><label><input type="checkbox" name="Bedienung" value="Touch-Panel an der Wand"><span>Touch-Panel an der Wand<em>Ein Bedienfeld für alles.</em></span></label><label><input type="checkbox" name="Bedienung" value="Automatisch"><span>Automatisch<em>Zeitpläne und Szenen.</em></span></label><label><input type="checkbox" name="Bedienung" value="Bitte beraten"><span>Bitte beraten<em>Wir empfehlen, was passt.</em></span></label></div></fieldset><fieldset class="hn-frage" data-pflicht><legend>Haben Sie schon ein System?</legend><div class="hn-wahl"><label><input type="radio" name="System" value="Apple (Siri, Home)"><span>Apple (Siri, Home)</span></label><label><input type="radio" name="System" value="Google (Nest, Assistant)"><span>Google (Nest, Assistant)</span></label><label><input type="radio" name="System" value="Amazon (Alexa)"><span>Amazon (Alexa)</span></label><label><input type="radio" name="System" value="Anderes"><span>Anderes</span></label><label><input type="radio" name="System" value="Noch keines"><span>Noch keines</span></label></div></fieldset><fieldset class="hn-frage"><legend>Was ist Ihnen wichtig?</legend><div class="hn-wahl"><label><input type="checkbox" name="Wichtig" value="Ganz einfach zu bedienen"><span>Ganz einfach zu bedienen</span></label><label><input type="checkbox" name="Wichtig" value="Ohne Cloud, alles lokal"><span>Ohne Cloud, alles lokal</span></label><label><input type="checkbox" name="Wichtig" value="Energie sparen"><span>Energie sparen</span></label><label><input type="checkbox" name="Wichtig" value="Sicherheit"><span>Sicherheit</span></label><label><input type="checkbox" name="Wichtig" value="Design"><span>Design</span></label></div></fieldset></div>
+<div class="hn-schritt" data-titel="Kontakt" hidden>
+            <h3>Wohin dürfen wir die Offerte schicken?</h3>
+            <p>Wir rechnen Ihnen die Offerte mit Ihren Angaben. Wenn etwas unklar ist, rufen wir Sie kurz an oder schauen es uns bei Ihnen an.</p>
+            <div class="hn-felder">
+              <label class="hn-feld" data-pflicht><span>Vorname und Name</span><input type="text" name="Name" autocomplete="name" maxlength="120"></label>
+              <label class="hn-feld" data-pflicht><span>Telefon</span><input type="tel" name="Telefon" autocomplete="tel" maxlength="40"></label>
+              <label class="hn-feld" data-pflicht data-email><span>E-Mail</span><input type="email" name="E-Mail" autocomplete="email" maxlength="120"></label>
+              <label class="hn-feld"><span>Strasse und Nummer</span><input type="text" name="Strasse" autocomplete="street-address" maxlength="120"></label>
+              <label class="hn-feld" data-pflicht><span>PLZ und Ort</span><input type="text" name="PLZ und Ort" autocomplete="postal-code" maxlength="80"></label>
+            </div>
+            <fieldset class="hn-frage"><legend>Bis wann? <small>(freiwillig)</small></legend><div class="hn-wahl"><label><input type="radio" name="Zeitpunkt" value="So bald wie möglich"><span>So bald wie möglich</span></label><label><input type="radio" name="Zeitpunkt" value="In den nächsten Wochen"><span>In den nächsten Wochen</span></label><label><input type="radio" name="Zeitpunkt" value="Kein Stress"><span>Kein Stress</span></label></div></fieldset>
+            <label class="hn-feld"><span>Noch etwas, das wir wissen sollten? <small>(freiwillig)</small></span><textarea name="Bemerkung" maxlength="2000" placeholder="Zum Beispiel: Am liebsten würde ich Licht und Storen im Wohnzimmer per Sprache steuern."></textarea></label>
+            <label class="hn-honig" aria-hidden="true">Nicht ausfüllen<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label>
+            <div class="hn-zusammen"><h4>Ihre Angaben</h4><dl id="hnZusammen"></dl></div>
+            <p class="hn-datenschutz">Ihre Angaben brauchen wir nur für die Offerte. Wir geben sie nicht weiter.</p>
+          </div>
+          <div class="hn-schritt hn-fertig" id="hnFertig" hidden>
+            <svg viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="38"/><path d="M26 43l11 11 21-23"/></svg>
+            <h3>Vielen Dank!</h3>
+            <p>Ihre Anfrage ist bei uns angekommen. Wir melden uns bei Ihnen mit der Offerte.</p>
+            <p>Bei Fragen erreichen Sie uns unter <a href="tel:+41798218408">+41 79 821 84 08</a>.</p>
+          </div>
+          <div class="hn-schritt hn-fertig" id="hnFehler" hidden>
+            <h3>Das hat leider nicht geklappt.</h3>
+            <p>Ihre Anfrage konnte nicht gesendet werden. Schicken Sie sie uns einfach per E-Mail, Ihre Angaben sind schon drin. Oder rufen Sie uns an.</p>
+            <a class="btn btn-haupt" id="hnMail" href="mailto:info@nasuvia.ch">Per E-Mail senden</a>
+            <p style="margin-top:14px"><a href="tel:+41798218408">+41 79 821 84 08</a></p>
+          </div>
+          <p class="hn-fehler" id="hnMeldung" role="alert"></p>
+          <div class="hn-knoepfe" id="hnKnoepfe">
+            <button type="button" class="hn-zurueck" id="hnZurueck" hidden>← Zurück</button>
+            <button type="button" class="btn btn-haupt" id="hnWeiter">Weiter</button>
+            <button type="submit" class="btn btn-haupt" id="hnSenden" hidden>Offerte anfragen</button>
+          </div></form>
+      </div>
+    </section>
+
+    <section class="abschnitt eng">
+      <div class="wrap">
+        <div class="kopf mitte zeig"><p class="label">Gut zu wissen</p><h2>Häufige Fragen</h2></div>
+        <div class="faq zeig"><details><summary>Was kostet ein Smart Home?</summary><p>Das hängt davon ab, was Sie steuern möchten. Ein paar smarte Schalter sind schon mit kleinem Budget möglich. Füllen Sie das Formular aus, dann bekommen Sie eine klare Offerte.</p></details><details><summary>Funktionieren die normalen Schalter weiter?</summary><p>Ja. Sie können weiterhin ganz normal mit dem Schalter an der Wand bedienen. Sprache, App und Touch kommen einfach dazu.</p></details><details><summary>Welches System ist das richtige?</summary><p>Das hängt davon ab, welches Handy Sie haben und was Ihnen wichtig ist. Wir beraten Sie zu Apple Home, Google, Amazon Alexa und zu Lösungen, die ganz ohne Cloud funktionieren.</p></details><details><summary>Geht Smart Home auch in einer Mietwohnung?</summary><p>Ja. Viele Lösungen funktionieren mit Funk, ohne neue Kabel. Beim Auszug lässt sich alles wieder zurückbauen. Fragen Sie vorher kurz bei Ihrer Verwaltung nach.</p></details><details><summary>Brauche ich gutes WLAN?</summary><p>Ja, ein stabiles Netz ist die Grundlage. Wenn nötig, bringen wir das WLAN gleich in jedes Zimmer. Mehr dazu auf <a href="/heimnetz/">WLAN in jedem Zimmer</a>.</p></details><details><summary>Sind meine Daten sicher?</summary><p>Wir richten alles mit sicheren Passwörtern ein und empfehlen auf Wunsch Geräte, die lokal funktionieren und keine Daten in die Cloud schicken.</p></details><details><summary>Kann ich klein anfangen?</summary><p>Ja, sehr gerne. Viele beginnen mit dem Licht oder mit <a href="/steckdosen-schalter/">neuen Schaltern</a> und erweitern später Schritt für Schritt.</p></details></div>
+      </div>
+    </section>
+
+    <section class="abschnitt eng">
+      <div class="wrap">
+        <div class="band zeig">
+          <div><h2>Bereit für Ihr smartes Zuhause?</h2><p>Offerte online anfragen oder anrufen. Wir beraten Sie gerne und ehrlich.</p></div>
+          <div class="knoepfe" style="margin:0"><a href="#offerte" class="btn btn-haupt">Offerte anfragen <span class="pfeil" aria-hidden="true">→</span></a><a href="tel:+41798218408" class="btn btn-zweit">+41 79 821 84 08</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="fuss">
+    <div class="wrap">
+      <div class="fuss-raster fuss-5">
+        <div>
+          <img src="/logo.png" alt="Nasuvia" width="161" height="26" loading="lazy" />
+          <p>Glasfaser? Wir ziehen durch.</p>
+        </div>
+        <div>
+          <h4>Für wen</h4>
+          <a href="/provider/">Provider</a><a href="/verwaltungen/">Verwaltungen</a><a href="/firmen/">Firmen und Elektriker</a>
+        </div>
+        <div>
+          <h4>Für Ihr Zuhause</h4>
+          <a href="/heimnetz/">WLAN in jedem Zimmer</a><a href="/steckdosen-schalter/">Steckdosen mit USB-C</a><a href="/smart-home/">Smart Home</a>
+        </div>
+        <div>
+          <h4>Service</h4>
+          <a href="/stoerungsdienst/">Störungsdienst</a><a href="/firmen/#bestellen">OTO-Dosen bestellen</a><a href="/kontakt/">Anfrage starten</a>
+        </div>
+        <div>
+          <h4>Kontakt</h4>
+          <a href="tel:+41798218408">+41 79 821 84 08</a><a href="mailto:info@nasuvia.ch">info@nasuvia.ch</a><span style="display:block;padding:3px 0">Tössfeldstrasse 37, 8406 Winterthur</span>
+          <a href="https://www.instagram.com/nasuvia.ch/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.facebook.com/profile.php?id=61578142365968" target="_blank" rel="noopener">Facebook ↗</a>
+        </div>
+      </div>
+      <div class="fuss-unten">
+        <span>© 2026 Nasuvia</span>
+        <span style="display:flex;gap:18px"><a href="/impressum/" style="display:inline">Impressum</a><a href="/admin/" style="display:inline" rel="nofollow">Login</a></span>
+      </div>
+    </div>
+  </footer>
+  <script src="/site.js?v=9" defer></script>
+  <script>
+    (function(){
+      var form = document.getElementById('hnForm');
+      if (!form) return;
+      var ZIEL = 'https://formsubmit.co/ajax/info@nasuvia.ch';
+      var ART = form.getAttribute('data-art'), BETREFF = form.getAttribute('data-betreff');
+      var schritte = [].slice.call(form.querySelectorAll('.hn-schritt:not(.hn-fertig)'));
+      var akt = 0;
+      var $ = function(id){ return document.getElementById(id); };
+      var wert = function(n){ var e = form.querySelector('[name="'+n+'"]:checked'); return e ? e.value : ''; };
+      function angaben(){
+        var d = {}, gesehen = {};
+        [].forEach.call(form.elements, function(e){
+          if (!e.name || e.name.charAt(0) === '_' || gesehen[e.name]) return;
+          var v;
+          if (e.type === 'radio') v = wert(e.name);
+          else if (e.type === 'checkbox') v = [].map.call(form.querySelectorAll('[name="'+e.name+'"]:checked'), function(c){ return c.value; }).join(', ');
+          else v = e.value.trim();
+          gesehen[e.name] = 1;
+          if (e.closest('.hn-extra[hidden], fieldset[hidden]')) return;
+          if (v) d[e.name] = v;
+        });
+        return d;
+      }
+      function abhaengig(){
+        form.querySelectorAll('[data-wenn]').forEach(function(el){
+          var t = el.getAttribute('data-wenn').split('=');
+          var gewaehlt = [].map.call(form.querySelectorAll('[name="'+t[0]+'"]:checked'), function(c){ return c.value; });
+          el.hidden = gewaehlt.indexOf(t[1]) < 0;
+        });
+      }
+      function pruefen(i){
+        var ok = true, erstes = null;
+        schritte[i].querySelectorAll('[data-pflicht]').forEach(function(f){
+          if (f.hidden || f.closest('[hidden]')) return;
+          var gut, inp = f.querySelector('input');
+          if (f.tagName === 'FIELDSET') gut = !!f.querySelector('input:checked');
+          else if (f.hasAttribute('data-email')) gut = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inp.value.trim());
+          else gut = inp.value.trim().length > 1;
+          f.classList.toggle('fehlt', !gut);
+          if (!gut) { ok = false; erstes = erstes || f; }
+        });
+        $('hnMeldung').textContent = ok ? '' : 'Bitte füllen Sie die rot markierten Angaben noch aus.';
+        if (erstes) erstes.scrollIntoView({behavior:'smooth', block:'center'});
+        return ok;
+      }
+      function zusammenfassen(){
+        var d = angaben(), dl = $('hnZusammen'), kontakt = ['Name','Telefon','E-Mail','Strasse','PLZ und Ort','Zeitpunkt','Bemerkung'];
+        dl.textContent = '';
+        Object.keys(d).forEach(function(k){
+          if (kontakt.indexOf(k) >= 0) return;
+          var dt = document.createElement('dt'), dd = document.createElement('dd');
+          dt.textContent = k; dd.textContent = d[k];
+          dl.appendChild(dt); dl.appendChild(dd);
+        });
+      }
+      function zeige(i, scrollen){
+        schritte.forEach(function(s, n){ s.hidden = n !== i; });
+        akt = i;
+        $('hnNr').textContent = i + 1;
+        $('hnTitel').textContent = schritte[i].getAttribute('data-titel');
+        $('hnLeiste').style.width = ((i + 1) / schritte.length * 100) + '%';
+        $('hnZurueck').hidden = i === 0;
+        $('hnWeiter').hidden = i === schritte.length - 1;
+        $('hnSenden').hidden = i !== schritte.length - 1;
+        $('hnMeldung').textContent = '';
+        if (i === schritte.length - 1) zusammenfassen();
+        if (scrollen) form.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+      function ende(id){
+        schritte.forEach(function(s){ s.hidden = true; });
+        form.querySelector('.hn-fortschritt').hidden = true;
+        form.querySelector('.hn-leiste').hidden = true;
+        $('hnKnoepfe').hidden = true;
+        $('hnMeldung').textContent = '';
+        $(id).hidden = false;
+        form.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+      form.addEventListener('change', function(e){ abhaengig(); var f = e.target.closest('.fehlt'); if (f) f.classList.remove('fehlt'); });
+      form.addEventListener('input', function(e){ var f = e.target.closest('.fehlt'); if (f) f.classList.remove('fehlt'); });
+      $('hnWeiter').addEventListener('click', function(){ if (pruefen(akt)) zeige(akt + 1, true); });
+      $('hnZurueck').addEventListener('click', function(){ zeige(akt - 1, true); });
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        if (akt !== schritte.length - 1) { if (pruefen(akt)) zeige(akt + 1, true); return; }
+        if (!pruefen(akt)) return;
+        var d = angaben();
+        if (form.elements._honey.value) { ende('hnFertig'); return; }
+        var jetzt = new Date(), zz = function(n){ return ('0' + n).slice(-2); };
+        var nr = 'NSV-' + String(jetzt.getFullYear()).slice(2) + zz(jetzt.getMonth() + 1) + zz(jetzt.getDate()) + '-' + (100 + Math.floor(Math.random() * 900));
+        var text = Object.keys(d).map(function(k){ return k + ': ' + d[k]; }).join('\n');
+        $('hnMail').href = 'mailto:info@nasuvia.ch?subject=' + encodeURIComponent(BETREFF + ' ' + nr) + '&body=' + encodeURIComponent(text);
+        var knopf = $('hnSenden');
+        knopf.classList.add('hn-senden-laeuft');
+        var nutzlast = Object.assign({ _subject: BETREFF + ' ' + nr + ': ' + (d.Name || ''), _template: 'table', _replyto: d['E-Mail'] || '', Nummer: nr }, d);
+        var perMail = fetch(ZIEL, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(nutzlast) })
+          .then(function(r){ return r.json(); }).then(function(a){ return String(a && a.success) === 'true'; }).catch(function(){ return false; });
+        var imAdmin = window.nasuviaAnfrageSichern ? window.nasuviaAnfrageSichern(ART, nr, d) : Promise.resolve(false);
+        Promise.all([perMail, imAdmin])
+          .then(function(e){ ende(e[0] || e[1] ? 'hnFertig' : 'hnFehler'); })
+          .then(function(){ knopf.classList.remove('hn-senden-laeuft'); });
+      });
+      abhaengig();
+      zeige(0, false);
+    })();
+  </script>
+</body>
+</html>
